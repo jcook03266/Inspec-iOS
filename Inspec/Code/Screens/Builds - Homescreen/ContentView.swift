@@ -9,6 +9,7 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
+    @StateObject var router: ViewRouter
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -17,28 +18,34 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-            Text("Select an item")
+        ZStack {
+//            NavigationView {
+//                List {
+//                    ForEach(items) { item in
+//                        NavigationLink {
+//                            Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+//                        } label: {
+//                            Text(item.timestamp!, formatter: itemFormatter)
+//                        }
+//                    }
+//                    .onDelete(perform: deleteItems)
+//                }
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        EditButton()
+//                    }
+//                    ToolbarItem {
+//                        Button(action: addItem) {
+//                            Label("Add Item", systemImage: "plus")
+//                        }
+//                    }
+//                }
+//                Text("Select an item")
+//            }
+            
+            router.currentScreen
+            
+            FloatingTabbar(router: router)
         }
     }
 
@@ -83,6 +90,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView(router: ViewRouter()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

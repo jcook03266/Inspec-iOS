@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  Inspec
+
+  Created by Justin Cook on 10/29/22.
+  
+*/
+
+// Tabbar:
+"TABBAR_BUTTON_BUILDS" = "Builds";
+"TABBAR_BUTTON_COMPONENTS" = "Components";
+"TABBAR_BUTTON_COMMAND_CENTER" = "Command Center";
+"TABBAR_BUTTON_EXPLORE" = "Explore";
+"TABBAR_BUTTON_INBOX" = "Inbox";
