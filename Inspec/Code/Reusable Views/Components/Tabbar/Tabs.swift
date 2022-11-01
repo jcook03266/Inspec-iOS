@@ -11,7 +11,7 @@ import SwiftUI
 // MARK: - Dispatcher
 /// Structure that dispatches preconfigured tabbar views to be installed into a tabbar body view
 struct TabbarTabDispatcher {
-    @ObservedObject var router: ViewRouter
+    @ObservedObject var coordinator: RootCoordinator
     
     /// Returns the tab button view for this tab
     func getTabViewFor(tab: Tabs) -> some View {
@@ -52,7 +52,7 @@ struct TabbarTabDispatcher {
                       image: Icons.getIconImage(named: .circle_hexagongrid_fill),
                       id: 0,
                       assignedTab: .builds,
-                      router: router)
+                      coordinator: coordinator)
         
         return TabbarTabButtonView(tab: tab)
     }
@@ -61,7 +61,7 @@ struct TabbarTabDispatcher {
                       image: Icons.getIconImage(named: .rectangle_3_group_fill),
                       id: 1,
                       assignedTab: .components,
-                      router: router)
+                      coordinator: coordinator)
         
         return TabbarTabButtonView(tab: tab)
     }
@@ -70,7 +70,7 @@ struct TabbarTabDispatcher {
                       image: nil,
                       id: 2,
                       assignedTab: .command_center,
-                      router: router)
+                      coordinator: coordinator)
         
         return TabbarCenterTabButtonView(tab: tab)
     }
@@ -79,7 +79,7 @@ struct TabbarTabDispatcher {
                       image: Icons.getIconImage(named: .point_3_filled_connected_trianglepath_dotted),
                       id: 3,
                       assignedTab: .explore,
-                      router: router)
+                      coordinator: coordinator)
         
         return TabbarTabButtonView(tab: tab)
     }
@@ -88,7 +88,7 @@ struct TabbarTabDispatcher {
                       image: Icons.getIconImage(named: .chat),
                       id: 4,
                       assignedTab: .inbox,
-                      router: router)
+                      coordinator: coordinator)
         
         return TabbarTabButtonView(tab: tab)
     }
@@ -102,14 +102,6 @@ struct TabbarTabDispatcher {
     }
 }
 
-enum Tabs: String, CaseIterable, Hashable {    
-    case builds
-    case components
-    case command_center
-    case explore
-    case inbox
-}
-
 // MARK: - View Model for tab views
 class Tab: Identifiable, Hashable, ObservableObject {
     let title: LocalizedStringKey,
@@ -117,19 +109,19 @@ class Tab: Identifiable, Hashable, ObservableObject {
         id: Int,
         assignedTab: Tabs
     
-    @ObservedObject var router: ViewRouter
+    @ObservedObject var coordinator: RootCoordinator
     
     init(title: LocalizedStringKey,
          image: Image?,
          id: Int,
          assignedTab: Tabs,
-         router: ViewRouter) {
+         coordinator: RootCoordinator) {
         
         self.title = title
         self.image = image
         self.id = id
         self.assignedTab = assignedTab
-        self.router = router
+        self.coordinator = coordinator
     }
     
     func hash(into hasher: inout Hasher) {
@@ -194,7 +186,7 @@ struct TabbarTabButtonView: View {
         shadowColor: Color = Colors.shadow_1.0
     
     var isActive: Bool {
-        return tab.router.currentTab == tab.assignedTab
+        return tab.coordinator.currentTab == tab.assignedTab
     }
     var notificationsPending: Bool {
         return false

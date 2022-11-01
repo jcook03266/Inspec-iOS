@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @StateObject var router: ViewRouter
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -42,10 +41,6 @@ struct ContentView: View {
 //                }
 //                Text("Select an item")
 //            }
-            
-            router.currentScreen
-            
-            FloatingTabbar(router: router)
         }
     }
 
@@ -90,6 +85,6 @@ private let itemFormatter: DateFormatter = {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(router: ViewRouter()).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

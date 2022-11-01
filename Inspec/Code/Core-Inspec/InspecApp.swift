@@ -10,11 +10,11 @@ import SwiftUI
 @main
 struct InspecApp: App {
     let persistenceController = PersistenceController.shared
-    @StateObject var mainRouter = ViewRouter()
+    @ObservedObject var rootCoordinator: RootCoordinator = RootCoordinator()
 
     var body: some Scene {
         WindowGroup {
-            ContentView(router: mainRouter)
+            RootCoordinatorView(rootCoordinator: rootCoordinator)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

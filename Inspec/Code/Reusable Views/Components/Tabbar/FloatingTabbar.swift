@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FloatingTabbar: View {
-    @StateObject var router: ViewRouter
+    @StateObject var coordinator: RootCoordinator
     @Namespace private var tabbarContainer
     @State private var animate: Bool = false
     
@@ -24,11 +24,12 @@ struct FloatingTabbar: View {
             if tab != .command_center {
                 VStack(alignment: .leading) {
                     VStack(spacing: 9) {
-                        router.tabbarTabController.getTabViewFor(tab: tab)
+                        
+                        coordinator.tabbarDispatcher.getTabViewFor(tab: tab)
                             .zIndex(0)
                             .onTapGesture {
                                 withAnimation(.spring()) {
-                                    router.currentTab = tab
+                                    coordinator.currentTab = tab
                                     
                                     // Trigger animation
                                     animate.toggle()
@@ -37,7 +38,7 @@ struct FloatingTabbar: View {
                                 }
                             }
                         
-                        if router.currentTab == tab && tab != .command_center {
+                        if coordinator.currentTab == tab && tab != .command_center {
                             TabbarButtonUnderlineView()
                                 .zIndex(0)
                                 .matchedGeometryEffect(id: "underline", in: tabbarContainer)
@@ -53,12 +54,12 @@ struct FloatingTabbar: View {
                 .fixedSize()
             }
             else {
-                    router.tabbarTabController.getTabViewFor(tab: tab)
+                coordinator.tabbarDispatcher.getTabViewFor(tab: tab)
                         .zIndex(1)
                         .frame(width: 70)
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                router.currentTab = tab
+                                coordinator.currentTab = tab
                             }
                         }
                         .padding([.leading], 5)
@@ -99,6 +100,6 @@ struct FloatingTabbar: View {
 
 struct FloatingTabbar_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTabbar(router: ViewRouter())
+        FloatingTabbar(coordinator: RootCoordinator())
     }
 }
