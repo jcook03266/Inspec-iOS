@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @ObservedObject var viewModel: ExploreViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Explore")
     }
 }
 
 struct ExploreView_Previews: PreviewProvider {
     static var previews: some View {
-        ExploreView()
+        ExploreView(viewModel: .init(coordinator: ExploreCoordinator(parent: RootCoordinator())))
     }
 }

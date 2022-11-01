@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CommandCenterView: View {
+    @ObservedObject var viewModel: CommandCenterViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Command Center")
     }
 }
 
 struct CommandCenterView_Previews: PreviewProvider {
     static var previews: some View {
-        CommandCenterView()
+        CommandCenterView(viewModel: .init(coordinator: CommandCenterCoordinator(parent: RootCoordinator())))
     }
 }

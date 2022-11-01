@@ -15,7 +15,7 @@ struct BuildsView: View {
     }
 }
 
-struct Builds_Previews: PreviewProvider {
+struct BuildsView_Previews: PreviewProvider {
     static var previews: some View {
         BuildsView(viewModel: .init(coordinator: BuildsCoordinator(parent: RootCoordinator())))
     }

@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct InboxView: View {
+    @ObservedObject var viewModel: InboxViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Inbox")
     }
 }
 
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
-        InboxView()
+        InboxView(viewModel: .init(coordinator: InboxCoordinator(parent: RootCoordinator())))
     }
 }

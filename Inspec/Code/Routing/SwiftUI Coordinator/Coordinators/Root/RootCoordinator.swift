@@ -19,6 +19,10 @@ class RootCoordinator: Coordinator {
 
     // View Models
     @Published var buildsViewModel: BuildsViewModel!
+    @Published var componentsViewModel: ComponentsViewModel!
+    @Published var commandCenterViewModel: CommandCenterViewModel!
+    @Published var exploreViewModel: ExploreViewModel!
+    @Published var inboxViewModel: InboxViewModel!
     
     var tabbarDispatcher: TabbarTabDispatcher {
         return TabbarTabDispatcher(coordinator: self)
@@ -37,13 +41,13 @@ class RootCoordinator: Coordinator {
         case .builds:
             return AnyView(BuildsView(viewModel: self.buildsViewModel))
         case .components:
-            return AnyView(Text("C"))
+            return AnyView(ComponentsView(viewModel: self.componentsViewModel))
         case .command_center:
-            return AnyView(Text("CC"))
+            return AnyView(CommandCenterView(viewModel: self.commandCenterViewModel))
         case .explore:
-            return AnyView(Text("E"))
+            return AnyView(ExploreView(viewModel: self.exploreViewModel))
         case .inbox:
-            return AnyView(Text("I"))
+            return AnyView(InboxView(viewModel: self.inboxViewModel))
         }
     }
     
