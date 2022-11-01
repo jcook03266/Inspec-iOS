@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4906119829104B59007E5945 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906119729104B59007E5945 /* Images.swift */; };
+		490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906119F29118A5B007E5945 /* HapticFeedback.swift */; };
 		49B221BB290B902E00BF7B26 /* FloatingTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221BA290B902E00BF7B26 /* FloatingTabbar.swift */; };
 		49B221BE290B982300BF7B26 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221BD290B982300BF7B26 /* Colors.swift */; };
 		49B221C1290BA8C000BF7B26 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221C0290BA8C000BF7B26 /* ResourcesTests.swift */; };
@@ -48,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4906119729104B59007E5945 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		490611992910D33D007E5945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4906119F29118A5B007E5945 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		49B221BA290B902E00BF7B26 /* FloatingTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabbar.swift; sourceTree = "<group>"; };
 		49B221BD290B982300BF7B26 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		49B221C0290BA8C000BF7B26 /* ResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTests.swift; sourceTree = "<group>"; };
@@ -99,6 +104,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4906119A291189E4007E5945 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4906119B29118A00007E5945 /* AVH-Core */ = {
+			isa = PBXGroup;
+			children = (
+				4906119E29118A3F007E5945 /* Haptics */,
+				4906119D29118A37007E5945 /* Visual */,
+				4906119C29118A30007E5945 /* Audio */,
+			);
+			path = "AVH-Core";
+			sourceTree = "<group>";
+		};
+		4906119C29118A30007E5945 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		4906119D29118A37007E5945 /* Visual */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Visual;
+			sourceTree = "<group>";
+		};
+		4906119E29118A3F007E5945 /* Haptics */ = {
+			isa = PBXGroup;
+			children = (
+				4906119F29118A5B007E5945 /* HapticFeedback.swift */,
+			);
+			path = Haptics;
+			sourceTree = "<group>";
+		};
 		49B221B9290B8FFF00BF7B26 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +263,7 @@
 		49C262A12900B79E00532DF7 /* Inspec */ = {
 			isa = PBXGroup;
 			children = (
+				490611992910D33D007E5945 /* Info.plist */,
 				49C262DB2900B83800532DF7 /* Code */,
 				49C262D22900B7C200532DF7 /* Supporting Files */,
 				49C262D12900B7B100532DF7 /* Testing */,
@@ -294,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				49C262A62900B7A100532DF7 /* Images.xcassets */,
+				4906119729104B59007E5945 /* Images.swift */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -322,6 +368,8 @@
 		49C262DB2900B83800532DF7 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				4906119B29118A00007E5945 /* AVH-Core */,
+				4906119A291189E4007E5945 /* Services */,
 				49B221E6290DA0C400BF7B26 /* Routing */,
 				49B221DD290D0A4600BF7B26 /* Common */,
 				49C262DF2900B88B00532DF7 /* Screens */,
@@ -512,11 +560,13 @@
 			files = (
 				49B221CF290CA31600BF7B26 /* Fonts.swift in Sources */,
 				49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */,
+				490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */,
 				49C262AF2900B7A100532DF7 /* Inspec.xcdatamodeld in Sources */,
 				49C262E3290B84EF00532DF7 /* RoundedDualPickerView.swift in Sources */,
 				49B221EA290DA0EC00BF7B26 /* Router.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
+				4906119829104B59007E5945 /* Images.swift in Sources */,
 				49B221EF290DD01C00BF7B26 /* ViewExtensions.swift in Sources */,
 				49B221E0290D0A9400BF7B26 /* StringExtensions.swift in Sources */,
 				49B221D6290D076900BF7B26 /* TabbarTabs.swift in Sources */,
@@ -610,6 +660,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -665,6 +716,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -687,6 +739,7 @@
 				DEVELOPMENT_TEAM = 2JMR3SJGS4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Inspec/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Inspec;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -717,6 +770,7 @@
 				DEVELOPMENT_TEAM = 2JMR3SJGS4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Inspec/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Inspec;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

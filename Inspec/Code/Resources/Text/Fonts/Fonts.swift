@@ -10,8 +10,9 @@ import UIKit
 import SwiftUI
 
 /// SwiftUI Font view modifier, makes using specific fonts easier in SwiftUI
+// MARK: - Structs and extensions
 extension View {
-    func withFont(_ fontName: IterableFonts) -> some View {
+    func withFont(_ fontName: FontRepository) -> some View {
         let attributes = Fonts.getAttributes(for: fontName),
             font = Fonts.getFont(named: fontName)
         
@@ -35,7 +36,7 @@ private struct FontModifier: ViewModifier {
 
 /** Best suited for use with UIKit, use this whenever because UIFonts don't support the extra attributes enabled by the attributed String object*/
 extension String {
-    func getAttributedString(for font: IterableFonts) -> NSAttributedString{
+    func getAttributedString(for font: FontRepository) -> NSAttributedString{
         let attributedString = NSMutableAttributedString(string: self)
         
         guard !self.isEmpty else { return attributedString}
@@ -64,12 +65,12 @@ extension String {
 /// This struct uses the system font, no custom fonts are enabled / used as of now
 /// No testing is required for this because the default system font is used
 struct Fonts {
-    static func getFont(named fontName: IterableFonts) -> Font {
+    static func getFont(named fontName: FontRepository) -> Font {
         return Font(getUIFont(named: fontName))
     }
     
     /** Returns: UIFont, LineHeight, Letter Spacing [When using attributed strings w/ UIFonts] (tracking [do not use kerning])*/
-    static func getUIFont(named fontName: IterableFonts) -> UIFont {
+    static func getUIFont(named fontName: FontRepository) -> UIFont {
         let attributes = getAttributes(for: fontName),
             size = attributes.0,
             weight = attributes.3
@@ -81,7 +82,7 @@ struct Fonts {
     /// Note: Line height can't be explicitly set for UIFonts, so they must be used via Font modifiers or modification of labels
     /// Letter spacing must be used w/ attributed strings for UIFonts, Fonts use it normally via modifier
     /** - Returns: (Font Size, Letter Spacing [When using attributed strings w/ UIFonts] (tracking [do not use kerning], LineHeight, Font Weight)*/
-    static func getAttributes(for fontName: IterableFonts) -> (CGFloat, CGFloat, CGFloat, UIFont.Weight) {
+    static func getAttributes(for fontName: FontRepository) -> (CGFloat, CGFloat, CGFloat, UIFont.Weight) {
         
         switch fontName {
         case .heading_1:
@@ -134,6 +135,7 @@ struct Fonts {
     }
 }
 
-enum IterableFonts: String, CaseIterable, Codable, Hashable {
+// MARK: Fonts Enum
+enum FontRepository: String, CaseIterable, Codable, Hashable {
     case heading_1, heading_2, heading_3, heading_4, heading_5, heading_6, special_heading_1, special_heading_2, special_heading_3, body_XL, body_L, body_M, body_S, body_XS, body_2XS, body_3XS, body_XL_Bold, body_L_Bold, body_M_Bold, body_S_Bold, body_XS_Bold, body_2XS_Bold, body_3XS_Bold
 }

@@ -11,37 +11,38 @@ import UIKit
 
 /// Simplified and organized way of referencing the colors stored in the Colors assets directory.
 /// Note: If a new color is added, update the respective test in ResourcesTests.swift
+// MARK: - Structs
 struct Colors {
-    static func getColor(named colorName: IterableColors) -> Color {
+    static func getColor(named colorName: ColorRepository) -> Color {
         let color = Color(getUIColor(named: colorName))
         
         return color
     }
     
-    static func getUIColor(named colorName: IterableColors) -> UIColor {
+    static func getUIColor(named colorName: ColorRepository) -> UIColor {
         guard let uiColor = UIColor(named: colorName.rawValue) else {
-            preconditionFailure("Error: The color named \(colorName) was not found")
+            preconditionFailure("Error: The color named \(colorName) was not found, Function: \(#function)")
         }
         
         return uiColor
     }
     
-    static func getUIColors(named color1: IterableColors, color2: IterableColors) -> (UIColor, UIColor) {
+    static func getUIColors(named color1: ColorRepository, color2: ColorRepository) -> (UIColor, UIColor) {
         guard let uiColor1 = UIColor(named: color1.rawValue),
                 let uiColor2 = UIColor(named: color2.rawValue) else {
-            preconditionFailure("Error: One of the colors named [\(color1), \(color2)] were not found")
+            preconditionFailure("Error: One of the colors named [\(color1), \(color2)] were not found, Function: \(#function)")
         }
 
         return (uiColor1, uiColor2)
     }
     
-    static func getColors(named color1: IterableColors, color2: IterableColors) -> (Color, Color) {
+    static func getColors(named color1: ColorRepository, color2: ColorRepository) -> (Color, Color) {
         let uiColors = getUIColors(named: color1, color2: color2)
 
         return (Color(uiColors.0), Color(uiColors.1))
     }
     
-    static func getLinearGradient(named gradientName: IterableGradients) -> LinearGradient {
+    static func getLinearGradient(named gradientName: GradientRepository) -> LinearGradient {
         switch gradientName {
         case .gradient_1:
             let colors = getColors(named: .primary_1, color2: .secondary_1)
@@ -139,11 +140,11 @@ struct Colors {
 }
 
 // MARK: Colors Enum
-enum IterableColors: String, CaseIterable, Codable, Hashable {
+enum ColorRepository: String, CaseIterable, Codable, Hashable {
     case primary_1, primary_2, secondary_1, secondary_2, black, neutral_900, neutral_800, neutral_700, neutral_600, neutral_500, neutral_400, neutral_300, neutral_200, neutral_100, white, attention, shadow_1, text_black, text_white, icon_white, icon_black
 }
 
 // MARK: Gradients Enum
-enum IterableGradients: String, CaseIterable, Codable, Hashable {
+enum GradientRepository: String, CaseIterable, Codable, Hashable {
     case gradient_1, gradient_2
 }

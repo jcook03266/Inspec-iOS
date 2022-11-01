@@ -11,15 +11,36 @@ import XCTest
 final class ResourcesTests: XCTestCase {
 
     func testAllColorsExist() throws {
-        for color in IterableColors.allCases {
+        for color in ColorRepository.allCases {
             XCTAssertNotNil(Colors.getUIColor(named: color))
             XCTAssertNotNil(Colors.getColor(named: color))
         }
     }
     
     func testAllGradientsExist() throws {
-        for gradient in IterableGradients.allCases {
+        for gradient in GradientRepository.allCases {
             XCTAssertNotNil(Colors.getLinearGradient(named: gradient))
+        }
+    }
+    
+    func testAllImagesExist() throws {
+        for image in ImageRepository.allCases {
+            XCTAssertNoThrow(Images.getImage(named: image))
+        }
+    }
+    
+    func testAllCharacterImagesExist() throws {
+        for image in CharacterImageRepository.allCases {
+            XCTAssertNoThrow(Images.Characters.getImage(named: image))
+        }
+    }
+    
+    func testAllIconsExist() throws {
+        for icon in CustomIconRepository.allCases {
+            XCTAssertNoThrow(Icons.getIconImage(named: icon))
+        }
+        for icon in SystemIconRepository.allCases {
+            XCTAssertNoThrow(Icons.getIconImage(named: icon))
         }
     }
 

@@ -17,43 +17,53 @@ struct FloatingTabbar: View {
         color: Color = Colors.white.0,
         shadowColor: Color = Colors.shadow_1.0
     
-    let itemSpacing: CGFloat = 20
+    let itemSpacing: CGFloat = 5
     
     var tabButtons: some View {
         ForEach(Tabs.allCases, id: \.rawValue) { tab in
             if tab != .command_center {
-                VStack(spacing: 3) {
-                    router.tabbarTabController.getTabViewFor(tab: tab)
-                        .zIndex(0)
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                router.currentTab = tab
-                                
-                                animate.toggle()
-                            }
-                        }
-                    
-                    if router.currentTab == tab && tab != .command_center {
-                        TabbarButtonUnderlineView()
+                VStack(alignment: .leading) {
+                    VStack(spacing: 9) {
+                        router.tabbarTabController.getTabViewFor(tab: tab)
                             .zIndex(0)
-                            .matchedGeometryEffect(id: "underline", in: tabbarContainer)
-                            .animation(Animation.easeInOut(duration: 0.2))
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    router.currentTab = tab
+                                    
+                                    // Trigger animation
+                                    animate.toggle()
+                                    
+                                    HapticFeedbackDispatcher.tabbarButtonPress()
+                                }
+                            }
                         
-                        Spacer()
+                        if router.currentTab == tab && tab != .command_center {
+                            TabbarButtonUnderlineView()
+                                .zIndex(0)
+                                .matchedGeometryEffect(id: "underline", in: tabbarContainer)
+                                .animation(.easeInOut(duration: 0.2), value: animate)
+                            
+                            Spacer()
+                        }
                     }
+                    .fixedSize()
                 }
+                .padding([.leading], tab == .inbox ? -10 : 0)
+                .frame(width: 60)
                 .fixedSize()
             }
             else {
-                router.tabbarTabController.getTabViewFor(tab: tab)
-                    .zIndex(1)
-                    .matchedGeometryEffect(id: "centerIcon",
-                                           in: tabbarContainer)
-                    .onTapGesture {
-                        withAnimation(.spring()) {
-                            router.currentTab = tab
+                    router.tabbarTabController.getTabViewFor(tab: tab)
+                        .zIndex(1)
+                        .frame(width: 70)
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                router.currentTab = tab
+                            }
                         }
-                    }
+                        .padding([.leading], 5)
+                        .padding([.trailing], -5)
+                        .fixedSize()
             }
         }
     }
@@ -72,14 +82,15 @@ struct FloatingTabbar: View {
                     }
                     .background(RoundedRectangle(cornerRadius: cornerRadius)
                         .foregroundColor(color)
-                        .frame(width: geom.size.width * 0.95, height: height)
+                        .frame(width: geom.size.width * 0.95, height: height, alignment: .center)
                         .shadow(color: shadowColor,
                                 radius: 2,
                                 x: 0,
                                 y: 2))
-                    .frame(width: geom.size.width * 1, height: height)
+                    .frame(width: geom.size.width, height: height, alignment: .center)
                 }
             }
+            .offset(y: -20)
             .frame(height: height)
             .withFont(.body_3XS)
         }

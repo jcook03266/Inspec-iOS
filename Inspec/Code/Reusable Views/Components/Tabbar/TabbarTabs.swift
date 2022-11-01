@@ -8,11 +8,12 @@
 import Foundation
 import SwiftUI
 
-/// Truth table for all tabbar tab buttons, any updates must be strictly made to these structures
-struct TabbarTabController {
+// MARK: - Dispatcher
+/// Structure that dispatches preconfigured tabbar views to be installed into a tabbar body view
+struct TabbarTabDispatcher {
     @ObservedObject var router: ViewRouter
     
-    // Returns the tab button view for this tab
+    /// Returns the tab button view for this tab
     func getTabViewFor(tab: Tabs) -> some View {
         return ZStack {
             switch tab {
@@ -30,7 +31,7 @@ struct TabbarTabController {
         }
     }
     
-    // Returns the corresponding screen for this tab
+    /// Returns the corresponding screen for this tab
     func getViewFor(tab: Tabs) -> some View {
         switch tab {
         case .builds:
@@ -48,7 +49,7 @@ struct TabbarTabController {
     
     var buildsTab: TabbarTabButtonView {
         let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_BUILDS.rawValue,
-                      image: Image(systemName: "homekit"),
+                      image: Icons.getIconImage(named: .circle_hexagongrid_fill),
                       id: 0,
                       assignedTab: .builds,
                       router: router)
@@ -57,7 +58,7 @@ struct TabbarTabController {
     }
     var componentsTab: TabbarTabButtonView {
         let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_COMPONENTS.rawValue,
-                      image: Image(systemName: "homekit"),
+                      image: Icons.getIconImage(named: .rectangle_3_group_fill),
                       id: 1,
                       assignedTab: .components,
                       router: router)
@@ -66,7 +67,7 @@ struct TabbarTabController {
     }
     var commandCenterTab: TabbarCenterTabButtonView {
         let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_COMMAND_CENTER.rawValue,
-                      image: Image(systemName: "homekit"),
+                      image: nil,
                       id: 2,
                       assignedTab: .command_center,
                       router: router)
@@ -75,7 +76,7 @@ struct TabbarTabController {
     }
     var exploreTab: TabbarTabButtonView {
         let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_EXPLORE.rawValue,
-                      image: Image(systemName: "homekit"),
+                      image: Icons.getIconImage(named: .point_3_filled_connected_trianglepath_dotted),
                       id: 3,
                       assignedTab: .explore,
                       router: router)
@@ -84,7 +85,7 @@ struct TabbarTabController {
     }
     var inboxTab: TabbarTabButtonView {
         let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_INBOX.rawValue,
-                      image: Image(systemName: "homekit"),
+                      image: Icons.getIconImage(named: .chat),
                       id: 4,
                       assignedTab: .inbox,
                       router: router)
@@ -109,17 +110,17 @@ enum Tabs: String, CaseIterable, Hashable {
     case inbox
 }
 
-/// View Model for tab views
+// MARK: - View Model for tab views
 class Tab: Identifiable, Hashable, ObservableObject {
     let title: LocalizedStringKey,
-        image: Image,
+        image: Image?,
         id: Int,
         assignedTab: Tabs
     
     @ObservedObject var router: ViewRouter
     
     init(title: LocalizedStringKey,
-         image: Image,
+         image: Image?,
          id: Int,
          assignedTab: Tabs,
          router: ViewRouter) {
@@ -145,15 +146,17 @@ class Tab: Identifiable, Hashable, ObservableObject {
     }
 }
 
+// MARK: - Views
 /// The button in the center of the tab bar
 struct TabbarCenterTabButtonView: View {
     @StateObject var tab: Tab
     
     /// Shape Dimensions and colors to be displayed an animated around the center icon
-    let circleDiameter: CGFloat = 70
+    let circleDiameter: CGFloat = 70,
+        image: Image = Images.Characters.getImage(named: .Ian_Portrait)
     var gradient: LinearGradient = Colors.gradient_1,
-     solidColor: Color = Colors.primary_1.0,
-     circleLineWidth: CGFloat = 5,
+        solidColor: Color = Colors.primary_1.0,
+        circleLineWidth: CGFloat = 5,
         shadowColor: Color = Colors.shadow_1.0
     
     var body: some View {
@@ -169,7 +172,7 @@ struct TabbarCenterTabButtonView: View {
                         y: -1)
             
             GeometryReader { geom in
-                Image("InspecIan")
+                image
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geom.size.width * 0.9,
@@ -200,45 +203,51 @@ struct TabbarTabButtonView: View {
         return self.isActive ? Colors.primary_1.0 : Colors.black.0
     }
     var iconBubbleOffset: CGSize {
-        return CGSize(width: 0, height: -18)
+        return CGSize(width: 0, height: -10)
     }
+    var image: Image {
+        return tab.image ?? Image("")
+    }
+    
     var iconBubble: some View {
         VStack {
             if notificationsPending && isActive {
-                    notificationIndicator
-                        .offset(x: 10, y: -25)
-                        .zIndex(1)
-                        .transition(AnyTransition.push(from: .bottom).animation(.easeInOut(duration: 0.5)))
+                notificationIndicator
+                    .offset(x: 10, y: -25)
+                    .zIndex(1)
+                    .transition(AnyTransition.push(from: .bottom).animation(.easeInOut(duration: 0.5)))
             }
             
             if isActive {
-                    Image(systemName: "homekit")
-                        .renderingMode(.template)
-                        .aspectRatio(contentMode: .fill)
-                        .background(
-                            Circle()
-                                .fill(Colors.primary_1.0)
-                                .frame(width: 40, height: 40)
-                        )
-                        .shadow(color: shadowColor,
-                                radius: 2,
-                                x: 0,
-                                y: 1)
-                        .foregroundColor(Colors.icon_white.0)
-                        .offset(iconBubbleOffset)
-                        .fixedSize()
-                        .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
+                image
+                    .resizable()
+                    .renderingMode(.template)
+                    .aspectRatio(contentMode: .fit)
+                    .background(
+                        Circle()
+                            .fill(Colors.primary_1.0)
+                            .frame(width: 40, height: 40)
+                    )
+                    .frame(width: 20, height: 20)
+                    .shadow(color: shadowColor,
+                            radius: 2,
+                            x: 0,
+                            y: 1)
+                    .foregroundColor(Colors.icon_white.0)
+                    .offset(iconBubbleOffset)
+                    .fixedSize()
+                    .transition(AnyTransition.scale.animation(.easeInOut(duration: 0.2)))
             }
         }
     }
     var notificationIndicator: some View {
         Circle()
             .stroke(
-            Colors.gradient_2,
-            lineWidth: 1)
+                Colors.gradient_2,
+                lineWidth: 1)
             .background(
                 Circle()
-                .fill(Colors.gradient_2))
+                    .fill(Colors.gradient_2))
             .frame(width: 10, height: 10)
             .shadow(color: shadowColor,
                     radius: 2,
@@ -248,6 +257,8 @@ struct TabbarTabButtonView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            
             iconBubble
             
             Text(tab.title)
