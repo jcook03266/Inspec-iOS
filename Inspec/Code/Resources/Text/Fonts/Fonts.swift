@@ -12,26 +12,48 @@ import SwiftUI
 /// SwiftUI Font view modifier, makes using specific fonts easier in SwiftUI
 // MARK: - Structs and extensions
 extension View {
+    func fontWithLineHeight(font: UIFont, lineHeight: CGFloat) -> some View {
+        ModifiedContent(content: self, modifier: FontWithLineHeight(font: font,
+                                                                    lineHeight: lineHeight))
+    }
+    
     func withFont(_ fontName: FontRepository) -> some View {
         let attributes = Fonts.getAttributes(for: fontName),
-            font = Fonts.getFont(named: fontName)
+            font = Fonts.getUIFont(named: fontName)
         
-        return self.modifier(FontModifier(font: font,
-                                          letterSpacing: attributes.1,
-                                          lineHeight: attributes.2))
+        return ModifiedContent(content: self, modifier: FontModifier(font: font,
+                                                              letterSpacing: attributes.1,
+                                                              lineHeight: attributes.2))
     }
 }
+
 private struct FontModifier: ViewModifier {
-    let font: Font,
+    let font: UIFont,
         letterSpacing: CGFloat,
         lineHeight: CGFloat
     
     func body(content: Content) -> some View {
         content
-            .font(font)
-            .lineSpacing(lineHeight)
+            .font(Font(font))
+            .fontWithLineHeight(font: font, lineHeight: lineHeight)
             .tracking(letterSpacing)
     }
+}
+
+private struct FontWithLineHeight: ViewModifier {
+    let font: UIFont
+    let lineHeight: CGFloat
+
+    func body(content: Content) -> some View {
+        content
+            .font(Font(font))
+            .lineSpacing(lineHeight - font.lineHeight)
+            .padding(.vertical, (lineHeight - font.lineHeight) / 2)
+    }
+}
+
+extension View {
+    
 }
 
 /** Best suited for use with UIKit, use this whenever because UIFonts don't support the extra attributes enabled by the attributed String object*/
@@ -69,11 +91,26 @@ struct Fonts {
         return Font(getUIFont(named: fontName))
     }
     
+    static func getFont(named fontName: FontRepository, with weight: UIFont.Weight) -> Font {
+        
+        return Font(getUIFont(named: fontName,
+                              with: weight))
+    }
+    
     /** Returns: UIFont, LineHeight, Letter Spacing [When using attributed strings w/ UIFonts] (tracking [do not use kerning])*/
     static func getUIFont(named fontName: FontRepository) -> UIFont {
         let attributes = getAttributes(for: fontName),
             size = attributes.0,
             weight = attributes.3
+        
+        return (UIFont.systemFont(ofSize: size,
+                                  weight: weight))
+    }
+    
+    /** Polymorphism for specifying a custom weight for a given font name*/
+    static func getUIFont(named fontName: FontRepository, with weight: UIFont.Weight) -> UIFont {
+        let attributes = getAttributes(for: fontName),
+            size = attributes.0
         
         return (UIFont.systemFont(ofSize: size,
                                   weight: weight))

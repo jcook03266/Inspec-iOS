@@ -15,6 +15,14 @@ struct HapticFeedbackDispatcher {
         Impacts.generateImpact(with: .soft, intensity: 1)
     }
     
+    static func arrowButtonPress() {
+        Impacts.generateImpact(with: .light, intensity: 0.8)
+    }
+    
+    static func interstitialCTAButtonPress() {
+        Impacts.generateImpact(with: .medium, intensity: 0.9)
+    }
+    
     struct Impacts{}
 }
 

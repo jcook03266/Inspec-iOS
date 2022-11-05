@@ -27,6 +27,11 @@
 		490611CD2911B622007E5945 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611CC2911B622007E5945 /* ExploreView.swift */; };
 		490611D22911B672007E5945 /* ComponentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611D12911B672007E5945 /* ComponentsViewModel.swift */; };
 		490611D42911B685007E5945 /* ComponentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611D32911B685007E5945 /* ComponentsView.swift */; };
+		490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611E22911BD8A007E5945 /* RoundedRectangularCTA.swift */; };
+		490611E82911C9FA007E5945 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611E72911C9FA007E5945 /* ButtonStyles.swift */; };
+		4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924AA2E2915804600108D44 /* TabbarSelector.swift */; };
+		4924AA3329158F6600108D44 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924AA3229158F6600108D44 /* ArrowButton.swift */; };
+		4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4924AA352916319700108D44 /* BorderedTextSection.swift */; };
 		49B221BB290B902E00BF7B26 /* FloatingTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221BA290B902E00BF7B26 /* FloatingTabbar.swift */; };
 		49B221BE290B982300BF7B26 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221BD290B982300BF7B26 /* Colors.swift */; };
 		49B221C1290BA8C000BF7B26 /* ResourcesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221C0290BA8C000BF7B26 /* ResourcesTests.swift */; };
@@ -46,7 +51,6 @@
 		49C262AA2900B7A100532DF7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C262A92900B7A100532DF7 /* Preview Assets.xcassets */; };
 		49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C262AB2900B7A100532DF7 /* Persistence.swift */; };
 		49C262AF2900B7A100532DF7 /* Inspec.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49C262AD2900B7A100532DF7 /* Inspec.xcdatamodeld */; };
-		49C262E3290B84EF00532DF7 /* RoundedDualPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C262E2290B84EF00532DF7 /* RoundedDualPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +92,11 @@
 		490611CC2911B622007E5945 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		490611D12911B672007E5945 /* ComponentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsViewModel.swift; sourceTree = "<group>"; };
 		490611D32911B685007E5945 /* ComponentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsView.swift; sourceTree = "<group>"; };
+		490611E22911BD8A007E5945 /* RoundedRectangularCTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangularCTA.swift; sourceTree = "<group>"; };
+		490611E72911C9FA007E5945 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		4924AA2E2915804600108D44 /* TabbarSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarSelector.swift; sourceTree = "<group>"; };
+		4924AA3229158F6600108D44 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
+		4924AA352916319700108D44 /* BorderedTextSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedTextSection.swift; sourceTree = "<group>"; };
 		49B221BA290B902E00BF7B26 /* FloatingTabbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingTabbar.swift; sourceTree = "<group>"; };
 		49B221BD290B982300BF7B26 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		49B221C0290BA8C000BF7B26 /* ResourcesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourcesTests.swift; sourceTree = "<group>"; };
@@ -110,7 +119,6 @@
 		49C262AE2900B7A100532DF7 /* Inspec.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Inspec.xcdatamodel; sourceTree = "<group>"; };
 		49C262B42900B7A100532DF7 /* InspecTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InspecTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C262BE2900B7A100532DF7 /* InspecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InspecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		49C262E2290B84EF00532DF7 /* RoundedDualPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedDualPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,11 +352,97 @@
 			path = Tabs;
 			sourceTree = "<group>";
 		};
+		490611DB2911BB10007E5945 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		490611DD2911BBB0007E5945 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				490611DF2911BD34007E5945 /* Navigation */,
+				490611DE2911BBB8007E5945 /* CTA */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		490611DE2911BBB8007E5945 /* CTA */ = {
+			isa = PBXGroup;
+			children = (
+				490611E22911BD8A007E5945 /* RoundedRectangularCTA.swift */,
+			);
+			path = CTA;
+			sourceTree = "<group>";
+		};
+		490611DF2911BD34007E5945 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				4924AA3229158F6600108D44 /* ArrowButton.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		490611E42911BEFC007E5945 /* Pickers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pickers;
+			sourceTree = "<group>";
+		};
+		490611E52911C9C5007E5945 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				490611E72911C9FA007E5945 /* ButtonStyles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		4924AA2C29157E3100108D44 /* Character Port Hole */ = {
+			isa = PBXGroup;
+			children = (
+				4924AA2D29157E4B00108D44 /* Ian Tabbar Porthole */,
+			);
+			path = "Character Port Hole";
+			sourceTree = "<group>";
+		};
+		4924AA2D29157E4B00108D44 /* Ian Tabbar Porthole */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Ian Tabbar Porthole";
+			sourceTree = "<group>";
+		};
+		4924AA342916316700108D44 /* Text Sections */ = {
+			isa = PBXGroup;
+			children = (
+				4924AA352916319700108D44 /* BorderedTextSection.swift */,
+			);
+			path = "Text Sections";
+			sourceTree = "<group>";
+		};
+		49630FAC291641C000D4BD50 /* Progress Views */ = {
+			isa = PBXGroup;
+			children = (
+				49630FAD291641C800D4BD50 /* Partioned Progress View */,
+			);
+			path = "Progress Views";
+			sourceTree = "<group>";
+		};
+		49630FAD291641C800D4BD50 /* Partioned Progress View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Partioned Progress View";
+			sourceTree = "<group>";
+		};
 		49B221B9290B8FFF00BF7B26 /* Tabbar */ = {
 			isa = PBXGroup;
 			children = (
 				49B221BA290B902E00BF7B26 /* FloatingTabbar.swift */,
 				49B221D5290D076900BF7B26 /* Tabs.swift */,
+				4924AA2E2915804600108D44 /* TabbarSelector.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -383,6 +477,7 @@
 		49B221DD290D0A4600BF7B26 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				490611E52911C9C5007E5945 /* Styles */,
 				49B221DE290D0A4D00BF7B26 /* Extensions */,
 			);
 			path = Common;
@@ -587,8 +682,12 @@
 		49C262DD2900B87100532DF7 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				49630FAC291641C000D4BD50 /* Progress Views */,
+				4924AA342916316700108D44 /* Text Sections */,
+				4924AA2C29157E3100108D44 /* Character Port Hole */,
+				490611E42911BEFC007E5945 /* Pickers */,
+				490611DD2911BBB0007E5945 /* Buttons */,
 				49B221B9290B8FFF00BF7B26 /* Tabbar */,
-				49C262E2290B84EF00532DF7 /* RoundedDualPickerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -605,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				49C262A42900B79E00532DF7 /* ContentView.swift */,
+				490611DB2911BB10007E5945 /* Onboarding */,
 				490611DA2911B6FA007E5945 /* Tabs */,
 			);
 			path = Screens;
@@ -766,14 +866,17 @@
 				49B221CF290CA31600BF7B26 /* Fonts.swift in Sources */,
 				490611BF2911B162007E5945 /* BuildsView.swift in Sources */,
 				490611CD2911B622007E5945 /* ExploreView.swift in Sources */,
+				4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */,
 				49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */,
 				490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */,
+				4924AA3329158F6600108D44 /* ArrowButton.swift in Sources */,
 				490611B02911B019007E5945 /* BuildsCoordinator.swift in Sources */,
 				49C262AF2900B7A100532DF7 /* Inspec.xcdatamodeld in Sources */,
+				490611E82911C9FA007E5945 /* ButtonStyles.swift in Sources */,
 				490611B82911B066007E5945 /* InboxCoordinator.swift in Sources */,
-				49C262E3290B84EF00532DF7 /* RoundedDualPickerView.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
+				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
 				4906119829104B59007E5945 /* Images.swift in Sources */,
 				490611AE2911AE1A007E5945 /* RootCoordinatorView.swift in Sources */,
 				490611C32911B459007E5945 /* CommandCenterViewModel.swift in Sources */,
@@ -784,6 +887,7 @@
 				490611AB2911ADE2007E5945 /* RootCoordinator.swift in Sources */,
 				490611C92911B5FD007E5945 /* InboxView.swift in Sources */,
 				49B221E0290D0A9400BF7B26 /* StringExtensions.swift in Sources */,
+				490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */,
 				49B221D6290D076900BF7B26 /* Tabs.swift in Sources */,
 				490611B62911B055007E5945 /* ExploreCoordinator.swift in Sources */,
 				49B221BB290B902E00BF7B26 /* FloatingTabbar.swift in Sources */,

@@ -30,6 +30,10 @@ class RootCoordinator: Coordinator {
     
     init() {
         self.buildsViewModel = BuildsViewModel(coordinator: BuildsCoordinator(parent: self))
+        self.componentsViewModel = ComponentsViewModel(coordinator: ComponentsCoordinator(parent: self))
+        self.commandCenterViewModel = CommandCenterViewModel(coordinator: CommandCenterCoordinator(parent: self))
+        self.exploreViewModel = ExploreViewModel(coordinator: ExploreCoordinator(parent: self))
+        self.inboxViewModel = InboxViewModel(coordinator: InboxCoordinator(parent: self))
     }
     
     func present(animated: Bool,

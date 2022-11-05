@@ -14,6 +14,9 @@ struct RootCoordinatorView: View {
     var currentScreen: some View {
         return rootCoordinator.getScreenFor(tab: rootCoordinator.currentTab)
     }
+    var tabbar: some View {
+        return TabbarSelector(coordinator: rootCoordinator).getTabbarFromUserPreference()
+    }
     
     var body: some View {
         ZStack{

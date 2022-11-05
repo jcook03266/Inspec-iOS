@@ -11,7 +11,7 @@ struct InboxView: View {
     @ObservedObject var viewModel: InboxViewModel
     
     var body: some View {
-        Text("Inbox")
+        Text("In-app Messaging Coming Soon.")
     }
 }
 
