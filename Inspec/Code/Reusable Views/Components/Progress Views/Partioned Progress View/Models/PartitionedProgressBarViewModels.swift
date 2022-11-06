@@ -1,0 +1,267 @@
+//
+//  PartitionedProgressBarViewModels.swift
+//  Inspec
+//
+//  Created by Justin Cook on 11/5/22.
+//
+
+import SwiftUI
+import Combine
+
+// MARK: - Partitioned Progress Bar View Model
+class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
+    let id: Int,
+        maxProgress: CGFloat = 1,
+        minProgress: CGFloat = 0
+    
+    /// Joins all bars together to form one single bar when all bars are completed
+    @Published var joinProgressBarViews: Bool = true
+    @Published private var progressBarCount: Int
+    
+    /// Observes changes in the published array in this observable object and notifies the publisher of changes
+    @ObservedObject var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()
+    var progressBarModels: [ProgressBarModel] {
+        get {
+            return observedArray.array
+        }
+        set {
+            observedArray.array = newValue
+        }
+    }
+
+    /// Decides whether or not the first page is marked as complete when the progress bar is first created, true by default
+    var completeFirstPage: Bool {
+        get {
+            return true
+        }
+        set {
+            progressBarModels.first?.isComplete.wrappedValue = newValue
+        }
+    }
+    
+    /// Total progress of the partitioned system from 0.0 to 1.0
+    var currentProgress: CGFloat {
+        var totalProgress: CGFloat = 0
+        
+        for progressBar in progressBarModels {
+            totalProgress += progressBar.currentProgress
+        }
+        
+        let systemProgress = totalProgress / CGFloat(progressBarModels.count)
+        
+        assert(systemProgress <= maxProgress
+               && systemProgress >= minProgress)
+        
+        return systemProgress
+    }
+    
+    var isComplete: Bool {
+        return currentProgress == maxProgress
+    }
+    
+    /// Returns the current incomplete progress bar or the last completed progress bar in the collection, or nothing if the collection is empty
+    var currentProgressBarModel: ProgressBarModel? {
+        return progressBarModels.last(where: {
+            $0.isComplete.wrappedValue == true
+        }) ?? progressBarModels.first(where: {
+            $0.isComplete.wrappedValue == false
+        })
+    }
+    
+    init(progressBarCount: Int = 0,
+         id: Int,
+         currentProgress: CGFloat = 0) {
+        self.progressBarCount = progressBarCount
+        self.id = id
+        self.observedArray = ObservableArray(array: progressBarModels,
+                                             parentObjectWillChange: self.objectWillChange)
+        
+        populateModels()
+        observedArray.observeChildren()
+    }
+    
+    private func populateModels() {
+        var currID: Int = 0
+        progressBarModels = []
+        
+        for _ in 0..<progressBarCount {
+            let model = ProgressBarModel(id: currID,
+                                         currentProgress: 0)
+            
+            if currID == 0 {
+                model.isComplete.wrappedValue = completeFirstPage
+            }
+            else {
+                model.isComplete.wrappedValue = false
+            }
+            
+            currID += 1
+            progressBarModels.append(model)
+        }
+    }
+    
+    // Resets the model array with new progress incomplete bars of the specified count
+    func updateModels(using progressBarCount: Int) {
+        self.progressBarCount = progressBarCount
+        
+        populateModels()
+    }
+    
+    func getProgressBarModel(for id: Int) -> ProgressBarModel? {
+        return progressBarModels.first(where: {
+            $0.id == id
+        })
+    }
+    
+    func getProgressBarModel(at index: Int) -> ProgressBarModel? {
+        guard index < progressBarModels.count else { return nil }
+        
+        return progressBarModels[index]
+    }
+    
+    // Returns the next progress bar that needs to be completed, nil if all are complete
+    private func nextProgressBarModel() -> ProgressBarModel? {
+        return progressBarModels.first(where: {
+            $0.isComplete.wrappedValue == false
+        })
+    }
+    
+    // Returns the last progress bar that was completed, nil if none are complete
+    private func lastProgressBarModel() -> ProgressBarModel? {
+        return progressBarModels.last(where: {
+            $0.isComplete.wrappedValue == true
+        })
+    }
+    
+    // Completes the current (first) empty progress bar (if any)
+    func progressForward() {
+        guard !isComplete,
+        let next = nextProgressBarModel()
+        else { return }
+        
+        next.complete()
+    }
+    
+    func progressForward(excluding pagesAfterAndAt: Int) {
+        guard !isComplete,
+        let next = nextProgressBarModel(),
+            next.id < pagesAfterAndAt
+        else { return }
+        
+        next.complete()
+    }
+    
+    // Resets the last completed progress bar
+    // First page can be excluded from back tracking
+    func progressBackward(firstPageExclusive: Bool = true) {
+        guard let lastBarID = lastProgressBarModel()?.id else { return }
+        
+        if firstPageExclusive { progressBackward(excluding: 0) }
+        
+        reset(upto: lastBarID)
+    }
+    
+    func progressBackward(excluding pagesBeforeAndAt: Int) {
+        guard let lastBarID = lastProgressBarModel()?.id,
+        lastBarID > pagesBeforeAndAt
+        else { return }
+        
+        reset(upto: lastBarID)
+    }
+    
+    // Completes progress bars forwards up until the specified ID (inclusive)
+    func complete(upto progressBarID: Int) {
+        guard progressBarModels.contains(where: {
+            $0.id == progressBarID
+        }) else { return }
+        
+        for model in progressBarModels {
+            if model.id > progressBarID { return }
+            else {
+                model.complete()
+            }
+        }
+    }
+    
+    // Sets all progress bars to 1.0 (100%)
+    func complete() {
+        for model in progressBarModels {
+            model.complete()
+        }
+    }
+    
+    // Resets progress bars backwards up until the specified ID (inclusive)
+    func reset(upto progressBarID: Int) {
+        guard progressBarModels.contains(where: {
+            $0.id == progressBarID
+        }) else { return }
+        
+        for model in progressBarModels {
+            if model.id >= progressBarID {
+                model.reset()
+            }
+        }
+    }
+    
+    // Sets all progress bars to 0.0 (0%)
+    func reset() {
+        for model in progressBarModels {
+            model.reset()
+        }
+    }
+}
+
+// MARK: - Generic Progress Bar Model, can be used by other progress bars for managing and tracking progress
+class ProgressBarModel: ObservableObject, Identifiable {
+    let id: Int,
+        maxProgress: CGFloat = 1,
+        minProgress: CGFloat = 0
+    
+    @Published var currentProgress: CGFloat
+    
+    // Determines if the progress bar is currently complete, also allows for setting which triggers the reset or complete functions which changes the current progress
+    var isComplete: Binding<Bool> {
+        Binding { [self] in
+            return currentProgress == maxProgress
+        } set: { [self] updatedBool in
+            updatedBool ? complete() : reset()
+        }
+
+    }
+    
+    init(id: Int,
+         currentProgress: CGFloat) {
+        self.id = id
+        self.currentProgress = currentProgress
+    }
+    
+    func progressRemaining() -> CGFloat {
+        return maxProgress - currentProgress
+    }
+    
+    func progressCompleted() -> CGFloat {
+        return currentProgress
+    }
+    
+    // Sets progress to 100% aka 1.0
+    func complete() {
+        currentProgress = 1
+    }
+    // Resets progress to 0% aka 0.0
+    func reset() {
+        currentProgress = 0
+    }
+    
+    // CGFloats from -1.0 to 0.0 to 1.0
+    func updateProgress(by amount: CGFloat) {
+        if (amount > maxProgress) || (currentProgress + amount >= maxProgress) {
+            complete()
+        }
+        else if (currentProgress + amount <= minProgress) {
+            reset()
+        }
+        else {
+            currentProgress += amount
+        }
+    }
+}

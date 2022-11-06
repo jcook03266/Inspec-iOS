@@ -19,8 +19,7 @@ struct ArrowButton: View {
         arrowDirection: ArrowDirection,
         buttonType: ButtonType
         
-        
-    @State var isEnabled: Bool = true
+    @Binding var isEnabled: Bool
         
     var arrowIcon: Image {
         switch buttonType {
@@ -111,6 +110,6 @@ struct ArrowButton_Previews: PreviewProvider {
         ArrowButton(action: {},
                     arrowDirection: .down,
                     buttonType: .skip2,
-                    isEnabled: true)
+                    isEnabled: .constant(true))
     }
 }
