@@ -12,3 +12,21 @@
 "TABBAR_BUTTON_COMMAND_CENTER" = "Command Center";
 "TABBAR_BUTTON_EXPLORE" = "Explore";
 "TABBAR_BUTTON_INBOX" = "Inbox";
+
+//Generic Navigation Button Descriptions
+"NAVIGATION_BUTTON_SKIP" = "Skip";
+
+//Onboarding
+//Page 1:
+"ONBOARDING_PAGE_1_TITLE" = "Skip the headaches and sleepless nights";
+"ONBOARDING_PAGE_1_MESSAGE" = "We’re here to guide you on your PC building journey, any time anywhere. With Inspec you can avoid the months of research needed to build a custom computer with the press of a button";
+//Page 2:
+"ONBOARDING_PAGE_2_TITLE" = "A variety like no other";
+"ONBOARDING_PAGE_2_MESSAGE" = "Inspec offers a continuously updated library of thousands of carefully curated computer parts with performance charts, and power ratings. Some even have custom 3D models for you to view at your leisure";
+//Page 3:
+"ONBOARDING_PAGE_3_TITLE" = "With the power of AI anything is possible";
+"ONBOARDING_PAGE_3_MESSAGE" = "You can build your computer from scratch alone, or you can chat with our specialized A.I. assistant Ian to streamline the entire process. Ian is here to not only help you build, but to educate you about your computer.";
+//Page 4:
+"ONBOARDING_PAGE_4_TITLE" = "Build alone or build together";
+"ONBOARDING_PAGE_4_MESSAGE" = "Join the online Inspec community and share your thoughts and current progress, or invite friends to a joint build session to collaborate in real-time. Build alone or build together, the choice will always be yours when building your next PC with Inspec";
+"ONBOARDING_PAGE_4_CTA" = "Let's GO!";

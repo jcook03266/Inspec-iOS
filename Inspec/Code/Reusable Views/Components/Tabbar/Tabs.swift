@@ -48,7 +48,7 @@ struct TabbarTabDispatcher {
     }
     
     var buildsTab: TabbarTabButtonView {
-        let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_BUILDS.rawValue,
+        let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_BUILDS),
                       image: Icons.getIconImage(named: .circle_hexagongrid_fill),
                       id: 0,
                       assignedTab: .builds,
@@ -57,7 +57,7 @@ struct TabbarTabDispatcher {
         return TabbarTabButtonView(tab: tab)
     }
     var componentsTab: TabbarTabButtonView {
-        let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_COMPONENTS.rawValue,
+        let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_COMPONENTS),
                       image: Icons.getIconImage(named: .rectangle_3_group_fill),
                       id: 1,
                       assignedTab: .components,
@@ -66,7 +66,7 @@ struct TabbarTabDispatcher {
         return TabbarTabButtonView(tab: tab)
     }
     var commandCenterTab: TabbarCenterTabButtonView {
-        let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_COMMAND_CENTER.rawValue,
+        let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_COMMAND_CENTER),
                       image: nil,
                       id: 2,
                       assignedTab: .command_center,
@@ -75,7 +75,7 @@ struct TabbarTabDispatcher {
         return TabbarCenterTabButtonView(tab: tab)
     }
     var exploreTab: TabbarTabButtonView {
-        let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_EXPLORE.rawValue,
+        let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_EXPLORE),
                       image: Icons.getIconImage(named: .point_3_filled_connected_trianglepath_dotted),
                       id: 3,
                       assignedTab: .explore,
@@ -84,7 +84,7 @@ struct TabbarTabDispatcher {
         return TabbarTabButtonView(tab: tab)
     }
     var inboxTab: TabbarTabButtonView {
-        let tab = Tab(title: LocalizedStringKeys.TABBAR_BUTTON_INBOX.rawValue,
+        let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_INBOX),
                       image: Icons.getIconImage(named: .chat),
                       id: 4,
                       assignedTab: .inbox,

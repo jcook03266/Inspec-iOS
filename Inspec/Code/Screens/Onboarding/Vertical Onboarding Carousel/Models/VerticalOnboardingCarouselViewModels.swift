@@ -10,10 +10,31 @@ import SwiftUI
 // MARK: - Main Carousel
 class VOCViewModel: ObservableObject, Identifiable {
     let id: Int
-    private var pages: [VOCPageViewModel] = []
-        
-    @Published var currentPage: Int // 1-indexed
+    
     @ObservedObject var progressBar: PartitionedProgressBarViewModel
+    @ObservedObject private var observedArray: ObservableArray = ObservableArray<VOCPageViewModel>()
+    var pages: [VOCPageViewModel] {
+        get {
+            return observedArray.array
+        }
+        set {
+            observedArray.array = newValue
+        }
+    }
+    
+    var pageDispatcher: OnboardingPages {
+        return .init(pageManager: self)
+    }
+    
+    /// The current page of the onboarding carousel which corresponds to the positioning of the progress bar
+    var currentPage: Int {
+        get {
+            return progressBar.currentPage
+        }
+        set {
+            progressBar.currentPage = newValue
+        }
+    }
     
     var pageCount: Int {
         return pages.count
@@ -25,14 +46,20 @@ class VOCViewModel: ObservableObject, Identifiable {
         return currentPage == pages.count
     }
     
-    init(id: Int,
-         pages: [VOCPageViewModel] = [])
+    init(id: Int)
     {
+        // Initializing variables
         self.id = id
-        self.pages = pages
-        self.progressBar = PartitionedProgressBarViewModel(progressBarCount: pages.count,
+        self.progressBar = .init(id: 0)
+        self.currentPage = 0
+        
+        // Setting expected values
+        self.pages = pageDispatcher.getAllPages()
+        self.progressBar = PartitionedProgressBarViewModel(progressBarCount: pageCount,
                                                            id: 0)
         self.currentPage = pages.count >= 1 ? 1 : 0
+        self.observedArray = ObservableArray(array: pages,
+                                             parentObjectWillChange: self.objectWillChange)
         
         setPageProperties()
     }
@@ -42,6 +69,8 @@ class VOCViewModel: ObservableObject, Identifiable {
             page.manager = self
             page.assignedProgressBar = getProgressBarFor(pageID: page.id)
         }
+        
+        observedArray.observeChildren()
     }
     
     func getProgressBarFor(pageID: Int) -> ProgressBarModel{
@@ -51,6 +80,12 @@ class VOCViewModel: ObservableObject, Identifiable {
         else {
             preconditionFailure("The given page ID: \(pageID) does not have an assigned progress bar, \(#function)")
         }
+    }
+    
+    // Skips to the last page
+    func skipForward() {
+        updateCurrentPage(with: pageCount)
+        progressBar.skipToLastPage()
     }
     
     func goForward() {
@@ -66,10 +101,17 @@ class VOCViewModel: ObservableObject, Identifiable {
     // Note: Adding or removing a page resets the carousel and the progress bar
     func addPages(pages: [VOCPageViewModel]) {
         for page in pages {
-            self.addPage(page: page)
+            guard !doesContainPage(page), isValidPageNumber(pageNumber: page.pageNumber) else { return }
+            
+            self.pages.append(page)
         }
+        
+        progressBar.updateModels(using: pages.count)
+        currentPage = 1
+        
+        setPageProperties()
     }
-
+    
     func addPage(page: VOCPageViewModel) {
         guard !doesContainPage(page), isValidPageNumber(pageNumber: page.pageNumber) else { return }
         
@@ -83,8 +125,17 @@ class VOCViewModel: ObservableObject, Identifiable {
     
     func removePages(pages: [VOCPageViewModel]) {
         for page in pages {
-            self.removePage(page: page)
+            guard doesContainPage(page), isPageWithinBounds(page: page) else { return }
+            
+            self.pages.removeAll(where: {
+                $0 === page
+            })
         }
+        
+        progressBar.updateModels(using: pages.count)
+        currentPage = pages.count >= 1 ? 1 : 0
+        
+        setPageProperties()
     }
     
     func removePage(page: VOCPageViewModel) {
@@ -131,9 +182,9 @@ class VOCViewModel: ObservableObject, Identifiable {
 class VOCPageViewModel: ObservableObject, Identifiable {
     let id: Int,
         pageNumber: Int, // 1-indexed
-        title: String,
-        message: String,
-        backgroundGraphics: any View //Background visuals to be applied to the view
+        title: LocalizedStringKey,
+        message: LocalizedStringKey,
+        backgroundGraphics: AnyView //Background visuals to be applied to the view
     
     @ObservedObject var manager: VOCViewModel
     var assignedProgressBar: ProgressBarModel? = nil
@@ -152,9 +203,9 @@ class VOCPageViewModel: ObservableObject, Identifiable {
          manager: VOCViewModel,
          progressBar: ProgressBarModel? = nil,
          pageNumber: Int,
-         title: String,
-         message: String,
-         backgroundGraphics: any View)
+         title: LocalizedStringKey,
+         message: LocalizedStringKey,
+         backgroundGraphics: AnyView)
     {
         self.id = id
         self.manager = manager

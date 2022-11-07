@@ -15,7 +15,7 @@ struct RoundedRectangularCTA: View {
         font: FontRepository = .body_S_Bold,
         size: CGSize = CGSize(width: 350, height: 60),
         padding: CGFloat = 0,
-        message: String = "Let's Go!"
+        message: (String?, LocalizedStringKey?) = ("Let's Go!", "")
     
     let cornerRadius: CGFloat = 40,
         shadowCoordinates: CGPoint = CGPoint(x: 0, y: 2),
@@ -26,17 +26,32 @@ struct RoundedRectangularCTA: View {
             HapticFeedbackDispatcher.interstitialCTAButtonPress()
             action()
         }) {
-            Text(message)
-                .frame(width: size.width, height: size.height)
-                .withFont(font)
-                .padding([.all], padding)
-                .background(backgroundColor)
-                .foregroundColor(foregroundColor)
-                .clipShape(Capsule())
-                .shadow(color: shadowColor,
-                        radius: shadowRadius,
-                        x: shadowCoordinates.x,
-                        y: shadowCoordinates.y)
+            if let message = message.0 {
+                Text(message)
+                    .frame(width: size.width, height: size.height)
+                    .withFont(font)
+                    .padding([.all], padding)
+                    .background(backgroundColor)
+                    .foregroundColor(foregroundColor)
+                    .clipShape(Capsule())
+                    .shadow(color: shadowColor,
+                            radius: shadowRadius,
+                            x: shadowCoordinates.x,
+                            y: shadowCoordinates.y)
+            }
+            else if let message = message.1 {
+                Text(message)
+                    .frame(width: size.width, height: size.height)
+                    .withFont(font)
+                    .padding([.all], padding)
+                    .background(backgroundColor)
+                    .foregroundColor(foregroundColor)
+                    .clipShape(Capsule())
+                    .shadow(color: shadowColor,
+                            radius: shadowRadius,
+                            x: shadowCoordinates.x,
+                            y: shadowCoordinates.y)
+            }
         }
         .buttonStyle(GenericSpringyShrink())
     }

@@ -16,6 +16,8 @@ class ObservableArray<T: ObservableObject>: ObservableObject {
     var parentObjectWillChange: ObservableObjectPublisher? = nil
     
     func observeChildren() {
+        cancellables = []
+        
         self.array.forEach({
             // Observe values received by publisher
             let cancellable = $0.objectWillChange.sink(receiveValue: { _ in

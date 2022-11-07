@@ -10,12 +10,16 @@ import SwiftUI
 struct OnboardingPages {
     let pageManager: VOCViewModel
     
+    // MARK: - View Layout parameters, grid based display in a scrollView
+    static var gridItemLayout: [GridItem] = [GridItem(spacing: 0)]
+    
+    // MARK: - Pages
     var page_1: VOCPageViewModel {
         let id: Int = 0,
             pageNumber: Int = convertIDtoPageNumber(id: id),
-            title: String = "",
-            message: String = "",
-            backgroundGraphics: some View = Text("Hello World")
+            title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_1_TITLE),
+            message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_1_MESSAGE),
+            backgroundGraphics: AnyView = AnyView(Text(""))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -28,9 +32,9 @@ struct OnboardingPages {
     var page_2: VOCPageViewModel {
         let id: Int = 1,
             pageNumber: Int = convertIDtoPageNumber(id: id),
-            title: String = "",
-            message: String = "",
-            backgroundGraphics: some View = Text("Hello World")
+            title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_TITLE),
+            message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_MESSAGE),
+            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -43,9 +47,9 @@ struct OnboardingPages {
     var page_3: VOCPageViewModel {
         let id: Int = 2,
             pageNumber: Int = convertIDtoPageNumber(id: id),
-            title: String = "",
-            message: String = "",
-            backgroundGraphics: some View = Text("Hello World")
+            title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_TITLE),
+            message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_MESSAGE),
+            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -58,9 +62,9 @@ struct OnboardingPages {
     var page_4: VOCPageViewModel {
         let id: Int = 3,
             pageNumber: Int = convertIDtoPageNumber(id: id),
-            title: String = "",
-            message: String = "",
-            backgroundGraphics: some View = Text("Hello World")
+            title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_TITLE),
+            message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_MESSAGE),
+            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -70,10 +74,12 @@ struct OnboardingPages {
                                 backgroundGraphics: backgroundGraphics)
     }
     
+    // MARK: - Init
     init(pageManager: VOCViewModel) {
         self.pageManager = pageManager
     }
     
+    // MARK: - Convenient functions
     private func convertIDtoPageNumber(id: Int) -> Int {
         return id + 1
     }

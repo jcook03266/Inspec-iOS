@@ -14,12 +14,15 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         maxProgress: CGFloat = 1,
         minProgress: CGFloat = 0
     
+    var progressBarCount: Int
+    
+    /// Corresponding 'page' the progress bar is on, used when embedded in a view with paging capabilities
+    @Published var currentPage: Int = 0 // 1-indexed
     /// Joins all bars together to form one single bar when all bars are completed
     @Published var joinProgressBarViews: Bool = true
-    @Published private var progressBarCount: Int
     
     /// Observes changes in the published array in this observable object and notifies the publisher of changes
-    @ObservedObject var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()
+    @ObservedObject private var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()
     var progressBarModels: [ProgressBarModel] {
         get {
             return observedArray.array
@@ -78,6 +81,7 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         
         populateModels()
         observedArray.observeChildren()
+        setCurrentPage()
     }
     
     private func populateModels() {
@@ -133,6 +137,12 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         })
     }
     
+    func skipToLastPage() {
+        guard !isComplete else { return }
+        
+        self.complete(upto: self.progressBarCount - 1)
+    }
+    
     // Completes the current (first) empty progress bar (if any)
     func progressForward() {
         guard !isComplete,
@@ -140,6 +150,7 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         else { return }
         
         next.complete()
+        setCurrentPage()
     }
     
     func progressForward(excluding pagesAfterAndAt: Int) {
@@ -149,6 +160,7 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         else { return }
         
         next.complete()
+        setCurrentPage()
     }
     
     // Resets the last completed progress bar
@@ -181,6 +193,8 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
                 model.complete()
             }
         }
+        
+        setCurrentPage()
     }
     
     // Sets all progress bars to 1.0 (100%)
@@ -188,6 +202,8 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         for model in progressBarModels {
             model.complete()
         }
+        
+        setCurrentPage()
     }
     
     // Resets progress bars backwards up until the specified ID (inclusive)
@@ -201,6 +217,8 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
                 model.reset()
             }
         }
+        
+        setCurrentPage()
     }
     
     // Sets all progress bars to 0.0 (0%)
@@ -208,6 +226,19 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         for model in progressBarModels {
             model.reset()
         }
+        
+        setCurrentPage()
+    }
+    
+    func setCurrentPage() {
+        guard progressBarCount != 0,
+              let currentProgressBarModel = self.currentProgressBarModel
+        else {
+            currentPage = 0
+            return 
+        }
+        
+        currentPage = currentProgressBarModel.id + 1
     }
 }
 
