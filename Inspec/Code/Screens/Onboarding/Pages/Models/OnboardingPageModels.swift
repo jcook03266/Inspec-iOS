@@ -26,6 +26,7 @@ struct OnboardingPages {
                                 pageNumber: pageNumber,
                                 title: title,
                                 message: message,
+                                lottieAnimation: .person_at_computer,
                                 backgroundGraphics: backgroundGraphics)
     }
     
@@ -34,13 +35,14 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
+            backgroundGraphics: AnyView = AnyView(Text(""))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
                                 pageNumber: pageNumber,
                                 title: title,
                                 message: message,
+                                lottieAnimation: .gpu_isometric,
                                 backgroundGraphics: backgroundGraphics)
     }
     
@@ -49,13 +51,14 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
+            backgroundGraphics: AnyView = AnyView(Text(""))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
                                 pageNumber: pageNumber,
                                 title: title,
                                 message: message,
+                                lottieAnimation: .ai_assistant_bot,
                                 backgroundGraphics: backgroundGraphics)
     }
     
@@ -64,13 +67,14 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text("Hello World"))
+            backgroundGraphics: AnyView = AnyView(Text(""))
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
                                 pageNumber: pageNumber,
                                 title: title,
                                 message: message,
+                                lottieAnimation: .teamwork,
                                 backgroundGraphics: backgroundGraphics)
     }
     

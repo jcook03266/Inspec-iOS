@@ -76,7 +76,6 @@ struct ArrowButton: View {
                     .overlay(
                         arrowIcon
                             .resizable()
-                            .renderingMode(.template)
                             .aspectRatio(contentMode: .fit)
                             .frame(width: imageSize.width, height: imageSize.height)
                             .padding([.all], padding)

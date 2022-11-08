@@ -184,6 +184,7 @@ class VOCPageViewModel: ObservableObject, Identifiable {
         pageNumber: Int, // 1-indexed
         title: LocalizedStringKey,
         message: LocalizedStringKey,
+        lottieAnimation: LottieAnimationRepository,
         backgroundGraphics: AnyView //Background visuals to be applied to the view
     
     @ObservedObject var manager: VOCViewModel
@@ -205,6 +206,7 @@ class VOCPageViewModel: ObservableObject, Identifiable {
          pageNumber: Int,
          title: LocalizedStringKey,
          message: LocalizedStringKey,
+         lottieAnimation: LottieAnimationRepository,
          backgroundGraphics: AnyView)
     {
         self.id = id
@@ -213,6 +215,7 @@ class VOCPageViewModel: ObservableObject, Identifiable {
         self.pageNumber = pageNumber
         self.title = title
         self.message = message
+        self.lottieAnimation = lottieAnimation
         self.backgroundGraphics = backgroundGraphics
     }
     

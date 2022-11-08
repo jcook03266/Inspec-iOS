@@ -16,36 +16,78 @@ struct BorderedTextSection: View {
         message: (String?, LocalizedStringKey?),
         borderWidth: CGFloat = 2,
         verticalPadding: CGFloat = 4,
-        borderTrailingPadding: CGFloat = 9
-        
+        borderTrailingPadding: CGFloat = 9,
+        maxHeight: CGFloat? = nil
+    
+    @ObservedObject var expansionController: TextSectionExpansionController = TextSectionExpansionController(expanded: false)
+    
+    var isExpanded: Bool {
+        return expansionController.expanded
+    }
+    var expansionIndicatorAngle: Angle {
+        return Angle(degrees: (isExpanded ? 180 : 0))
+    }
+    
+    /// Indicates to the user that the current text section can be expanded to reveal more text
+    var expansionIndicator: some View {
+            Icons.getIconImage(named: .chevron_compact_down)
+            .resizable()
+                .rotationEffect(expansionIndicatorAngle)
+                .animation(.spring(), value: isExpanded)
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(borderColor)
+                .frame(width: 30, height: 30)
+    }
     
     var body: some View {
-        HStack {
-            Rectangle()
-                .fill(borderColor)
-                .frame(width: borderWidth)
-                .padding(.trailing, borderTrailingPadding)
-            
-            if let message = message.0 {
-                Text(message)
-                    .withFont(font)
-                    .fontWeight(fontWeight)
-                    .padding([.top, .bottom], verticalPadding / 2)
-                    .minimumScaleFactor(0.5)
+        VStack {
+            HStack {
+                Rectangle()
+                    .fill(borderColor)
+                    .frame(width: borderWidth)
+                    .padding(.trailing, borderTrailingPadding)
+                ScrollView {
+                    if let message = message.0 {
+                        Text(message)
+                            .withFont(font)
+                            .fontWeight(fontWeight)
+                            .padding([.top, .bottom], verticalPadding / 2)
+                    }
+                    else if let message = message.1 {
+                        Text(message)
+                            .withFont(font)
+                            .fontWeight(fontWeight)
+                            .padding([.top, .bottom], verticalPadding / 2)
+                    }
+                }
+                .onTapGesture {
+                    expansionController.toggle()
+                }
             }
-            else if let message = message.1 {
-                Text(message)
-                    .withFont(font)
-                    .fontWeight(fontWeight)
-                    .padding([.top, .bottom], verticalPadding / 2)
-                    .minimumScaleFactor(0.5)
+            .animation(.spring(), value: isExpanded)
+            .frame(maxHeight: isExpanded ? nil : maxHeight)
+            .fixedSize(horizontal: false,
+                       vertical: true)
+         
+            if maxHeight != nil {
+                expansionIndicator
+                    .onTapGesture {
+                        expansionController.toggle()
+                    }
             }
-            
-            Spacer()
         }
-        .fixedSize(horizontal: false,
-                   vertical: true)
-        
+    }
+}
+
+class TextSectionExpansionController: ObservableObject {
+    @Published var expanded: Bool = false
+    
+    init(expanded: Bool) {
+        self.expanded = expanded
+    }
+    
+    func toggle() {
+        expanded.toggle()
     }
 }
 

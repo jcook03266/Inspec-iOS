@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct FloatingTabbar: View {
-    @StateObject var coordinator: RootCoordinator
     @Namespace private var tabbarContainer
+    @StateObject var coordinator: RootCoordinator
     @State private var animate: Bool = false
     
     var cornerRadius: CGFloat = 40,

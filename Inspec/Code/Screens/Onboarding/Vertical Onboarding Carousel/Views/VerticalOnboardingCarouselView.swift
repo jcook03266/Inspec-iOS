@@ -15,11 +15,17 @@ struct VOC: View {
         pageTrailingPadding: CGFloat = 12,
     /// The amount of space roughly taken up by the progress bar and its safe area
         progressBarSafeAreaWidth: CGFloat = 50,
-        navigationButtonsTrailingPadding: CGFloat = 15
+        navigationButtonsTrailingPadding: CGFloat = 15,
+        bottomNavigationButtonPadding: CGFloat = 10
     
     /// Screen width minus this equals the ideal page width needed to view the content as intended
     var pageEdgeOffset: CGFloat {
         return progressBarSafeAreaWidth + pageTrailingPadding
+    }
+    /// Used for calculating the current offset of the grid relative to the progress bar's progress
+    var zeroIndexedCurrentPage: (Int, CGFloat) {
+        let zeroIndex = model.currentPage - 1
+        return (zeroIndex, CGFloat(zeroIndex))
     }
     
     var skipAction: (() -> Void) {
@@ -64,7 +70,6 @@ struct VOC: View {
                         buttonType: .skip2,
                         isEnabled: .constant(!self.model.isOnLastPage))
         }
-        
     }
     
     /// Goes backwards from the last page
@@ -96,6 +101,7 @@ struct VOC: View {
                         buttonType: .next,
                         isEnabled: .constant(!self.model.isOnLastPage))
         }
+        .padding([.bottom], bottomNavigationButtonPadding)
     }
     
     /// CTA that completes the user's onboarding experience and shifts them to the login / create an account home screen
@@ -105,12 +111,11 @@ struct VOC: View {
                 continueCTAButton()
             }, message: (nil, LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_CTA)))
         }
+        .padding([.bottom], bottomNavigationButtonPadding)
     }
     
     var pageViews: some View {
         GeometryReader { geom in
-            ScrollView {
-                ScrollViewReader { proxy in
                     LazyVGrid(columns: OnboardingPages.gridItemLayout) {
                         
                         ForEach(model.pages, id: \.pageNumber) {
@@ -127,15 +132,8 @@ struct VOC: View {
                             }
                         }
                     }
-                    .onChange(of: model.currentPage) { page in
-                        withAnimation {
-                            proxy.scrollTo(page)
-                        }
-                    }
-                }
-            }
-            .enablePaging()
-            .scrollDisabled(true)
+                    .offset(CGSize(width: 0, height: -(geom.size.height * zeroIndexedCurrentPage.1)))
+                    .animation(.spring(response: 1), value: model.currentPage)
         }
         .ignoresSafeArea()
     }
@@ -150,6 +148,8 @@ struct VOC: View {
                         Spacer()
                         progressBar
                             .padding([.leading], progressBarLeadingPadding)
+                        Spacer()
+                        Spacer()
                         Spacer()
                     }
                     Spacer()

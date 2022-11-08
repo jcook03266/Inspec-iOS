@@ -31,22 +31,6 @@ struct TabbarTabDispatcher {
         }
     }
     
-    /// Returns the corresponding screen for this tab
-    func getViewFor(tab: Tabs) -> some View {
-        switch tab {
-        case .builds:
-            return Text("B")
-        case .components:
-            return Text("C")
-        case .command_center:
-            return Text("CC")
-        case .explore:
-            return Text("E")
-        case .inbox:
-            return Text("I")
-        }
-    }
-    
     var buildsTab: TabbarTabButtonView {
         let tab = Tab(title: LocalizedStrings.getLocalizedStringKey(for: .TABBAR_BUTTON_BUILDS),
                       image: Icons.getIconImage(named: .circle_hexagongrid_fill),
@@ -213,7 +197,6 @@ struct TabbarTabButtonView: View {
             if isActive {
                 image
                     .resizable()
-                    .renderingMode(.template)
                     .aspectRatio(contentMode: .fit)
                     .background(
                         Circle()

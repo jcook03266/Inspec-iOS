@@ -43,6 +43,12 @@ final class ResourcesTests: XCTestCase {
             XCTAssertNoThrow(Icons.getIconImage(named: icon))
         }
     }
+    
+    func testAllAnimationsExist() throws {
+        for animation in LottieAnimationRepository.allCases {
+            XCTAssertNoThrow(LottieAnimations.getAnimation(named: animation))
+        }
+    }
 
     func testAllLocalizableStringsExist() throws {
         for string in LocalizedStrings.allCases {

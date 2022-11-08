@@ -60,29 +60,39 @@ extension Images.Characters {
 
 /// Use this struct to select custom or system icons
 struct Icons {
-    static func getIconImage(named customName: CustomIconRepository) -> Image {
+    static func getIconImage(named customName: CustomIconRepository,
+                             renderingMode: Image.TemplateRenderingMode = .template) -> Image {
         return Image(uiImage: getIconUIImage(named: customName))
+            .renderingMode(renderingMode)
     }
     
-    static func getIconUIImage(named customName: CustomIconRepository) -> UIImage {
+    static func getIconUIImage(named customName: CustomIconRepository,
+                               renderingMode: UIImage.RenderingMode = .alwaysTemplate) -> UIImage {
         guard let image = UIImage(named: customName.rawValue) else {
             
             preconditionFailure("Error: The custom icon named \(customName) was not found, Function: \(#function)")
         }
         
+        image.withRenderingMode(renderingMode)
+        
         return image
     }
     
-    static func getIconImage(named systemName: SystemIconRepository) -> Image {
+    static func getIconImage(named systemName: SystemIconRepository,
+                             renderingMode: Image.TemplateRenderingMode = .template) -> Image {
         return Image(uiImage: getIconUIImage(named: systemName))
+            .renderingMode(renderingMode)
     }
     
-    static func getIconUIImage(named systemName: SystemIconRepository) -> UIImage {
+    static func getIconUIImage(named systemName: SystemIconRepository,
+                               renderingMode: UIImage.RenderingMode = .alwaysTemplate) -> UIImage {
         guard let image = UIImage(systemName: systemName.rawValue) else {
             
             preconditionFailure("Error: The system icon named \(systemName) was not found, Function: \(#function)")
         }
         
+        image.withRenderingMode(renderingMode)
+         
         return image
     }
 }
@@ -111,6 +121,8 @@ enum SystemIconRepository: String, CaseIterable, Hashable {
          chevron_down = "chevron.down",
          chevron_left_2 = "chevron.left.2",
          chevron_right_2 = "chevron.right.2",
+         chevron_compact_down = "chevron.compact.down",
+         chevron_compact_up = "chevron.compact.up",
          arrow_up = "arrow.up",
          arrow_down = "arrow.down",
          arrow_right = "arrow.right",
