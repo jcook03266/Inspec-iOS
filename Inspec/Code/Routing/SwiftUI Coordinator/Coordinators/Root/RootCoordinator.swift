@@ -41,9 +41,13 @@ class RootCoordinator: Coordinator {
     {}
     
     func getScreenFor(tab: Tabs) -> some View {
+        let vocModel = VOCViewModel(id: 0)
+        
         switch tab {
         case .builds:
-            return AnyView(BuildsView(viewModel: self.buildsViewModel))
+            //return AnyView(BuildsView(viewModel: self.buildsViewModel))
+            return AnyView(VOC(model: vocModel,
+                               progressBarModel: vocModel.progressBar))
         case .components:
             return AnyView(ComponentsView(viewModel: self.componentsViewModel))
         case .command_center:

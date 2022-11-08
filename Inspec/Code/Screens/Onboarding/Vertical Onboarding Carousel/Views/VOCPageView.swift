@@ -14,7 +14,8 @@ struct VOCPageView: View {
     @StateObject var textSectionExpansionController: TextSectionExpansionController = TextSectionExpansionController(expanded: !DeviceConstants.isDeviceSmallFormFactor())
     
     let font: FontRepository = .heading_2,
-        titleGradient: LinearGradient = Colors.gradient_1
+        titleGradient: LinearGradient = Colors.gradient_1,
+        textSectionBackgroundColor: SwiftUI.Color = Colors.white.0.opacity(0.75)
     
     var titleTextView: some View {
         return Text(model.title)
@@ -41,13 +42,14 @@ struct VOCPageView: View {
     }
     
     var messageTextView: BorderedTextSection {
-        return BorderedTextSection(message: (nil, model.message), maxHeight: 150, expansionController: textSectionExpansionController)
+        return BorderedTextSection(backgroundColor: textSectionBackgroundColor,
+                                   message: (nil, model.message),
+                                   maxHeight: 150,
+                                   expansionController: textSectionExpansionController)
     }
     
     var body: some View {
         ZStack {
-            model.backgroundGraphics
-            
             GeometryReader { geom in
             ScrollView {
                     VStack {

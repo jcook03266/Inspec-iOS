@@ -38,6 +38,10 @@
 		49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */; };
 		499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F1291A3755002A70D9 /* DeviceConstants.swift */; };
 		499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */; };
+		499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */; };
+		499A92F8291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F7291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift */; };
+		499A92FA291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F9291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift */; };
+		499A92FC291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92FB291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift */; };
 		49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */; };
 		49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43D2917160B00B915C2 /* ObservableArray.swift */; };
 		49A73408291843C600AAB553 /* VOCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A73407291843C600AAB553 /* VOCPageView.swift */; };
@@ -117,6 +121,10 @@
 		49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOnboardingCarouselView.swift; sourceTree = "<group>"; };
 		499A92F1291A3755002A70D9 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
+		499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_1_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
+		499A92F7291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_2_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
+		499A92F9291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_3_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
+		499A92FB291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_4_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
 		49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModels.swift; sourceTree = "<group>"; };
 		49A2A43D2917160B00B915C2 /* ObservableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
 		49A73407291843C600AAB553 /* VOCPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOCPageView.swift; sourceTree = "<group>"; };
@@ -546,6 +554,10 @@
 		49A2A4382916F28A00B915C2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */,
+				499A92F7291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift */,
+				499A92F9291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift */,
+				499A92FB291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1027,6 +1039,7 @@
 				490611BF2911B162007E5945 /* BuildsView.swift in Sources */,
 				49630FAF2916422B00D4BD50 /* PartitionedProgressView.swift in Sources */,
 				499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */,
+				499A92FA291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift in Sources */,
 				499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */,
 				490611CD2911B622007E5945 /* ExploreView.swift in Sources */,
 				4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */,
@@ -1042,6 +1055,7 @@
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
 				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
 				49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */,
+				499A92FC291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift in Sources */,
 				49630FB12916522400D4BD50 /* PartitionedProgressBarViewModels.swift in Sources */,
 				4906119829104B59007E5945 /* Images.swift in Sources */,
 				490611AE2911AE1A007E5945 /* RootCoordinatorView.swift in Sources */,
@@ -1056,6 +1070,7 @@
 				490611AB2911ADE2007E5945 /* RootCoordinator.swift in Sources */,
 				490611C92911B5FD007E5945 /* InboxView.swift in Sources */,
 				49B221E0290D0A9400BF7B26 /* StringExtensions.swift in Sources */,
+				499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */,
 				49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */,
 				490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */,
 				49B221D6290D076900BF7B26 /* Tabs.swift in Sources */,
@@ -1066,6 +1081,7 @@
 				49C262A52900B79E00532DF7 /* ContentView.swift in Sources */,
 				49F3B99E2918E95C00BEDA1E /* Animations.swift in Sources */,
 				490611C52911B5C5007E5945 /* InboxViewModel.swift in Sources */,
+				499A92F8291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift in Sources */,
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,

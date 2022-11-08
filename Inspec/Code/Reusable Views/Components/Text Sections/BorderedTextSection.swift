@@ -64,6 +64,7 @@ struct BorderedTextSection: View {
                     expansionController.toggle()
                 }
             }
+            .background(backgroundColor)
             .animation(.spring(), value: isExpanded)
             .frame(maxHeight: isExpanded ? nil : maxHeight)
             .fixedSize(horizontal: false,

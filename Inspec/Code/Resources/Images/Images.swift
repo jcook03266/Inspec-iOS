@@ -102,6 +102,11 @@ enum ImageRepository: String, CaseIterable, Hashable {
     case twitter = "twitter"
     case google = "google"
     case apple = "apple"
+    case dotMatrix = "dotMatrix"
+    case dashedCircle = "dashedCircle"
+    case shapeCluster = "shapeCluster"
+    case two_tone_dotMatrices = "two.tone.dotMatrices"
+    case golden_ratio_IanPorthole = "golden.ratio.IanPorthole"
 }
 
 enum CharacterImageRepository: String, CaseIterable, Hashable {

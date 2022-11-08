@@ -118,16 +118,20 @@ struct VOC: View {
         GeometryReader { geom in
                     LazyVGrid(columns: OnboardingPages.gridItemLayout) {
                         
-                        ForEach(model.pages, id: \.pageNumber) {
-                            let page = VOCPageView(model: $0)
+                        ForEach(model.pages, id: \.pageNumber) { pageModel in
                             
-                            HStack {
-                                Spacer()
-                                VStack{
-                                    page
-                                        .frame(width: geom.size.width - pageEdgeOffset,
-                                               height: geom.size.height)
-                                        .padding([.trailing], pageTrailingPadding)
+                            let page = VOCPageView(model: pageModel)
+                            
+                            ZStack {
+                                pageModel.backgroundGraphics
+                                HStack {
+                                    Spacer()
+                                    VStack{
+                                        page
+                                            .frame(width: geom.size.width - pageEdgeOffset,
+                                                   height: geom.size.height)
+                                            .padding([.trailing], pageTrailingPadding)
+                                    }
                                 }
                             }
                         }

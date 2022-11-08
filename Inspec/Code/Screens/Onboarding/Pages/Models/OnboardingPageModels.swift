@@ -19,7 +19,7 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_1_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_1_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text(""))
+            backgroundGraphics: AnyView = getBackgroundGraphicsView(for: .one)
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -35,7 +35,7 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_2_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text(""))
+            backgroundGraphics: AnyView = getBackgroundGraphicsView(for: .two)
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -51,7 +51,7 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_3_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text(""))
+            backgroundGraphics: AnyView = getBackgroundGraphicsView(for: .three)
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -67,7 +67,7 @@ struct OnboardingPages {
             pageNumber: Int = convertIDtoPageNumber(id: id),
             title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_TITLE),
             message: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_MESSAGE),
-            backgroundGraphics: AnyView = AnyView(Text(""))
+            backgroundGraphics: AnyView = getBackgroundGraphicsView(for: .four)
         
         return VOCPageViewModel(id: id,
                                 manager: pageManager,
@@ -105,6 +105,19 @@ struct OnboardingPages {
         }
     }
     
+    func getBackgroundGraphicsView(for page: OnboardingPages.pages) -> AnyView {
+        switch page {
+        case .one:
+            return AnyView(OBP_1_BackgroundGraphicsView())
+        case .two:
+            return AnyView(OBP_2_BackgroundGraphicsView())
+        case .three:
+            return AnyView(OBP_3_BackgroundGraphicsView())
+        case .four:
+            return AnyView(OBP_4_BackgroundGraphicsView())
+        }
+    }
+    
     func getAllPages() -> [VOCPageViewModel] {
         var pageModels: [VOCPageViewModel] = []
         
@@ -120,5 +133,33 @@ struct OnboardingPages {
         two,
         three,
         four
+    }
+}
+
+/// Useful struct for scaling the background images of each page to fit the device's dimensions properly
+struct OBGraphicsScaler {
+    /// The device height to base the scaling of the graphics around
+    var referenceDeviceHeight: CGFloat = 1000
+    var aspectRatioOfCurrentDevice: CGFloat {
+        return DeviceConstants.getDeviceSize().1 / referenceDeviceHeight
+    }
+    
+    var idealImageSize: CGSize
+    var idealImageOffset: CGPoint
+    
+    var realImageSize: CGSize {
+        let widthConversion = convertToAspectRatio(idealImageSize.width)
+        let heightConversion = convertToAspectRatio(idealImageSize.height)
+        
+        return CGSize(width: widthConversion,
+                      height: heightConversion)
+    }
+    var realImageOffset: CGPoint {
+        return CGPoint(x: convertToAspectRatio(idealImageOffset.x),
+                       y: convertToAspectRatio(idealImageOffset.y))
+    }
+    
+    private func convertToAspectRatio(_ num: CGFloat) -> CGFloat {
+        return num * aspectRatioOfCurrentDevice
     }
 }
