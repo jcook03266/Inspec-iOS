@@ -99,11 +99,12 @@ private struct ProgressBar: View {
                    height: orientation == .vertical ? height * viewModel.currentProgress : height)
         }
         .onTapGesture {
+            // If the progress bar is incomplete move forwards if complete move backwards
             if !viewModel.isComplete.wrappedValue {
-                manager.progressForward()
+                manager.onProgressBarTapForwardAction?()
             }
             else {
-                manager.progressBackward(excluding: 0)
+                manager.onProgressBarTapBackwardAction?()
             }
         }
         .frame(width: width,
@@ -119,7 +120,7 @@ struct PartitionedProgressView_Previews: PreviewProvider {
                                                  id: 0)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            vm.progressForward()
+            vm.moveForward()
         }
         
         return vm

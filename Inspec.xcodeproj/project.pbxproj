@@ -42,6 +42,14 @@
 		499A92F8291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F7291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift */; };
 		499A92FA291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F9291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift */; };
 		499A92FC291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92FB291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift */; };
+		499A9305291C0BBD002A70D9 /* PreferenceKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A9304291C0BBD002A70D9 /* PreferenceKeys.swift */; };
+		499A9308291C0C80002A70D9 /* ComponentsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A9307291C0C80002A70D9 /* ComponentsProtocol.swift */; };
+		499A930A291F4C19002A70D9 /* NumberDataTypeExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A9309291F4C19002A70D9 /* NumberDataTypeExtensions.swift */; };
+		499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A930C29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift */; };
+		499A930F292011CE002A70D9 /* GenericViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A930E292011CE002A70D9 /* GenericViewModelProtocol.swift */; };
+		499A931129201436002A70D9 /* GenericNavigationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A931029201436002A70D9 /* GenericNavigationProtocol.swift */; };
+		499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93122921B348002A70D9 /* ShapeModifiers.swift */; };
+		499A93152921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */; };
 		49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */; };
 		49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43D2917160B00B915C2 /* ObservableArray.swift */; };
 		49A73408291843C600AAB553 /* VOCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A73407291843C600AAB553 /* VOCPageView.swift */; };
@@ -125,6 +133,14 @@
 		499A92F7291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_2_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
 		499A92F9291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_3_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
 		499A92FB291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_4_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
+		499A9304291C0BBD002A70D9 /* PreferenceKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceKeys.swift; sourceTree = "<group>"; };
+		499A9307291C0C80002A70D9 /* ComponentsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsProtocol.swift; sourceTree = "<group>"; };
+		499A9309291F4C19002A70D9 /* NumberDataTypeExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberDataTypeExtensions.swift; sourceTree = "<group>"; };
+		499A930C29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarNavigationCoordinator.swift; sourceTree = "<group>"; };
+		499A930E292011CE002A70D9 /* GenericViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericViewModelProtocol.swift; sourceTree = "<group>"; };
+		499A931029201436002A70D9 /* GenericNavigationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericNavigationProtocol.swift; sourceTree = "<group>"; };
+		499A93122921B348002A70D9 /* ShapeModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModifiers.swift; sourceTree = "<group>"; };
+		499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAnimationTransitions.swift; sourceTree = "<group>"; };
 		49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModels.swift; sourceTree = "<group>"; };
 		49A2A43D2917160B00B915C2 /* ObservableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
 		49A73407291843C600AAB553 /* VOCPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOCPageView.swift; sourceTree = "<group>"; };
@@ -479,6 +495,7 @@
 		49630FAD291641C800D4BD50 /* Partioned Progress View */ = {
 			isa = PBXGroup;
 			children = (
+				499A930B29200F17002A70D9 /* Navigation Coordinator */,
 				49630FBA2916DB3700D4BD50 /* View */,
 				49630FBB2916DB3C00D4BD50 /* Models */,
 			);
@@ -542,6 +559,40 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		499A9302291C0B9C002A70D9 /* Structs */ = {
+			isa = PBXGroup;
+			children = (
+				499A9303291C0BA4002A70D9 /* SwiftUI */,
+			);
+			path = Structs;
+			sourceTree = "<group>";
+		};
+		499A9303291C0BA4002A70D9 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				499A9304291C0BBD002A70D9 /* PreferenceKeys.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		499A9306291C0C6B002A70D9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				499A9307291C0C80002A70D9 /* ComponentsProtocol.swift */,
+				499A930E292011CE002A70D9 /* GenericViewModelProtocol.swift */,
+				499A931029201436002A70D9 /* GenericNavigationProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		499A930B29200F17002A70D9 /* Navigation Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				499A930C29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift */,
+			);
+			path = "Navigation Coordinator";
+			sourceTree = "<group>";
+		};
 		49A2A4372916F28300B915C2 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +633,7 @@
 			isa = PBXGroup;
 			children = (
 				49A7340A2918525700AAB553 /* ScrollViewModifier.swift */,
+				499A93122921B348002A70D9 /* ShapeModifiers.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -626,6 +678,8 @@
 		49B221DD290D0A4600BF7B26 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				499A9306291C0C6B002A70D9 /* Protocols */,
+				499A9302291C0B9C002A70D9 /* Structs */,
 				499A92F0291A3741002A70D9 /* Constants */,
 				494EA00A2918785900988A3A /* Views */,
 				49A734092918521600AAB553 /* Modifiers */,
@@ -642,6 +696,8 @@
 				49B221DF290D0A9400BF7B26 /* StringExtensions.swift */,
 				49B221EE290DD01C00BF7B26 /* ViewExtensions.swift */,
 				499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */,
+				499A9309291F4C19002A70D9 /* NumberDataTypeExtensions.swift */,
+				499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1035,24 +1091,31 @@
 			files = (
 				490611CB2911B615007E5945 /* CommandCenterView.swift in Sources */,
 				490611A229119272007E5945 /* Coordinator.swift in Sources */,
+				499A930F292011CE002A70D9 /* GenericViewModelProtocol.swift in Sources */,
 				49B221CF290CA31600BF7B26 /* Fonts.swift in Sources */,
 				490611BF2911B162007E5945 /* BuildsView.swift in Sources */,
+				499A9305291C0BBD002A70D9 /* PreferenceKeys.swift in Sources */,
 				49630FAF2916422B00D4BD50 /* PartitionedProgressView.swift in Sources */,
 				499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */,
 				499A92FA291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift in Sources */,
 				499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */,
 				490611CD2911B622007E5945 /* ExploreView.swift in Sources */,
+				499A931129201436002A70D9 /* GenericNavigationProtocol.swift in Sources */,
 				4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */,
 				49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */,
 				490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */,
+				499A930A291F4C19002A70D9 /* NumberDataTypeExtensions.swift in Sources */,
 				4924AA3329158F6600108D44 /* ArrowButton.swift in Sources */,
 				490611B02911B019007E5945 /* BuildsCoordinator.swift in Sources */,
 				49C262AF2900B7A100532DF7 /* Inspec.xcdatamodeld in Sources */,
 				49630FB52916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift in Sources */,
 				490611E82911C9FA007E5945 /* ButtonStyles.swift in Sources */,
 				490611B82911B066007E5945 /* InboxCoordinator.swift in Sources */,
+				499A9308291C0C80002A70D9 /* ComponentsProtocol.swift in Sources */,
+				499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
+				499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */,
 				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
 				49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */,
 				499A92FC291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift in Sources */,
@@ -1085,6 +1148,7 @@
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,
+				499A93152921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

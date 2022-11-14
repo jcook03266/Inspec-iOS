@@ -9,18 +9,9 @@ import SwiftUI
 import Combine
 
 // MARK: - Partitioned Progress Bar View Model
-class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
-    let id: Int,
-        maxProgress: CGFloat = 1,
-        minProgress: CGFloat = 0
+class PartitionedProgressBarViewModel: GenericNavigationProtocol, NavigableGenericViewModel {
     
-    var progressBarCount: Int
-    
-    /// Corresponding 'page' the progress bar is on, used when embedded in a view with paging capabilities
-    @Published var currentPage: Int = 0 // 1-indexed
-    /// Joins all bars together to form one single bar when all bars are completed
-    @Published var joinProgressBarViews: Bool = true
-    
+    // Observed
     /// Observes changes in the published array in this observable object and notifies the publisher of changes
     @ObservedObject private var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()
     var progressBarModels: [ProgressBarModel] {
@@ -31,6 +22,23 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
             observedArray.array = newValue
         }
     }
+    
+    // Published
+    /// Corresponding 'page' the progress bar is on, used when embedded in a view with paging capabilities
+    @Published var currentPage: Int = 0 // 1-indexed
+    /// Joins all bars together to form one single bar when all bars are completed
+    @Published var joinProgressBarViews: Bool = true
+    
+    let id: Int,
+        maxProgress: CGFloat = 1,
+        minProgress: CGFloat = 0
+    
+    var progressBarCount: Int,
+        firstPageExclusive: Bool = true
+    
+    /// Closures triggered when an individual progress bar is tapped, a forward or backward action is triggered if the bar is currently complete or incomplete respectively
+    var onProgressBarTapForwardAction: (() -> Void)? = nil,
+        onProgressBarTapBackwardAction: (() -> Void)? = nil
 
     /// Decides whether or not the first page is marked as complete when the progress bar is first created, true by default
     var completeFirstPage: Bool {
@@ -84,6 +92,7 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         setCurrentPage()
     }
     
+    // MARK: - Getters and setters for progress bar models
     private func populateModels() {
         var currID: Int = 0
         progressBarModels = []
@@ -137,50 +146,7 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         })
     }
     
-    func skipToLastPage() {
-        guard !isComplete else { return }
-        
-        self.complete(upto: self.progressBarCount - 1)
-    }
-    
-    // Completes the current (first) empty progress bar (if any)
-    func progressForward() {
-        guard !isComplete,
-        let next = nextProgressBarModel()
-        else { return }
-        
-        next.complete()
-        setCurrentPage()
-    }
-    
-    func progressForward(excluding pagesAfterAndAt: Int) {
-        guard !isComplete,
-        let next = nextProgressBarModel(),
-            next.id < pagesAfterAndAt
-        else { return }
-        
-        next.complete()
-        setCurrentPage()
-    }
-    
-    // Resets the last completed progress bar
-    // First page can be excluded from back tracking
-    func progressBackward(firstPageExclusive: Bool = true) {
-        guard let lastBarID = lastProgressBarModel()?.id else { return }
-        
-        if firstPageExclusive { progressBackward(excluding: 0) }
-        
-        reset(upto: lastBarID)
-    }
-    
-    func progressBackward(excluding pagesBeforeAndAt: Int) {
-        guard let lastBarID = lastProgressBarModel()?.id,
-        lastBarID > pagesBeforeAndAt
-        else { return }
-        
-        reset(upto: lastBarID)
-    }
-    
+    // MARK: - State control of the system's progress bars
     // Completes progress bars forwards up until the specified ID (inclusive)
     func complete(upto progressBarID: Int) {
         guard progressBarModels.contains(where: {
@@ -240,6 +206,33 @@ class PartitionedProgressBarViewModel: ObservableObject, Identifiable {
         
         currentPage = currentProgressBarModel.id + 1
     }
+    
+    // MARK: - Navigation
+    func moveForward() {
+        guard !isComplete,
+        let next = nextProgressBarModel()
+        else { return }
+        
+        next.complete()
+        setCurrentPage()
+    }
+    
+    func moveBackward() {
+        guard let lastBarID = lastProgressBarModel()?.id, !(firstPageExclusive && lastBarID == 0)
+        else { return }
+        
+        reset(upto: lastBarID)
+    }
+    
+    func skipToFirst() {
+        self.reset(upto: firstPageExclusive ? 1 : 0)
+    }
+    
+    func skipToLast() {
+        guard !isComplete else { return }
+        
+        self.complete(upto: self.progressBarCount - 1)
+    }
 }
 
 // MARK: - Generic Progress Bar Model, can be used by other progress bars for managing and tracking progress
@@ -257,21 +250,18 @@ class ProgressBarModel: ObservableObject, Identifiable {
         } set: { [self] updatedBool in
             updatedBool ? complete() : reset()
         }
-
+    }
+    var progressRemaining: CGFloat {
+        return maxProgress - currentProgress
+    }
+    var progressCompleted: CGFloat {
+        return currentProgress
     }
     
     init(id: Int,
          currentProgress: CGFloat) {
         self.id = id
         self.currentProgress = currentProgress
-    }
-    
-    func progressRemaining() -> CGFloat {
-        return maxProgress - currentProgress
-    }
-    
-    func progressCompleted() -> CGFloat {
-        return currentProgress
     }
     
     // Sets progress to 100% aka 1.0

@@ -8,36 +8,90 @@
 import SwiftUI
 import Lottie
 
-struct LottieView: UIViewRepresentable {
+struct LottieViewUIViewRepresentable: UIViewRepresentable {
     let animationName: LottieAnimationRepository
-    var loopMode: LottieLoopMode = .loop
+    var animationView = LottieAnimationView(),
+        loopMode: LottieLoopMode = .loop
     
-    func makeUIView(context: UIViewRepresentableContext<LottieView>) -> some UIView {
-        let view = UIView(frame: .zero)
+    @Binding var shouldPlay: Bool
+    
+    func makeUIView(context: UIViewRepresentableContext<LottieViewUIViewRepresentable>) -> LottieView {
+        return LottieView(animationName: animationName,
+                          loopMode: loopMode,
+                          playState: shouldPlay)
+    }
+    
+    func updateUIView(_ uiView: LottieView, context: UIViewRepresentableContext<LottieViewUIViewRepresentable>) {
+        uiView.playState = shouldPlay
+    }
+}
+
+/// UView that encloses a lottie animation view, used for bridging to SwiftUI
+class LottieView: UIView {
+    var animationView: LottieAnimationView = LottieAnimationView(),
+        loopMode: LottieLoopMode
+    
+        private var playing: Bool = false
+        var playState: Bool {
+            get{
+              return playing
+            }
+            set{
+                playing = newValue
+              updatePlayState()
+            }
+        }
+    
+    let animationName: LottieAnimationRepository
+    var animation: LottieAnimation {
+        /// Expensive operation, init only once
+        return LottieAnimations.getAnimation(named: animationName)
+    }
+    
+    init(animationName: LottieAnimationRepository,
+         loopMode: LottieLoopMode = .loop,
+         playState: Bool = false)
+    {
+        self.animationName = animationName
+        self.loopMode = loopMode
         
-        // init animation view w/ specified animation
-        let animationView = LottieAnimationView()
-        let animation = LottieAnimations.getAnimation(named: animationName)
-        
-        // Set properties
+        super.init(frame: .zero)
+     
         animationView.animation = animation
         animationView.contentMode = .scaleAspectFit
         animationView.backgroundBehavior = .pauseAndRestore
         animationView.shouldRasterizeWhenIdle = true
         animationView.loopMode = loopMode
-        animationView.play()
+        
+        self.playState = playState
         
         // Add subview and activate layout constraints
         animationView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(animationView)
+        self.addSubview(animationView)
         
-        NSLayoutConstraint.activate([animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
-                                     animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
+        NSLayoutConstraint.activate([animationView.heightAnchor.constraint(equalTo: self.heightAnchor),
+                                     animationView.widthAnchor.constraint(equalTo: self.widthAnchor)
                                     ])
-        
-        return view
     }
     
-    func updateUIView(_ uiView: UIViewType, context: UIViewRepresentableContext<LottieView>) {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    /// Animation Controls
+    func updatePlayState() {
+        playState ? play() : pause()
+    }
+    
+    func play() {
+        animationView.play()
+    }
+    
+    func pause() {
+        animationView.pause()
+    }
+    
+    func stop() {
+        animationView.stop()
     }
 }

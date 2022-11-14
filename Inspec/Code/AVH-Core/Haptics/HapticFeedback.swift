@@ -23,6 +23,10 @@ struct HapticFeedbackDispatcher {
         Impacts.generateImpact(with: .medium, intensity: 0.9)
     }
     
+    static func textSectionExpanded() {
+        Impacts.generateImpact(with: .light, intensity: 0.5)
+    }
+    
     struct Impacts{}
 }
 

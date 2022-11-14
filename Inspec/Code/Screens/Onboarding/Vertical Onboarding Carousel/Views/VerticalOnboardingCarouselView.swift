@@ -9,11 +9,12 @@ import SwiftUI
 
 struct VOC: View {
     @StateObject var model: VOCViewModel
+    @StateObject var PBNCoordinator: ProgressBarNavigationCoordinator<VOCViewModel>
     @StateObject var progressBarModel: PartitionedProgressBarViewModel
     
     let progressBarLeadingPadding: CGFloat = 15,
-        pageTrailingPadding: CGFloat = 12,
-    /// The amount of space roughly taken up by the progress bar and its safe area
+        pageTrailingPadding: CGFloat = 10,
+        /// The amount of space roughly taken up by the progress bar and its safe area
         progressBarSafeAreaWidth: CGFloat = 50,
         navigationButtonsTrailingPadding: CGFloat = 15,
         bottomNavigationButtonPadding: CGFloat = 10
@@ -24,23 +25,22 @@ struct VOC: View {
     }
     /// Used for calculating the current offset of the grid relative to the progress bar's progress
     var zeroIndexedCurrentPage: (Int, CGFloat) {
-        let zeroIndex = model.currentPage - 1
+        let zeroIndex = progressBarModel.currentPage - 1
         return (zeroIndex, CGFloat(zeroIndex))
     }
-    
     var skipAction: (() -> Void) {
         return {
-            self.model.skipForward()
+            self.PBNCoordinator.skipToLast()
         }
     }
     var upArrowAction: (() -> Void) {
         return {
-            self.model.goBackward()
+            self.PBNCoordinator.moveBackward()
         }
     }
     var downArrowAction: (() -> Void) {
         return {
-            self.model.goForward()
+            self.PBNCoordinator.moveForward()
         }
     }
     var continueCTAButton: (() -> Void) {
@@ -48,7 +48,6 @@ struct VOC: View {
             
         }
     }
-    
     var progressBar: PartitionedProgressView {
         let view = PartitionedProgressView(viewModel: progressBarModel)
         
@@ -62,6 +61,9 @@ struct VOC: View {
                 .foregroundColor(Colors.secondary_1.0)
                 .withFont(.body_L)
                 .fontWeight(.semibold)
+                .onTapGesture {
+                    skipAction()
+                }
             
             ArrowButton(action: {
                 skipAction()
@@ -109,35 +111,39 @@ struct VOC: View {
         VStack {
             RoundedRectangularCTA(action: {
                 continueCTAButton()
-            }, message: (nil, LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_CTA)))
+            }, message: (nil, LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_CTA)),
+                                  borderEnabled: true)
         }
         .padding([.bottom], bottomNavigationButtonPadding)
     }
     
     var pageViews: some View {
         GeometryReader { geom in
-                    LazyVGrid(columns: OnboardingPages.gridItemLayout) {
-                        
-                        ForEach(model.pages, id: \.pageNumber) { pageModel in
-                            
-                            let page = VOCPageView(model: pageModel)
-                            
-                            ZStack {
-                                pageModel.backgroundGraphics
-                                HStack {
-                                    Spacer()
-                                    VStack{
-                                        page
-                                            .frame(width: geom.size.width - pageEdgeOffset,
-                                                   height: geom.size.height)
-                                            .padding([.trailing], pageTrailingPadding)
-                                    }
-                                }
+            LazyVGrid(columns: OnboardingPages.gridItemLayout) {
+                
+                ForEach(model.pages, id: \.pageNumber) { pageModel in
+                    
+                    let page = VOCPageView(model: pageModel,
+                                           manager: self.model)
+                    
+                    ZStack {
+                        pageModel.backgroundGraphics
+                        HStack {
+                            Spacer()
+                            VStack{
+                                page
+                                    .frame(width: geom.size.width - pageEdgeOffset,
+                                           height: geom.size.height)
+                                    .padding([.trailing], pageTrailingPadding)
                             }
                         }
                     }
-                    .offset(CGSize(width: 0, height: -(geom.size.height * zeroIndexedCurrentPage.1)))
-                    .animation(.spring(response: 1), value: model.currentPage)
+                }
+            }
+            .offset(CGSize(width: 0,
+                           height: -(geom.size.height * zeroIndexedCurrentPage.1)))
+            .animation(.spring(response: 1),
+                       value: progressBarModel.currentPage)
         }
         .ignoresSafeArea()
     }
@@ -172,6 +178,7 @@ struct VOC: View {
                                 navigationButtons
                             }
                         }
+                        .transition(.move(edge: .trailing))
                         .padding([.trailing],
                                  navigationButtonsTrailingPadding)
                     }
@@ -185,6 +192,7 @@ struct VOC: View {
                                      navigationButtonsTrailingPadding)
                             Spacer()
                         }
+                        .transition(.move(edge: .trailing))
                     }
                 }
                 
@@ -193,23 +201,30 @@ struct VOC: View {
                         Spacer()
                         lastPageCTAButton
                     }
+                    .transition(.move(edge: .bottom))
                 }
             }
+            .animation(.spring(), value: PBNCoordinator.currentPage)
         }
     }
 }
 
 struct VOC_Previews: PreviewProvider {
-    private static func getTestModel() -> VOCViewModel {
-        let viewModel = VOCViewModel(id: 0)
+    private static func getModels() -> (VOCViewModel, ProgressBarNavigationCoordinator<VOCViewModel>) {
         
-        return viewModel
+        let model = VOCViewModel(id: 0)
+        let coordinator = ProgressBarNavigationCoordinator<VOCViewModel>.init(viewModel: model, progressBar: model.progressBar)
+        
+        coordinator.injectProgressViewOnTapActions()
+        
+        return (model, coordinator)
     }
     
     static var previews: some View {
-        let model = getTestModel()
+        let models = getModels()
         
-        VOC(model: model,
-            progressBarModel: model.progressBar)
+        VOC(model: models.0,
+            PBNCoordinator: models.1,
+            progressBarModel: models.0.progressBar)
     }
 }

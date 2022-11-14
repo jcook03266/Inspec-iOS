@@ -92,7 +92,6 @@ struct Fonts {
     }
     
     static func getFont(named fontName: FontRepository, with weight: UIFont.Weight) -> Font {
-        
         return Font(getUIFont(named: fontName,
                               with: weight))
     }

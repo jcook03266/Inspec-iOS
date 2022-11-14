@@ -42,12 +42,17 @@ class RootCoordinator: Coordinator {
     
     func getScreenFor(tab: Tabs) -> some View {
         let vocModel = VOCViewModel(id: 0)
+        let pbnCoordinator = ProgressBarNavigationCoordinator<VOCViewModel>.init(viewModel: vocModel,
+                                                                                 progressBar: vocModel.progressBar)
+        pbnCoordinator.injectProgressViewOnTapActions()
+        
+        return AnyView(VOC(model: vocModel,
+                           PBNCoordinator: pbnCoordinator,
+                           progressBarModel: vocModel.progressBar))
         
         switch tab {
         case .builds:
-            //return AnyView(BuildsView(viewModel: self.buildsViewModel))
-            return AnyView(VOC(model: vocModel,
-                               progressBarModel: vocModel.progressBar))
+            return AnyView(BuildsView(viewModel: self.buildsViewModel))
         case .components:
             return AnyView(ComponentsView(viewModel: self.componentsViewModel))
         case .command_center:

@@ -22,7 +22,7 @@ struct RootCoordinatorView: View {
         ZStack{
             self.currentScreen
          
-            FloatingTabbar(coordinator: rootCoordinator)
+            //FloatingTabbar(coordinator: rootCoordinator)
         }
     }
 }
