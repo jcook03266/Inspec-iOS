@@ -9,14 +9,25 @@ import SwiftUI
 import UIKit
 
 class ComponentsCoordinator: Coordinator {
+    typealias Router = MainRouter
+    typealias Body = AnyView
+    
     unowned let parent: any Coordinator
     var children: [any Coordinator] = []
+    
+    // MARK: - Published
+    @Published var path: NavigationPath = NavigationPath()
+    @Published var pathRoutes: [TabbarRoutes] = []
+    @Published var sheetItem: TabbarRoutes?
+    @Published var fullCoverItem: TabbarRoutes?
+    
+    // MARK: - Published
+    @Published var router: MainRouter!
+    
+    // MARK: - States
+    @State var rootView: AnyView!
     
     init (parent: any Coordinator) {
         self.parent = parent
     }
-    
-    func present(animated: Bool,
-                 onDismiss: (() -> Void)?)
-    {}
 }

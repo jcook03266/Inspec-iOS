@@ -11,10 +11,10 @@ import SwiftUI
 // MARK: - Dispatcher
 /// Structure that dispatches preconfigured tabbar views to be installed into a tabbar body view
 struct TabbarTabDispatcher {
-    @ObservedObject var coordinator: RootCoordinator
+    @ObservedObject var coordinator: MainCoordinator
     
     /// Returns the tab button view for this tab
-    func getTabViewFor(tab: Tabs) -> some View {
+    func getTabViewFor(tab: TabbarRoutes) -> some View {
         return ZStack {
             switch tab {
             case .builds:
@@ -91,15 +91,15 @@ class Tab: Identifiable, Hashable, ObservableObject {
     let title: LocalizedStringKey,
         image: Image?,
         id: Int,
-        assignedTab: Tabs
+        assignedTab: TabbarRoutes
     
-    @ObservedObject var coordinator: RootCoordinator
+    @ObservedObject var coordinator: MainCoordinator
     
     init(title: LocalizedStringKey,
          image: Image?,
          id: Int,
-         assignedTab: Tabs,
-         coordinator: RootCoordinator) {
+         assignedTab: TabbarRoutes,
+         coordinator: MainCoordinator) {
         
         self.title = title
         self.image = image

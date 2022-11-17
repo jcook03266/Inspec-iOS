@@ -105,7 +105,7 @@ struct VOCPageView: View {
 
 struct VOCPageView_Previews: PreviewProvider {
     private static func getTestModel() -> VOCPageViewModel {
-        let model = OnboardingPages(pageManager: .init(id: 0)).getAllPages()[0]
+        let model = OnboardingPages(pageManager: .init()).getAllPages()[0]
         
         return model
     }

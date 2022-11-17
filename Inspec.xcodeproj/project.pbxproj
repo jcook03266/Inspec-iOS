@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		4906119829104B59007E5945 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906119729104B59007E5945 /* Images.swift */; };
 		490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4906119F29118A5B007E5945 /* HapticFeedback.swift */; };
-		490611A229119272007E5945 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611A129119272007E5945 /* Coordinator.swift */; };
+		490611A229119272007E5945 /* Coordinator+RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611A129119272007E5945 /* Coordinator+RootCoordinator.swift */; };
 		490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611A629119ACB007E5945 /* BuildsViewModel.swift */; };
-		490611AB2911ADE2007E5945 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611AA2911ADE2007E5945 /* RootCoordinator.swift */; };
-		490611AE2911AE1A007E5945 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611AD2911AE1A007E5945 /* RootCoordinatorView.swift */; };
+		490611AB2911ADE2007E5945 /* RootCoordinatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611AA2911ADE2007E5945 /* RootCoordinatorDelegate.swift */; };
+		490611AE2911AE1A007E5945 /* MainCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611AD2911AE1A007E5945 /* MainCoordinatorView.swift */; };
 		490611B02911B019007E5945 /* BuildsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611AF2911B019007E5945 /* BuildsCoordinator.swift */; };
 		490611B22911B029007E5945 /* ComponentsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611B12911B029007E5945 /* ComponentsCoordinator.swift */; };
 		490611B42911B049007E5945 /* CommandCenterCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490611B32911B049007E5945 /* CommandCenterCoordinator.swift */; };
@@ -36,6 +36,12 @@
 		49630FB12916522400D4BD50 /* PartitionedProgressBarViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB02916522400D4BD50 /* PartitionedProgressBarViewModels.swift */; };
 		49630FB52916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB42916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift */; };
 		49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */; };
+		49918A4229237D9600A5639C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4129237D9600A5639C /* Router.swift */; };
+		49918A4B2923B28400A5639C /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4A2923B28400A5639C /* MainRouter.swift */; };
+		49918A4D2923B2AC00A5639C /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */; };
+		49918A4F2923B2F100A5639C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4E2923B2F100A5639C /* Routes.swift */; };
+		49918A532923B3DF00A5639C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A522923B3DF00A5639C /* MainCoordinator.swift */; };
+		49918A55292451A900A5639C /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */; };
 		499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F1291A3755002A70D9 /* DeviceConstants.swift */; };
 		499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */; };
 		499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */; };
@@ -50,6 +56,12 @@
 		499A931129201436002A70D9 /* GenericNavigationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A931029201436002A70D9 /* GenericNavigationProtocol.swift */; };
 		499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93122921B348002A70D9 /* ShapeModifiers.swift */; };
 		499A93152921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */; };
+		499A93182921C299002A70D9 /* FTUEHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93172921C299002A70D9 /* FTUEHandler.swift */; };
+		499A931C2921C482002A70D9 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A931B2921C482002A70D9 /* OnboardingCoordinator.swift */; };
+		499A931F2921D211002A70D9 /* PopoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A931E2921D211002A70D9 /* PopoverModifier.swift */; };
+		499A93212921D223002A70D9 /* FullScreenCoverModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93202921D223002A70D9 /* FullScreenCoverModifier.swift */; };
+		499A93232921D230002A70D9 /* SheetModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93222921D230002A70D9 /* SheetModifier.swift */; };
+		499A93252921E7A9002A70D9 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A93242921E7A9002A70D9 /* DeeplinkManager.swift */; };
 		49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */; };
 		49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A43D2917160B00B915C2 /* ObservableArray.swift */; };
 		49A73408291843C600AAB553 /* VOCPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A73407291843C600AAB553 /* VOCPageView.swift */; };
@@ -100,10 +112,10 @@
 		4906119729104B59007E5945 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		490611992910D33D007E5945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4906119F29118A5B007E5945 /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
-		490611A129119272007E5945 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		490611A129119272007E5945 /* Coordinator+RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Coordinator+RootCoordinator.swift"; sourceTree = "<group>"; };
 		490611A629119ACB007E5945 /* BuildsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsViewModel.swift; sourceTree = "<group>"; };
-		490611AA2911ADE2007E5945 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
-		490611AD2911AE1A007E5945 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
+		490611AA2911ADE2007E5945 /* RootCoordinatorDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorDelegate.swift; sourceTree = "<group>"; };
+		490611AD2911AE1A007E5945 /* MainCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorView.swift; sourceTree = "<group>"; };
 		490611AF2911B019007E5945 /* BuildsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsCoordinator.swift; sourceTree = "<group>"; };
 		490611B12911B029007E5945 /* ComponentsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsCoordinator.swift; sourceTree = "<group>"; };
 		490611B32911B049007E5945 /* CommandCenterCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterCoordinator.swift; sourceTree = "<group>"; };
@@ -127,6 +139,12 @@
 		49630FB02916522400D4BD50 /* PartitionedProgressBarViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartitionedProgressBarViewModels.swift; sourceTree = "<group>"; };
 		49630FB42916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOnboardingCarouselViewModels.swift; sourceTree = "<group>"; };
 		49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOnboardingCarouselView.swift; sourceTree = "<group>"; };
+		49918A4129237D9600A5639C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		49918A4A2923B28400A5639C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		49918A4E2923B2F100A5639C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		49918A522923B3DF00A5639C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
 		499A92F1291A3755002A70D9 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_1_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
@@ -141,6 +159,12 @@
 		499A931029201436002A70D9 /* GenericNavigationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericNavigationProtocol.swift; sourceTree = "<group>"; };
 		499A93122921B348002A70D9 /* ShapeModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeModifiers.swift; sourceTree = "<group>"; };
 		499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAnimationTransitions.swift; sourceTree = "<group>"; };
+		499A93172921C299002A70D9 /* FTUEHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEHandler.swift; sourceTree = "<group>"; };
+		499A931B2921C482002A70D9 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		499A931E2921D211002A70D9 /* PopoverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverModifier.swift; sourceTree = "<group>"; };
+		499A93202921D223002A70D9 /* FullScreenCoverModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenCoverModifier.swift; sourceTree = "<group>"; };
+		499A93222921D230002A70D9 /* SheetModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetModifier.swift; sourceTree = "<group>"; };
+		499A93242921E7A9002A70D9 /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
 		49A2A43A2916F2AE00B915C2 /* OnboardingPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageModels.swift; sourceTree = "<group>"; };
 		49A2A43D2917160B00B915C2 /* ObservableArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableArray.swift; sourceTree = "<group>"; };
 		49A73407291843C600AAB553 /* VOCPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VOCPageView.swift; sourceTree = "<group>"; };
@@ -264,7 +288,7 @@
 		490611A82911AB00007E5945 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				490611A129119272007E5945 /* Coordinator.swift */,
+				490611A129119272007E5945 /* Coordinator+RootCoordinator.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -281,8 +305,10 @@
 		490611AC2911AE09007E5945 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				490611AA2911ADE2007E5945 /* RootCoordinator.swift */,
-				490611AD2911AE1A007E5945 /* RootCoordinatorView.swift */,
+				49918A512923B3C200A5639C /* Main */,
+				499A93192921C444002A70D9 /* Onboarding */,
+				49918A502923B38A00A5639C /* Delegate */,
+				49918A462923950E00A5639C /* Root Views */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -551,6 +577,73 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		49918A4029237D7A00A5639C /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				49918A492923B26200A5639C /* Routes */,
+				49918A482923B25C00A5639C /* Routers */,
+				49918A472923B25500A5639C /* Protocol */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		49918A452923879E00A5639C /* Environments */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Environments;
+			sourceTree = "<group>";
+		};
+		49918A462923950E00A5639C /* Root Views */ = {
+			isa = PBXGroup;
+			children = (
+				490611AD2911AE1A007E5945 /* MainCoordinatorView.swift */,
+				49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */,
+			);
+			path = "Root Views";
+			sourceTree = "<group>";
+		};
+		49918A472923B25500A5639C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				49918A4129237D9600A5639C /* Router.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		49918A482923B25C00A5639C /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				49918A4A2923B28400A5639C /* MainRouter.swift */,
+				49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */,
+			);
+			path = Routers;
+			sourceTree = "<group>";
+		};
+		49918A492923B26200A5639C /* Routes */ = {
+			isa = PBXGroup;
+			children = (
+				49918A4E2923B2F100A5639C /* Routes.swift */,
+			);
+			path = Routes;
+			sourceTree = "<group>";
+		};
+		49918A502923B38A00A5639C /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				490611AA2911ADE2007E5945 /* RootCoordinatorDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		49918A512923B3C200A5639C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				49918A522923B3DF00A5639C /* MainCoordinator.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		499A92F0291A3741002A70D9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +684,40 @@
 				499A930C29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift */,
 			);
 			path = "Navigation Coordinator";
+			sourceTree = "<group>";
+		};
+		499A93162921C1FE002A70D9 /* FTUE Handling */ = {
+			isa = PBXGroup;
+			children = (
+				499A93172921C299002A70D9 /* FTUEHandler.swift */,
+			);
+			path = "FTUE Handling";
+			sourceTree = "<group>";
+		};
+		499A93192921C444002A70D9 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				499A931B2921C482002A70D9 /* OnboardingCoordinator.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		499A931D2921D1F0002A70D9 /* Presentation Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				499A931E2921D211002A70D9 /* PopoverModifier.swift */,
+				499A93202921D223002A70D9 /* FullScreenCoverModifier.swift */,
+				499A93222921D230002A70D9 /* SheetModifier.swift */,
+			);
+			path = "Presentation Modifiers";
+			sourceTree = "<group>";
+		};
+		499A93262921E7D6002A70D9 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				499A93242921E7A9002A70D9 /* DeeplinkManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		49A2A4372916F28300B915C2 /* Pages */ = {
@@ -705,6 +832,7 @@
 		49B221E6290DA0C400BF7B26 /* Routing */ = {
 			isa = PBXGroup;
 			children = (
+				49918A4029237D7A00A5639C /* Router */,
 				49B221E7290DA0D700BF7B26 /* Deeplinking */,
 				49C262DA2900B81200532DF7 /* SwiftUI Coordinator */,
 			);
@@ -714,6 +842,7 @@
 		49B221E7290DA0D700BF7B26 /* Deeplinking */ = {
 			isa = PBXGroup;
 			children = (
+				499A93262921E7D6002A70D9 /* Manager */,
 			);
 			path = Deeplinking;
 			sourceTree = "<group>";
@@ -869,6 +998,7 @@
 		49C262DA2900B81200532DF7 /* SwiftUI Coordinator */ = {
 			isa = PBXGroup;
 			children = (
+				499A931D2921D1F0002A70D9 /* Presentation Modifiers */,
 				490611A92911AB0A007E5945 /* Coordinators */,
 				490611A82911AB00007E5945 /* Protocol */,
 			);
@@ -878,9 +1008,11 @@
 		49C262DB2900B83800532DF7 /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				49918A452923879E00A5639C /* Environments */,
 				4906119B29118A00007E5945 /* AVH-Core */,
 				4906119A291189E4007E5945 /* Services */,
 				49B221E6290DA0C400BF7B26 /* Routing */,
+				499A93162921C1FE002A70D9 /* FTUE Handling */,
 				49B221DD290D0A4600BF7B26 /* Common */,
 				49C262DF2900B88B00532DF7 /* Screens */,
 				49C262DE2900B87700532DF7 /* Reusable Views */,
@@ -1090,7 +1222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490611CB2911B615007E5945 /* CommandCenterView.swift in Sources */,
-				490611A229119272007E5945 /* Coordinator.swift in Sources */,
+				490611A229119272007E5945 /* Coordinator+RootCoordinator.swift in Sources */,
 				499A930F292011CE002A70D9 /* GenericViewModelProtocol.swift in Sources */,
 				49B221CF290CA31600BF7B26 /* Fonts.swift in Sources */,
 				490611BF2911B162007E5945 /* BuildsView.swift in Sources */,
@@ -1104,15 +1236,20 @@
 				4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */,
 				49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */,
 				490611A029118A5C007E5945 /* HapticFeedback.swift in Sources */,
+				499A93232921D230002A70D9 /* SheetModifier.swift in Sources */,
+				499A931C2921C482002A70D9 /* OnboardingCoordinator.swift in Sources */,
 				499A930A291F4C19002A70D9 /* NumberDataTypeExtensions.swift in Sources */,
 				4924AA3329158F6600108D44 /* ArrowButton.swift in Sources */,
 				490611B02911B019007E5945 /* BuildsCoordinator.swift in Sources */,
 				49C262AF2900B7A100532DF7 /* Inspec.xcdatamodeld in Sources */,
+				499A93252921E7A9002A70D9 /* DeeplinkManager.swift in Sources */,
 				49630FB52916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift in Sources */,
 				490611E82911C9FA007E5945 /* ButtonStyles.swift in Sources */,
 				490611B82911B066007E5945 /* InboxCoordinator.swift in Sources */,
 				499A9308291C0C80002A70D9 /* ComponentsProtocol.swift in Sources */,
 				499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */,
+				49918A4229237D9600A5639C /* Router.swift in Sources */,
+				499A93212921D223002A70D9 /* FullScreenCoverModifier.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
 				499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */,
@@ -1121,7 +1258,8 @@
 				499A92FC291A4558002A70D9 /* OnboardingPage_4_BackgroundGraphicsView.swift in Sources */,
 				49630FB12916522400D4BD50 /* PartitionedProgressBarViewModels.swift in Sources */,
 				4906119829104B59007E5945 /* Images.swift in Sources */,
-				490611AE2911AE1A007E5945 /* RootCoordinatorView.swift in Sources */,
+				49918A4B2923B28400A5639C /* MainRouter.swift in Sources */,
+				490611AE2911AE1A007E5945 /* MainCoordinatorView.swift in Sources */,
 				49A73408291843C600AAB553 /* VOCPageView.swift in Sources */,
 				490611C32911B459007E5945 /* CommandCenterViewModel.swift in Sources */,
 				490611D42911B685007E5945 /* ComponentsView.swift in Sources */,
@@ -1129,14 +1267,19 @@
 				490611B22911B029007E5945 /* ComponentsCoordinator.swift in Sources */,
 				490611D22911B672007E5945 /* ComponentsViewModel.swift in Sources */,
 				49A7340B2918525700AAB553 /* ScrollViewModifier.swift in Sources */,
+				49918A4D2923B2AC00A5639C /* OnboardingRouter.swift in Sources */,
 				49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */,
-				490611AB2911ADE2007E5945 /* RootCoordinator.swift in Sources */,
+				490611AB2911ADE2007E5945 /* RootCoordinatorDelegate.swift in Sources */,
 				490611C92911B5FD007E5945 /* InboxView.swift in Sources */,
 				49B221E0290D0A9400BF7B26 /* StringExtensions.swift in Sources */,
 				499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */,
+				49918A55292451A900A5639C /* OnboardingCoordinatorView.swift in Sources */,
+				499A931F2921D211002A70D9 /* PopoverModifier.swift in Sources */,
 				49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */,
+				499A93182921C299002A70D9 /* FTUEHandler.swift in Sources */,
 				490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */,
 				49B221D6290D076900BF7B26 /* Tabs.swift in Sources */,
+				49918A4F2923B2F100A5639C /* Routes.swift in Sources */,
 				490611B62911B055007E5945 /* ExploreCoordinator.swift in Sources */,
 				49B221BB290B902E00BF7B26 /* FloatingTabbar.swift in Sources */,
 				490611B42911B049007E5945 /* CommandCenterCoordinator.swift in Sources */,
@@ -1148,6 +1291,7 @@
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,
+				49918A532923B3DF00A5639C /* MainCoordinator.swift in Sources */,
 				499A93152921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

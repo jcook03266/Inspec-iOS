@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FloatingTabbar: View {
     @Namespace private var tabbarContainer
-    @StateObject var coordinator: RootCoordinator
+    @StateObject var coordinator: MainCoordinator
     @State private var animate: Bool = false
     
     var cornerRadius: CGFloat = 40,
@@ -20,7 +20,7 @@ struct FloatingTabbar: View {
     let itemSpacing: CGFloat = 5
     
     var tabButtons: some View {
-        ForEach(Tabs.allCases, id: \.rawValue) { tab in
+        ForEach(TabbarRoutes.allCases, id: \.rawValue) { tab in
             if tab != .command_center {
                 VStack(alignment: .leading) {
                     VStack(spacing: 9) {
@@ -100,6 +100,6 @@ struct FloatingTabbar: View {
 
 struct FloatingTabbar_Previews: PreviewProvider {
     static var previews: some View {
-        FloatingTabbar(coordinator: RootCoordinator())
+        FloatingTabbar(coordinator: MainCoordinator())
     }
 }

@@ -17,6 +17,6 @@ struct CommandCenterView: View {
 
 struct CommandCenterView_Previews: PreviewProvider {
     static var previews: some View {
-        CommandCenterView(viewModel: .init(coordinator: CommandCenterCoordinator(parent: RootCoordinator())))
+        CommandCenterView(viewModel: .init(coordinator: CommandCenterCoordinator(parent: MainCoordinator())))
     }
 }

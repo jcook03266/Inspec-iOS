@@ -116,8 +116,7 @@ private struct ProgressBar: View {
 
 struct PartitionedProgressView_Previews: PreviewProvider {
     static var model: PartitionedProgressBarViewModel {
-        let vm = PartitionedProgressBarViewModel(progressBarCount: 4,
-                                                 id: 0)
+        let vm = PartitionedProgressBarViewModel(progressBarCount: 4)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             vm.moveForward()

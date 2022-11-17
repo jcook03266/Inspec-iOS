@@ -17,6 +17,6 @@ struct ComponentsView: View {
 
 struct ComponentsView_Previews: PreviewProvider {
     static var previews: some View {
-        ComponentsView(viewModel: ComponentsViewModel(coordinator: ComponentsCoordinator(parent: RootCoordinator())))
+        ComponentsView(viewModel: ComponentsViewModel(coordinator: ComponentsCoordinator(parent: MainCoordinator())))
     }
 }

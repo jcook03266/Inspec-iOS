@@ -17,6 +17,6 @@ struct InboxView: View {
 
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
-        InboxView(viewModel: .init(coordinator: InboxCoordinator(parent: RootCoordinator())))
+        InboxView(viewModel: .init(coordinator: InboxCoordinator(parent: MainCoordinator())))
     }
 }

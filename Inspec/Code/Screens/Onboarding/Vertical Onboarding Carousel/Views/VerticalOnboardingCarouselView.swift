@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct VOC: View {
+    @Environment(\.presentationMode) var presentationMode
+    
+    // Observed
+    @StateObject var coordinator: OnboardingCoordinator
     @StateObject var model: VOCViewModel
     @StateObject var PBNCoordinator: ProgressBarNavigationCoordinator<VOCViewModel>
     @StateObject var progressBarModel: PartitionedProgressBarViewModel
@@ -30,22 +34,34 @@ struct VOC: View {
     }
     var skipAction: (() -> Void) {
         return {
-            self.PBNCoordinator.skipToLast()
+            PBNCoordinator.skipToLast()
         }
     }
     var upArrowAction: (() -> Void) {
         return {
-            self.PBNCoordinator.moveBackward()
+            PBNCoordinator.moveBackward()
         }
     }
     var downArrowAction: (() -> Void) {
         return {
-            self.PBNCoordinator.moveForward()
+            PBNCoordinator.moveForward()
         }
     }
-    var continueCTAButton: (() -> Void) {
+    var continueCTAAction: (() -> Void) {
         return {
+            //coordinator.pushView(with: .home)
+            coordinator.presentFullScreenCover(with: .home)
+            coordinator.dismissFullScreenCover()
             
+            //coordinator.path.append(OnboardingRoutes.home)
+            
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
+//                //coordinator.path.removeLast()
+//            }
+            
+            print(coordinator.path.count.description)
+            
+            //coordinator.rootCoordinatorDelegate.switchRootCoordinator()
         }
     }
     var progressBar: PartitionedProgressView {
@@ -110,7 +126,7 @@ struct VOC: View {
     var lastPageCTAButton: some View {
         VStack {
             RoundedRectangularCTA(action: {
-                continueCTAButton()
+                continueCTAAction()
             }, message: (nil, LocalizedStrings.getLocalizedStringKey(for: .ONBOARDING_PAGE_4_CTA)),
                                   borderEnabled: true)
         }
@@ -212,7 +228,7 @@ struct VOC: View {
 struct VOC_Previews: PreviewProvider {
     private static func getModels() -> (VOCViewModel, ProgressBarNavigationCoordinator<VOCViewModel>) {
         
-        let model = VOCViewModel(id: 0)
+        let model = VOCViewModel()
         let coordinator = ProgressBarNavigationCoordinator<VOCViewModel>.init(viewModel: model, progressBar: model.progressBar)
         
         coordinator.injectProgressViewOnTapActions()
@@ -223,7 +239,8 @@ struct VOC_Previews: PreviewProvider {
     static var previews: some View {
         let models = getModels()
         
-        VOC(model: models.0,
+        VOC(coordinator: OnboardingCoordinator(),
+            model: models.0,
             PBNCoordinator: models.1,
             progressBarModel: models.0.progressBar)
     }

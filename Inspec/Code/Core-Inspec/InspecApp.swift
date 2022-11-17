@@ -9,13 +9,29 @@ import SwiftUI
 
 @main
 struct InspecApp: App {
+    // MARK: - Core Data
     let persistenceController = PersistenceController.shared
-    @ObservedObject var rootCoordinator: RootCoordinator = RootCoordinator()
-
+    let deepLinkManager = DeepLinkManager()
+    
+    // MARK: -  Observed
+    @ObservedObject var rootCoordinatorDelegate: RootCoordinatorDelegate = .init()
+    
+    // MARK: - States
+    @State var deepLinkTarget: DeepLinkManager.DeepLinkTarget?
+    
+    var activeRootCoordinator: any RootCoordinator {
+        return rootCoordinatorDelegate.activeRootCoordinator
+    }
+    
     var body: some Scene {
         WindowGroup {
-            RootCoordinatorView(rootCoordinator: rootCoordinator)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            Group {
+                activeRootCoordinator.coordinatorView()
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            }
+            .onOpenURL { url in
+                deepLinkTarget = deepLinkManager.manage(url: url)
+            }
         }
     }
 }

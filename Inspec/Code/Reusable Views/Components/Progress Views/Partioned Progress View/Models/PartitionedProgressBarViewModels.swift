@@ -10,7 +10,6 @@ import Combine
 
 // MARK: - Partitioned Progress Bar View Model
 class PartitionedProgressBarViewModel: GenericNavigationProtocol, NavigableGenericViewModel {
-    
     // Observed
     /// Observes changes in the published array in this observable object and notifies the publisher of changes
     @ObservedObject private var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()
@@ -29,7 +28,7 @@ class PartitionedProgressBarViewModel: GenericNavigationProtocol, NavigableGener
     /// Joins all bars together to form one single bar when all bars are completed
     @Published var joinProgressBarViews: Bool = true
     
-    let id: Int,
+    let id: UUID = UUID(),
         maxProgress: CGFloat = 1,
         minProgress: CGFloat = 0
     
@@ -80,10 +79,8 @@ class PartitionedProgressBarViewModel: GenericNavigationProtocol, NavigableGener
     }
     
     init(progressBarCount: Int = 0,
-         id: Int,
          currentProgress: CGFloat = 0) {
         self.progressBarCount = progressBarCount
-        self.id = id
         self.observedArray = ObservableArray(array: progressBarModels,
                                              parentObjectWillChange: self.objectWillChange)
         

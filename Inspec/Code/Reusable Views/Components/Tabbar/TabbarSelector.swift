@@ -8,15 +8,15 @@
 import SwiftUI
 import UIKit
 
-// Selector that dispatches a custom preconfigured tabbar 
+/// Selector that dispatches a custom preconfigured tabbar 
 struct TabbarSelector {
-    let coordinator: RootCoordinator
+    let coordinator: MainCoordinator
     
     private var floatingTabbar: FloatingTabbar {
         return FloatingTabbar(coordinator: self.coordinator)
     }
     
-    init(coordinator: RootCoordinator) {
+    init(coordinator: MainCoordinator) {
         self.coordinator = coordinator
     }
     
