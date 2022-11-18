@@ -9,8 +9,6 @@ import SwiftUI
 
 struct VOC: View {
     // MARK: - Observed
-    @ObservedObject var coordinator: OnboardingCoordinator
-    
     @StateObject var model: VOCViewModel
     @StateObject var PBNCoordinator: ProgressBarNavigationCoordinator<VOCViewModel>
     @StateObject var progressBarModel: PartitionedProgressBarViewModel
@@ -47,9 +45,7 @@ struct VOC: View {
         }
     }
     var continueCTAAction: (() -> Void) {
-        return {
-            self.coordinator.presentFullScreenCover(with: .home)
-        }
+        return self.model.goToHomeScreen
     }
     var progressBar: PartitionedProgressView {
         let view = PartitionedProgressView(viewModel: progressBarModel)
@@ -215,7 +211,7 @@ struct VOC: View {
 struct VOC_Previews: PreviewProvider {
     private static func getModels() -> (VOCViewModel, ProgressBarNavigationCoordinator<VOCViewModel>) {
         
-        let model = VOCViewModel()
+        let model = VOCViewModel(coordinator: .init())
         let coordinator = ProgressBarNavigationCoordinator<VOCViewModel>.init(viewModel: model, progressBar: model.progressBar)
         
         coordinator.injectProgressViewOnTapActions()
@@ -226,8 +222,7 @@ struct VOC_Previews: PreviewProvider {
      static var previews: some View {
         let models = getModels()
         
-        VOC(coordinator: OnboardingCoordinator(),
-            model: models.0,
+        VOC(model: models.0,
             PBNCoordinator: models.1,
             progressBarModel: models.0.progressBar)
     }

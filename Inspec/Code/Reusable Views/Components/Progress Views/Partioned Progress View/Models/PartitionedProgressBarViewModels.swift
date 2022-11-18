@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 // MARK: - Partitioned Progress Bar View Model
-class PartitionedProgressBarViewModel: GenericNavigationProtocol, NavigableGenericViewModel {
+class PartitionedProgressBarViewModel: UncoordinatedNavigableGenericViewModel {
     // Observed
     /// Observes changes in the published array in this observable object and notifies the publisher of changes
     @ObservedObject private var observedArray: ObservableArray = ObservableArray<ProgressBarModel>()

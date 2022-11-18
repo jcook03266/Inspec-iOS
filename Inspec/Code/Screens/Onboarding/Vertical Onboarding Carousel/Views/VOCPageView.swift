@@ -9,13 +9,13 @@ import SwiftUI
 import Lottie
 
 struct VOCPageView: View {
-    // Observed
+    // MARK: - Observed
     @StateObject var model: VOCPageViewModel
     /// Prevents deallocation when loading between pages w/ observedObject
     @StateObject var textSectionExpansionController: TextSectionExpansionController = TextSectionExpansionController(expanded: !DeviceConstants.isDeviceSmallFormFactor(), enableExpansion: DeviceConstants.isDeviceSmallFormFactor())
     @ObservedObject var manager: VOCViewModel
     
-    // States
+    // MARK: - States
     @State var scrollEnabled: Bool = true
 
     let font: FontRepository = .heading_2,
@@ -31,14 +31,8 @@ struct VOCPageView: View {
             .withFont(font)
             .fontWeight(.semibold)
             .multilineTextAlignment(.center)
-            .overlay(titleGradient)
-            .mask(
-                Text(model.title)
-                    .withFont(font)
-                    .fontWeight(.semibold)
-                    .multilineTextAlignment(.leading)
-                    .minimumScaleFactor(0.1)
-            )
+            .minimumScaleFactor(0.1)
+            .applyGradient(gradient: titleGradient)
             .frame(maxWidth: .infinity,
                    maxHeight: 100,
                    alignment: .leading)
@@ -105,7 +99,7 @@ struct VOCPageView: View {
 
 struct VOCPageView_Previews: PreviewProvider {
     private static func getTestModel() -> VOCPageViewModel {
-        let model = OnboardingPages(pageManager: .init()).getAllPages()[0]
+        let model = OnboardingPages(pageManager: .init(coordinator: .init())).getAllPages()[0]
         
         return model
     }

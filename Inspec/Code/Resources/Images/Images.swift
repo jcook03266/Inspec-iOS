@@ -92,31 +92,34 @@ struct Icons {
         }
         
         image.withRenderingMode(renderingMode)
-         
+        
         return image
     }
 }
 
 // MARK: - Image Enumerations
 enum ImageRepository: String, CaseIterable, Hashable {
-    case twitter = "twitter"
-    case google = "google"
-    case apple = "apple"
-    case dotMatrix = "dotMatrix"
-    case dashedCircle = "dashedCircle"
-    case shapeCluster = "shapeCluster"
-    case two_tone_dotMatrices = "two.tone.dotMatrices"
-    case golden_ratio_IanPorthole = "golden.ratio.IanPorthole"
+    case twitter = "twitter",
+         google = "google",
+         apple = "apple",
+         dotMatrix = "dotMatrix",
+         dashedCircle = "dashedCircle",
+         shapeCluster = "shapeCluster",
+         two_tone_dotMatrices = "two.tone.dotMatrices",
+         golden_ratio_IanPorthole = "golden.ratio.IanPorthole",
+         gamingSetup_1 = "gamingPCSetup.1"
 }
 
 enum CharacterImageRepository: String, CaseIterable, Hashable {
     case Ian_Transparent_Background = "Ian.Transparent.Background",
-         Ian_Portrait = "Ian.Portrait"
+         Ian_Portrait = "Ian.Portrait",
+         Ian_Dashed_Border_Portrait = "Ian.Dashed.Border.Portrait"
 }
 
 enum CustomIconRepository: String, CaseIterable, Hashable {
     case chat = "chat",
-         brain_graph = "brain.graph"
+         brain_graph = "brain.graph",
+         ghost = "ghost"
 }
 
 enum SystemIconRepository: String, CaseIterable, Hashable {

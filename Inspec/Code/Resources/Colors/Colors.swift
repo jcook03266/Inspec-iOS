@@ -53,7 +53,7 @@ struct Colors {
                                   startPoint: startPoint,
                                   endPoint: endPoint)
         case .gradient_2:
-            let colors = getColors(named: .white, color2: .secondary_1)
+            let colors = getColors(named: .text_white, color2: .secondary_1)
             let startPoint = UnitPoint(x: 0, y: 1)
             let endPoint = UnitPoint(x: 1, y: 0)
             
@@ -116,6 +116,12 @@ struct Colors {
         return (getColor(named: .shadow_1), getUIColor(named: .shadow_1))
     }
     
+    // Opaque Colors
+    // Black with an opacity of 45%
+    static var black_45: (Color, UIColor) {
+        return (getColor(named: .black_45), getUIColor(named: .black_45))
+    }
+    
     // Permanent Colors (Don't change w/ environment attributes)
     static var text_black: (Color, UIColor) {
         return (getColor(named: .text_black), getUIColor(named: .text_black))
@@ -141,7 +147,7 @@ struct Colors {
 
 // MARK: Colors Enum
 enum ColorRepository: String, CaseIterable, Codable, Hashable {
-    case primary_1, primary_2, secondary_1, secondary_2, black, neutral_900, neutral_800, neutral_700, neutral_600, neutral_500, neutral_400, neutral_300, neutral_200, neutral_100, white, attention, shadow_1, text_black, text_white, icon_white, icon_black
+    case primary_1, primary_2, secondary_1, secondary_2, black, neutral_900, neutral_800, neutral_700, neutral_600, neutral_500, neutral_400, neutral_300, neutral_200, neutral_100, white, attention, shadow_1, text_black, text_white, icon_white, icon_black, black_45
 }
 
 // MARK: Gradients Enum

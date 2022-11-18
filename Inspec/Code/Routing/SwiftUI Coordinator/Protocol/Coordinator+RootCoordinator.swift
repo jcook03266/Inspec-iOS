@@ -100,6 +100,8 @@ extension Coordinator {
     /// Present the given coordinator which will take over the current root view and define its own view hierarchy
     public func present(coordinator: any Coordinator,
                         onPresent: (() -> Void)? = nil) {
+        dismissSheet()
+        dismissFullScreenCover()
         clearDismissalActionStore()
         
         addChild(coordinator)

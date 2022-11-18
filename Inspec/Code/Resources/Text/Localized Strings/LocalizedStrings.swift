@@ -24,7 +24,11 @@ enum LocalizedStrings: String, CaseIterable {
          ONBOARDING_PAGE_3_MESSAGE,
          ONBOARDING_PAGE_4_TITLE,
          ONBOARDING_PAGE_4_MESSAGE,
-         ONBOARDING_PAGE_4_CTA
+         ONBOARDING_PAGE_4_CTA,
+         HOME_SCREEN_TITLE,
+         HOME_SCREEN_LOGIN_BUTTON,
+         HOME_SCREEN_REGISTER_BUTTON,
+         HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON
 }
 
 extension LocalizedStrings {

@@ -12,6 +12,18 @@ protocol GenericViewModel: ObservableObject, Identifiable {
     var id: UUID { get }
 }
 
+/// View model that uses a coordinator object for navigation and routing
+protocol CoordinatedGenericViewModel: GenericViewModel {
+    associatedtype coordinator = any Coordinator
+    
+    // MARK: - Observed Object
+    var coordinator: coordinator { get set }
+}
+
 /// Generic view model that conforms to the navigation protocol which allows for the movement between items in a collection, namely views to create a carousel of some sort
-protocol NavigableGenericViewModel: GenericViewModel, GenericNavigationProtocol {
+protocol NavigableGenericViewModel: CoordinatedGenericViewModel, GenericNavigationProtocol {
+}
+
+/// For view models that don't use navigation coordinators
+protocol UncoordinatedNavigableGenericViewModel: GenericViewModel, GenericNavigationProtocol {
 }

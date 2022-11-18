@@ -49,6 +49,10 @@
 		49953BCB29276BC900EA6AD5 /* CommandCenterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCA29276BC900EA6AD5 /* CommandCenterRouter.swift */; };
 		49953BCD29276BD900EA6AD5 /* ExploreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCC29276BD900EA6AD5 /* ExploreRouter.swift */; };
 		49953BCF29276BE800EA6AD5 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCE29276BE800EA6AD5 /* InboxRouter.swift */; };
+		49953BD82927818E00EA6AD5 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BD72927818E00EA6AD5 /* HomeScreen.swift */; };
+		49953BDA2927821700EA6AD5 /* HomeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BD92927821700EA6AD5 /* HomeScreenViewModel.swift */; };
+		49953BDC2927971400EA6AD5 /* GradientModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BDB2927971400EA6AD5 /* GradientModifiers.swift */; };
+		49953BDF2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BDE2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift */; };
 		499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F1291A3755002A70D9 /* DeviceConstants.swift */; };
 		499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */; };
 		499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */; };
@@ -159,6 +163,10 @@
 		49953BCA29276BC900EA6AD5 /* CommandCenterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterRouter.swift; sourceTree = "<group>"; };
 		49953BCC29276BD900EA6AD5 /* ExploreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRouter.swift; sourceTree = "<group>"; };
 		49953BCE29276BE800EA6AD5 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
+		49953BD72927818E00EA6AD5 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		49953BD92927821700EA6AD5 /* HomeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewModel.swift; sourceTree = "<group>"; };
+		49953BDB2927971400EA6AD5 /* GradientModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientModifiers.swift; sourceTree = "<group>"; };
+		49953BDE2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfRoundedRectangularCTA.swift; sourceTree = "<group>"; };
 		499A92F1291A3755002A70D9 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_1_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
@@ -467,6 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				490611E22911BD8A007E5945 /* RoundedRectangularCTA.swift */,
+				49953BDE2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift */,
 			);
 			path = CTA;
 			sourceTree = "<group>";
@@ -689,6 +698,53 @@
 			path = "Tab Routers";
 			sourceTree = "<group>";
 		};
+		49953BD12927813F00EA6AD5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				49953BD62927816F00EA6AD5 /* Views */,
+				49953BD52927815A00EA6AD5 /* Models */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		49953BD22927814400EA6AD5 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		49953BD32927814800EA6AD5 /* Sign-Up */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Sign-Up";
+			sourceTree = "<group>";
+		};
+		49953BD42927815000EA6AD5 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				49C262A42900B79E00532DF7 /* ContentView.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		49953BD52927815A00EA6AD5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49953BD92927821700EA6AD5 /* HomeScreenViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		49953BD62927816F00EA6AD5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49953BD72927818E00EA6AD5 /* HomeScreen.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		499A92F0291A3741002A70D9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +862,7 @@
 			children = (
 				49A7340A2918525700AAB553 /* ScrollViewModifier.swift */,
 				499A93122921B348002A70D9 /* ShapeModifiers.swift */,
+				49953BDB2927971400EA6AD5 /* GradientModifiers.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -1093,7 +1150,10 @@
 		49C262DF2900B88B00532DF7 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				49C262A42900B79E00532DF7 /* ContentView.swift */,
+				49953BD42927815000EA6AD5 /* Other */,
+				49953BD32927814800EA6AD5 /* Sign-Up */,
+				49953BD22927814400EA6AD5 /* Login */,
+				49953BD12927813F00EA6AD5 /* Home */,
 				490611DB2911BB10007E5945 /* Onboarding */,
 				490611DA2911B6FA007E5945 /* Tabs */,
 			);
@@ -1266,6 +1326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49953BDC2927971400EA6AD5 /* GradientModifiers.swift in Sources */,
 				490611CB2911B615007E5945 /* CommandCenterView.swift in Sources */,
 				49953BC929276BB400EA6AD5 /* ComponentsRouter.swift in Sources */,
 				490611A229119272007E5945 /* Coordinator+RootCoordinator.swift in Sources */,
@@ -1298,10 +1359,12 @@
 				499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */,
 				49953BCB29276BC900EA6AD5 /* CommandCenterRouter.swift in Sources */,
 				49918A4229237D9600A5639C /* Router.swift in Sources */,
+				49953BDF2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift in Sources */,
 				499A93212921D223002A70D9 /* FullScreenCoverModifier.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
 				49953BCD29276BD900EA6AD5 /* ExploreRouter.swift in Sources */,
+				49953BD82927818E00EA6AD5 /* HomeScreen.swift in Sources */,
 				499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */,
 				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
 				49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */,
@@ -1311,6 +1374,7 @@
 				49918A4B2923B28400A5639C /* MainRouter.swift in Sources */,
 				490611AE2911AE1A007E5945 /* MainCoordinatorView.swift in Sources */,
 				49A73408291843C600AAB553 /* VOCPageView.swift in Sources */,
+				49953BDA2927821700EA6AD5 /* HomeScreenViewModel.swift in Sources */,
 				490611C32911B459007E5945 /* CommandCenterViewModel.swift in Sources */,
 				490611D42911B685007E5945 /* ComponentsView.swift in Sources */,
 				49B221EF290DD01C00BF7B26 /* ViewExtensions.swift in Sources */,

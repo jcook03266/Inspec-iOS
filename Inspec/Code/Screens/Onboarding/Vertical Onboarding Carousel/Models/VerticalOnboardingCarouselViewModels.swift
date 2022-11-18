@@ -9,9 +9,11 @@ import SwiftUI
 
 // MARK: - Main Carousel
 class VOCViewModel: NavigableGenericViewModel {
-    let id: UUID = UUID() 
+    let id: UUID = UUID()
+    typealias coordinator = OnboardingCoordinator
     
     // MARK: - Observed
+    var coordinator: OnboardingCoordinator
     /// Note: The progress bar is the source of truth for the current page and overall progress of the carousel
     @ObservedObject var progressBar: PartitionedProgressBarViewModel = .init()
     @ObservedObject private var observedArray: ObservableArray = ObservableArray<VOCPageViewModel>()
@@ -43,9 +45,18 @@ class VOCViewModel: NavigableGenericViewModel {
         return progressBar.currentPage == pages.count
     }
     
-    init()
+    // MARK: - Actions
+    var goToHomeScreen: (() -> Void) {
+        return {
+            self.coordinator.presentFullScreenCover(with: .home)
+        }
+    }
+    
+    init(coordinator: OnboardingCoordinator)
     {
         // Initializing variables
+        self.coordinator = coordinator
+        
         // Setting expected values
         self.pages = pageDispatcher.getAllPages()
         self.progressBar = PartitionedProgressBarViewModel(progressBarCount: pageCount)

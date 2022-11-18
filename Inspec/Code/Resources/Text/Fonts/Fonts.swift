@@ -121,6 +121,8 @@ struct Fonts {
     static func getAttributes(for fontName: FontRepository) -> (CGFloat, CGFloat, CGFloat, UIFont.Weight) {
         
         switch fontName {
+        case .heading_0:
+            return (55, -0.3, 50, .bold)
         case .heading_1:
             return (44, -0.3, 52.8, .bold)
         case .heading_2:
@@ -173,5 +175,5 @@ struct Fonts {
 
 // MARK: Fonts Enum
 enum FontRepository: String, CaseIterable, Codable, Hashable {
-    case heading_1, heading_2, heading_3, heading_4, heading_5, heading_6, special_heading_1, special_heading_2, special_heading_3, body_XL, body_L, body_M, body_S, body_XS, body_2XS, body_3XS, body_XL_Bold, body_L_Bold, body_M_Bold, body_S_Bold, body_XS_Bold, body_2XS_Bold, body_3XS_Bold
+    case heading_0, heading_1, heading_2, heading_3, heading_4, heading_5, heading_6, special_heading_1, special_heading_2, special_heading_3, body_XL, body_L, body_M, body_S, body_XS, body_2XS, body_3XS, body_XL_Bold, body_L_Bold, body_M_Bold, body_S_Bold, body_XS_Bold, body_2XS_Bold, body_3XS_Bold
 }

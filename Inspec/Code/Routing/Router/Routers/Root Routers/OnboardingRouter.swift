@@ -13,6 +13,7 @@ class OnboardingRouter: Routable {
     
     // MARK: -  View Models
     @Published var onboardingViewModel: VOCViewModel!
+    @Published var homeScreenViewModel: HomeScreenViewModel!
     
     // MARK: - Observed
     @ObservedObject var coordinator: OnboardingCoordinator
@@ -24,7 +25,8 @@ class OnboardingRouter: Routable {
     }
     
     func initViewModels() {
-        self.onboardingViewModel = VOCViewModel()
+        self.onboardingViewModel = VOCViewModel(coordinator: self.coordinator)
+        self.homeScreenViewModel = HomeScreenViewModel(coordinator: self.coordinator)
     }
     
     func view(for route: OnboardingRoutes) -> AnyView {
@@ -34,12 +36,15 @@ class OnboardingRouter: Routable {
             
             progressBarCoordinator.injectProgressViewOnTapActions()
             
-            return AnyView(VOC(coordinator: self.coordinator,
-                               model: self.onboardingViewModel,
+            return AnyView(
+                VOC(model: self.onboardingViewModel,
                                PBNCoordinator: progressBarCoordinator,
-                               progressBarModel: self.onboardingViewModel.progressBar))
+                               progressBarModel: self.onboardingViewModel.progressBar)
+            )
         case .home:
-            return AnyView(EmptyView())
+            return AnyView(
+                HomeScreen(model: self.homeScreenViewModel)
+            )
         case .login:
             return AnyView(EmptyView())
         case .signUp:
