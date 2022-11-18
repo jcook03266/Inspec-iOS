@@ -15,15 +15,9 @@ class MainCoordinator: TabbarCoordinator {
         return self
     }
     var children: [any Coordinator] = []
-    
-    // MARK: -  This Coordinator specific variables
-    var ftueHandler: FTUEHandler = FTUEHandler()
     var rootRoute: TabbarRoutes = .builds
-    
-    // MARK: -  States
-    //@State var statusBarHidden: Bool = false
-    //@State var dismiss: Bool = false
-    
+    var deferredDismissalActionStore: [TabbarRoutes : (() -> Void)?] = [:]
+ 
     // MARK: - Observed
     @ObservedObject var rootCoordinatorDelegate: RootCoordinatorDelegate
     
@@ -36,9 +30,10 @@ class MainCoordinator: TabbarCoordinator {
     @Published var pathRoutes: [TabbarRoutes] = []
     @Published var sheetItem: TabbarRoutes?
     @Published var fullCoverItem: TabbarRoutes?
+    @Published var rootView: AnyView!
     
     // MARK: - States
-    @State var rootView: AnyView!
+    @State var statusBarHidden: Bool = false
     
     var tabbarDispatcher: TabbarTabDispatcher {
         return TabbarTabDispatcher(coordinator: self)
@@ -49,13 +44,25 @@ class MainCoordinator: TabbarCoordinator {
         self.router = MainRouter(coordinator: self)
         
         populateChildren()
+        
+        // Ensure the amount of children equals the amount of tabs currently enumerated
+        assert(children.count == TabbarRoutes.allCases.count)
+        
+        presentRootTab()
     }
     
     func coordinatorView() -> AnyView {
         return AnyView(MainCoordinatorView(coordinator: self))
     }
     
+    /// Present the target first tab, this is the first tab the user will see when they enter the app, (mutable)
+    func presentRootTab() {
+        navigateTo(tab: rootRoute)
+    }
+    
     func navigateTo(tab: TabbarRoutes){
+        currentTab = tab
+        
         let child = getCoordinatorFor(route: tab)
         present(coordinator: child)
     }

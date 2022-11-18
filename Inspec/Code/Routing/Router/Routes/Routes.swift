@@ -11,7 +11,7 @@ import Foundation
 /// Each router is responsible for a specific set of views that it expects to present somewhere in its view hierarchy, this centralizes the app's navigation pathways to one source of truth
 /// Note: Any new views must be added under their respective routes
 // MARK: - Onboarding Router
-enum OnboardingRoutes: String, CaseIterable, Hashable, Identifiable {
+enum OnboardingRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
     var id: String {
         String(describing: self)
     }
@@ -23,7 +23,7 @@ enum OnboardingRoutes: String, CaseIterable, Hashable, Identifiable {
 }
 
 // MARK: - Main / Tabbar Router
-enum TabbarRoutes: String, CaseIterable, Hashable, Identifiable {
+enum TabbarRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
     var id: String {
         String(describing: self)
     }
@@ -36,10 +36,59 @@ enum TabbarRoutes: String, CaseIterable, Hashable, Identifiable {
 }
 
 // MARK: - Builds Router
-enum BuildsRoutes: String, CaseIterable, Hashable, Identifiable {
+enum BuildsRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
     var id: String {
         String(describing: self)
     }
     
     case main
+}
+// MARK: - Components Router
+enum ComponentsRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case main
+}
+// MARK: - Command Center Router
+enum CommandCenterRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case main
+}
+// MARK: - Explore Router
+enum ExploreRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case main
+}
+
+// MARK: - Inbox Router
+enum InboxRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case main
+}
+
+/// A record of all possible route pathways across the app
+enum RouteDirectories: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case TabbarRoutes
+    case OnboardingRoutes
+    case BuildsRoutes
+}
+
+// MARK: - Generic protocol for all routes to conform to
+protocol RoutesProtocol {
+    var id: String { get }
 }

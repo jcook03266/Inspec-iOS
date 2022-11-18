@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct VOC: View {
-    @Environment(\.presentationMode) var presentationMode
+    // MARK: - Observed
+    @ObservedObject var coordinator: OnboardingCoordinator
     
-    // Observed
-    @StateObject var coordinator: OnboardingCoordinator
     @StateObject var model: VOCViewModel
     @StateObject var PBNCoordinator: ProgressBarNavigationCoordinator<VOCViewModel>
     @StateObject var progressBarModel: PartitionedProgressBarViewModel
@@ -49,19 +48,7 @@ struct VOC: View {
     }
     var continueCTAAction: (() -> Void) {
         return {
-            //coordinator.pushView(with: .home)
-            coordinator.presentFullScreenCover(with: .home)
-            coordinator.dismissFullScreenCover()
-            
-            //coordinator.path.append(OnboardingRoutes.home)
-            
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [self] in
-//                //coordinator.path.removeLast()
-//            }
-            
-            print(coordinator.path.count.description)
-            
-            //coordinator.rootCoordinatorDelegate.switchRootCoordinator()
+            self.coordinator.presentFullScreenCover(with: .home)
         }
     }
     var progressBar: PartitionedProgressView {
@@ -103,7 +90,7 @@ struct VOC: View {
     /// Buttons used to navigate through the onboarding screen before the last page is displayed
     var navigationButtons: some View {
         VStack(spacing: 20) {
-            //Up Arrow
+            // Up Arrow
             ArrowButton(action: {
                 upArrowAction()
             },
@@ -111,7 +98,7 @@ struct VOC: View {
                         buttonType: .next,
                         isEnabled: .constant(!self.model.isOnFirstPage))
             
-            //Down Arrow
+            // Down Arrow
             ArrowButton(action: {
                 downArrowAction()
             },
@@ -236,7 +223,7 @@ struct VOC_Previews: PreviewProvider {
         return (model, coordinator)
     }
     
-    static var previews: some View {
+     static var previews: some View {
         let models = getModels()
         
         VOC(coordinator: OnboardingCoordinator(),

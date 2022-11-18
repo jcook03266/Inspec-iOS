@@ -14,12 +14,12 @@ struct InspecApp: App {
     let deepLinkManager = DeepLinkManager()
     
     // MARK: -  Observed
-    @ObservedObject var rootCoordinatorDelegate: RootCoordinatorDelegate = .init()
+    @StateObject var rootCoordinatorDelegate: RootCoordinatorDelegate = .init()
     
     // MARK: - States
     @State var deepLinkTarget: DeepLinkManager.DeepLinkTarget?
     
-    var activeRootCoordinator: any RootCoordinator {
+    private var activeRootCoordinator: any RootCoordinator {
         return rootCoordinatorDelegate.activeRootCoordinator
     }
     

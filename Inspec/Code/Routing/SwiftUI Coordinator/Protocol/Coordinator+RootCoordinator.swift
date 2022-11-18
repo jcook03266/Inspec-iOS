@@ -15,18 +15,71 @@ public protocol Coordinator: ObservableObject {
     
     var parent: any Coordinator { get }
     var children: [any Coordinator] { get set }
+    var rootRoute: Router.Route { get }
+    var rootView: AnyView! { get set } // View at the bottom of the navigation state corresponding to this coordinator
+    var dispatcher: CoordinatorDispatcher { get }
+    var deferredDismissalActionStore: [Router.Route : (() -> Void)?] { get set } // Stores closures to be executed when a view is dismissed later on after being presented
     
-    // Published instance variables
+    // MARK: - Published instance variables
     var router: Router! { get set }
     var path: NavigationPath { get set }
     var pathRoutes: [Router.Route] { get set } // Keeps track of all current values in the nav path (active navigation paths)
     var sheetItem: Router.Route? { get set }
     var fullCoverItem: Router.Route? { get set }
-    var rootView: AnyView! { get set }
     
+    // MARK: - States
+    var statusBarHidden: Bool { get set }
     
     @ViewBuilder
     func start() -> Void // Any abstract logic to be executed when the coordinator is first initialized
+}
+
+/// Custom view used to hold the states of items currently being presented by the embedded coordinator
+protocol CoordinatedView: View {
+    associatedtype Router: Routable
+    associatedtype Coordinator: RootCoordinator
+    
+    // MARK: - StateObject, implement independently inside the view itself, the view owns this coordinator and persists its state throughout view updates
+    // var coordinator: Coordinator { get set }
+    
+    // MARK: - States (Necessary for navigation, you can't update published values in view updates)
+    var sheetItemState: Router.Route? { get set }
+    var fullCoverItemState: Router.Route? { get set }
+}
+
+extension CoordinatedView {
+    func synchronize(published: Binding<Router.Route?>,
+                     with state: Binding<Router.Route?>,
+                     using content: @escaping () -> any View) -> some View {
+        AnyView(content())
+            .onChange(of: published.wrappedValue) { published in
+                state.wrappedValue = published
+            }
+    }
+    
+    func synchronize(publishedValues: [Binding<Router.Route?>],
+                     with states: [Binding<Router.Route?>],
+                     using content: @escaping () -> any View) -> some View {
+        
+        var view = AnyView(content())
+        
+        guard publishedValues.count == states.count
+        else { return view }
+        
+        for (index, _) in publishedValues.enumerated() {
+            let publishedValue = publishedValues[index]
+            let state = states[index]
+            
+            view = AnyView(
+                synchronize(published: publishedValue,
+                            with: state) {
+                                view
+                            }
+            )
+        }
+        
+        return view
+    }
 }
 
 // MARK: - Router interface + Coordinator on-init logic execution stub
@@ -36,14 +89,37 @@ extension Coordinator {
     func view(for route: Router.Route) -> Self.Body {
         return router.view(for: route) as! Self.Body
     }
+    
+    var dispatcher: CoordinatorDispatcher {
+        return CoordinatorDispatcher(parentCoordinator: self)
+    }
 }
 
 // MARK: - Child coordinator life cycle management
 extension Coordinator {
-    public func present(coordinator: any Coordinator) {
+    /// Present the given coordinator which will take over the current root view and define its own view hierarchy
+    public func present(coordinator: any Coordinator,
+                        onPresent: (() -> Void)? = nil) {
+        clearDismissalActionStore()
+        
         addChild(coordinator)
         coordinator.start()
-        rootView = coordinator.rootView
+        self.rootView = coordinator.rootView
+        
+        completionHandler(onPresent)
+    }
+    
+    /// Dismiss the current coordinator, making sure that it's not the root coordinator because the root is the basis of the entire view hierarchy, it can't be dismissed
+    public func dismiss(coordinator: any Coordinator,
+                        onDismiss: (() -> Void)? = nil) {
+        guard self.parent !== coordinator.parent
+        else { return }
+        
+        // Note: Data is persisted when the root view is set back to its original route
+        self.rootView = AnyView(self.view(for: rootRoute))
+        removeChild(coordinator)
+        
+        completionHandler(onDismiss)
     }
     
     /// Check to see if the given coordinator is an active child of this coordinator
@@ -128,7 +204,11 @@ extension Coordinator {
     
     // MARK: - Fullscreen cover presentation
     func presentFullScreenCover(with route: Router.Route,
-                                onPresent: (() -> Void)? = nil) {
+                                onPresent: (() -> Void)? = nil,
+                                onDismiss: (() -> Void)? = nil) {
+        clearDismissalActionStore()
+        deferredDismissalActionStore[route] = onDismiss
+        
         fullCoverItem = route
         completionHandler(onPresent)
     }
@@ -139,13 +219,33 @@ extension Coordinator {
     
     // MARK: - Sheet presentation
     func presentSheet(with route: Router.Route,
-                      onPresent: (() -> Void)? = nil) {
+                      onPresent: (() -> Void)? = nil,
+                      onDismiss: (() -> Void)? = nil) {
+        clearDismissalActionStore()
+        deferredDismissalActionStore[route] = onDismiss
+        
         sheetItem = route
         completionHandler(onPresent)
     }
     func dismissSheet(onDismiss: (() -> Void)? = nil) {
+        deferredCompletionHandler(for: sheetItem)
+        
         sheetItem = nil
         completionHandler(onDismiss)
+    }
+    
+    /// Unwraps a stored dismissal action, executes it, and removes it from the dismissal action store
+    private func deferredCompletionHandler(for item: Router.Route?) {
+        guard let item = item,
+        let deferredDismissAction = deferredDismissalActionStore[item]
+        else { return }
+        
+        completionHandler(deferredDismissAction)
+        deferredDismissalActionStore.removeValue(forKey: item)
+    }
+    
+    private func clearDismissalActionStore() {
+        deferredDismissalActionStore.removeAll()
     }
     
     private func completionHandler(_ closure: (() -> Void)?) {
@@ -190,18 +290,18 @@ extension TabbarCoordinator {
         
         switch route {
         case .builds:
-            coordinator = BuildsCoordinator(parent: self)
+            coordinator = dispatcher.buildsCoordinator
         case .components:
-            coordinator = ComponentsCoordinator(parent: self)
+            coordinator = dispatcher.componentsCoordinator
         case .command_center:
-            coordinator = CommandCenterCoordinator(parent: self)
+            coordinator = dispatcher.commandCenterCoordinator
         case .explore:
-            coordinator = ExploreCoordinator(parent: self)
+            coordinator = dispatcher.exploreCoordinator
         case .inbox:
-            coordinator = InboxCoordinator(parent: self)
+            coordinator = dispatcher.inboxCoordinator
         }
         
-        return doesChildExist(coordinator) ? getChild(for: coordinator) ?? coordinator : coordinator
+        return coordinator
     }
     
     /// The tabbar has specific children it manages, these children are never discarded throughout the tabbar's lifecycle so they're constant

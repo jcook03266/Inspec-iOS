@@ -17,6 +17,7 @@ class OnboardingCoordinator: RootCoordinator {
     }
     var children: [any Coordinator] = []
     var rootRoute: OnboardingRoutes = .onboarding
+    var deferredDismissalActionStore: [OnboardingRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
     @Published var router: OnboardingRouter!
@@ -28,6 +29,9 @@ class OnboardingCoordinator: RootCoordinator {
     
     // MARK: - Observed
     @ObservedObject var rootCoordinatorDelegate: RootCoordinatorDelegate
+    
+    // MARK: - States
+    @State var statusBarHidden: Bool = true
     
     init (rootCoordinatorDelegate: RootCoordinatorDelegate = .init()) {
         self.rootCoordinatorDelegate = rootCoordinatorDelegate

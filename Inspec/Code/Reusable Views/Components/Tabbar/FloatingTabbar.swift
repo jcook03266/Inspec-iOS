@@ -9,7 +9,11 @@ import SwiftUI
 
 struct FloatingTabbar: View {
     @Namespace private var tabbarContainer
-    @StateObject var coordinator: MainCoordinator
+    
+    // MARK: - Observed
+    @ObservedObject var coordinator: MainCoordinator
+    
+    // MARK: - States
     @State private var animate: Bool = false
     
     var cornerRadius: CGFloat = 40,
@@ -29,7 +33,7 @@ struct FloatingTabbar: View {
                             .zIndex(0)
                             .onTapGesture {
                                 withAnimation(.spring()) {
-                                    coordinator.currentTab = tab
+                                    coordinator.navigateTo(tab: tab)
                                     
                                     // Trigger animation
                                     animate.toggle()
@@ -59,7 +63,12 @@ struct FloatingTabbar: View {
                         .frame(width: 70)
                         .onTapGesture {
                             withAnimation(.spring()) {
-                                coordinator.currentTab = tab
+                                coordinator.navigateTo(tab: tab)
+                                
+                                // Trigger animation
+                                animate.toggle()
+                                
+                                HapticFeedbackDispatcher.tabbarButtonPress()
                             }
                         }
                         .padding([.leading], 5)

@@ -127,5 +127,8 @@ struct PartitionedProgressView_Previews: PreviewProvider {
     
     static var previews: some View {
         PartitionedProgressView(viewModel: model)
+            .previewDisplayName("Partitioned Progress View")
+            .previewLayout(.sizeThatFits)
+            .padding(.all, 50)
     }
 }

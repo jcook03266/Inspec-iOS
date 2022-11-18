@@ -9,26 +9,31 @@ import SwiftUI
 import UIKit
 
 class ExploreCoordinator: Coordinator {
-    typealias Router = MainRouter
+    typealias Router = ExploreRouter
     typealias Body = AnyView
     
     unowned let parent: any Coordinator
     var children: [any Coordinator] = []
+    var rootRoute: ExploreRoutes = .main
+    var rootView: AnyView!
+    var deferredDismissalActionStore: [ExploreRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
     @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [TabbarRoutes] = []
-    @Published var sheetItem: TabbarRoutes?
-    @Published var fullCoverItem: TabbarRoutes?
+    @Published var pathRoutes: [ExploreRoutes] = []
+    @Published var sheetItem: ExploreRoutes?
+    @Published var fullCoverItem: ExploreRoutes?
     
     // MARK: - Published
-    @Published var router: MainRouter!
+    @Published var router: ExploreRouter!
     
     // MARK: - States
-    @State var rootView: AnyView!
+    @State var statusBarHidden: Bool = false
     
     init (parent: any Coordinator) {
         self.parent = parent
+        self.router = ExploreRouter(coordinator: self)
+        self.rootView = view(for: rootRoute)
     }
 }
 

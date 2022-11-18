@@ -11,12 +11,12 @@ import SwiftUI
 class VOCViewModel: NavigableGenericViewModel {
     let id: UUID = UUID() 
     
-    // Observed
+    // MARK: - Observed
     /// Note: The progress bar is the source of truth for the current page and overall progress of the carousel
     @ObservedObject var progressBar: PartitionedProgressBarViewModel = .init()
     @ObservedObject private var observedArray: ObservableArray = ObservableArray<VOCPageViewModel>()
     
-    // Published
+    // MARK: - Published
     /// The current page of the onboarding carousel which corresponds to the positioning of the progress bar
     @Published var currentPage: Int = 0
     

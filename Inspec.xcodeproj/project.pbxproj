@@ -42,6 +42,13 @@
 		49918A4F2923B2F100A5639C /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4E2923B2F100A5639C /* Routes.swift */; };
 		49918A532923B3DF00A5639C /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A522923B3DF00A5639C /* MainCoordinator.swift */; };
 		49918A55292451A900A5639C /* OnboardingCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */; };
+		49953BC12927441100EA6AD5 /* RootCoordinatorDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BC02927441100EA6AD5 /* RootCoordinatorDispatcher.swift */; };
+		49953BC32927441C00EA6AD5 /* CoordinatorDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BC22927441C00EA6AD5 /* CoordinatorDispatcher.swift */; };
+		49953BC729276BA700EA6AD5 /* BuildsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BC629276BA700EA6AD5 /* BuildsRouter.swift */; };
+		49953BC929276BB400EA6AD5 /* ComponentsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BC829276BB300EA6AD5 /* ComponentsRouter.swift */; };
+		49953BCB29276BC900EA6AD5 /* CommandCenterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCA29276BC900EA6AD5 /* CommandCenterRouter.swift */; };
+		49953BCD29276BD900EA6AD5 /* ExploreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCC29276BD900EA6AD5 /* ExploreRouter.swift */; };
+		49953BCF29276BE800EA6AD5 /* InboxRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BCE29276BE800EA6AD5 /* InboxRouter.swift */; };
 		499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F1291A3755002A70D9 /* DeviceConstants.swift */; };
 		499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */; };
 		499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */; };
@@ -145,6 +152,13 @@
 		49918A4E2923B2F100A5639C /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		49918A522923B3DF00A5639C /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinatorView.swift; sourceTree = "<group>"; };
+		49953BC02927441100EA6AD5 /* RootCoordinatorDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorDispatcher.swift; sourceTree = "<group>"; };
+		49953BC22927441C00EA6AD5 /* CoordinatorDispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDispatcher.swift; sourceTree = "<group>"; };
+		49953BC629276BA700EA6AD5 /* BuildsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildsRouter.swift; sourceTree = "<group>"; };
+		49953BC829276BB300EA6AD5 /* ComponentsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsRouter.swift; sourceTree = "<group>"; };
+		49953BCA29276BC900EA6AD5 /* CommandCenterRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommandCenterRouter.swift; sourceTree = "<group>"; };
+		49953BCC29276BD900EA6AD5 /* ExploreRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRouter.swift; sourceTree = "<group>"; };
+		49953BCE29276BE800EA6AD5 /* InboxRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRouter.swift; sourceTree = "<group>"; };
 		499A92F1291A3755002A70D9 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_1_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
@@ -305,6 +319,7 @@
 		490611AC2911AE09007E5945 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				49953BBF292743EA00EA6AD5 /* Dispatchers */,
 				49918A512923B3C200A5639C /* Main */,
 				499A93192921C444002A70D9 /* Onboarding */,
 				49918A502923B38A00A5639C /* Delegate */,
@@ -614,8 +629,8 @@
 		49918A482923B25C00A5639C /* Routers */ = {
 			isa = PBXGroup;
 			children = (
-				49918A4A2923B28400A5639C /* MainRouter.swift */,
-				49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */,
+				49953BC529276B8400EA6AD5 /* Tab Routers */,
+				49953BC429276B7500EA6AD5 /* Root Routers */,
 			);
 			path = Routers;
 			sourceTree = "<group>";
@@ -642,6 +657,36 @@
 				49918A522923B3DF00A5639C /* MainCoordinator.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		49953BBF292743EA00EA6AD5 /* Dispatchers */ = {
+			isa = PBXGroup;
+			children = (
+				49953BC02927441100EA6AD5 /* RootCoordinatorDispatcher.swift */,
+				49953BC22927441C00EA6AD5 /* CoordinatorDispatcher.swift */,
+			);
+			path = Dispatchers;
+			sourceTree = "<group>";
+		};
+		49953BC429276B7500EA6AD5 /* Root Routers */ = {
+			isa = PBXGroup;
+			children = (
+				49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */,
+				49918A4A2923B28400A5639C /* MainRouter.swift */,
+			);
+			path = "Root Routers";
+			sourceTree = "<group>";
+		};
+		49953BC529276B8400EA6AD5 /* Tab Routers */ = {
+			isa = PBXGroup;
+			children = (
+				49953BC629276BA700EA6AD5 /* BuildsRouter.swift */,
+				49953BC829276BB300EA6AD5 /* ComponentsRouter.swift */,
+				49953BCA29276BC900EA6AD5 /* CommandCenterRouter.swift */,
+				49953BCC29276BD900EA6AD5 /* ExploreRouter.swift */,
+				49953BCE29276BE800EA6AD5 /* InboxRouter.swift */,
+			);
+			path = "Tab Routers";
 			sourceTree = "<group>";
 		};
 		499A92F0291A3741002A70D9 /* Constants */ = {
@@ -1222,9 +1267,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				490611CB2911B615007E5945 /* CommandCenterView.swift in Sources */,
+				49953BC929276BB400EA6AD5 /* ComponentsRouter.swift in Sources */,
 				490611A229119272007E5945 /* Coordinator+RootCoordinator.swift in Sources */,
 				499A930F292011CE002A70D9 /* GenericViewModelProtocol.swift in Sources */,
 				49B221CF290CA31600BF7B26 /* Fonts.swift in Sources */,
+				49953BCF29276BE800EA6AD5 /* InboxRouter.swift in Sources */,
+				49953BC12927441100EA6AD5 /* RootCoordinatorDispatcher.swift in Sources */,
 				490611BF2911B162007E5945 /* BuildsView.swift in Sources */,
 				499A9305291C0BBD002A70D9 /* PreferenceKeys.swift in Sources */,
 				49630FAF2916422B00D4BD50 /* PartitionedProgressView.swift in Sources */,
@@ -1248,10 +1296,12 @@
 				490611B82911B066007E5945 /* InboxCoordinator.swift in Sources */,
 				499A9308291C0C80002A70D9 /* ComponentsProtocol.swift in Sources */,
 				499A93132921B348002A70D9 /* ShapeModifiers.swift in Sources */,
+				49953BCB29276BC900EA6AD5 /* CommandCenterRouter.swift in Sources */,
 				49918A4229237D9600A5639C /* Router.swift in Sources */,
 				499A93212921D223002A70D9 /* FullScreenCoverModifier.swift in Sources */,
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
+				49953BCD29276BD900EA6AD5 /* ExploreRouter.swift in Sources */,
 				499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */,
 				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
 				49A2A43E2917160B00B915C2 /* ObservableArray.swift in Sources */,
@@ -1266,6 +1316,7 @@
 				49B221EF290DD01C00BF7B26 /* ViewExtensions.swift in Sources */,
 				490611B22911B029007E5945 /* ComponentsCoordinator.swift in Sources */,
 				490611D22911B672007E5945 /* ComponentsViewModel.swift in Sources */,
+				49953BC729276BA700EA6AD5 /* BuildsRouter.swift in Sources */,
 				49A7340B2918525700AAB553 /* ScrollViewModifier.swift in Sources */,
 				49918A4D2923B2AC00A5639C /* OnboardingRouter.swift in Sources */,
 				49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */,
@@ -1291,6 +1342,7 @@
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,
+				49953BC32927441C00EA6AD5 /* CoordinatorDispatcher.swift in Sources */,
 				49918A532923B3DF00A5639C /* MainCoordinator.swift in Sources */,
 				499A93152921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift in Sources */,
 			);

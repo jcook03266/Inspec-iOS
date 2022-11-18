@@ -18,7 +18,7 @@ public protocol Routable: ObservableObject {
     
     @ViewBuilder func view(for route: Route) -> Self.Body
     
-    // Optional func for abstracting the intialization of any retained view models by the router
+    /// Optional func for abstracting the intialization of any retained view models by the router
     func initViewModels() -> Void
 }
 

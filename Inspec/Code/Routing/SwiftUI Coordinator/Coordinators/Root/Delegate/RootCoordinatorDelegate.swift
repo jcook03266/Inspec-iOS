@@ -8,27 +8,25 @@
 import SwiftUI
 
 class RootCoordinatorDelegate: ObservableObject {
-    @Published var activeRootCoordinator: (any RootCoordinator)!
+    // MARK: - Published
+    @Published var activeRoot: RootCoordinatorDispatcher.RootCoordinators!
     
-    var mainCoordinator: MainCoordinator {
-        return MainCoordinator(rootCoordinatorDelegate: self)
+    // MARK: - Root Coordinator management
+    private var dispatcher: RootCoordinatorDispatcher!
+    var activeRootCoordinator: any RootCoordinator {
+        return dispatcher.getRootCoordinatorFor(root: activeRoot)
     }
-    var onboardingCoordinator: OnboardingCoordinator {
-        return OnboardingCoordinator(rootCoordinatorDelegate: self)
-    }
+    
+    // MARK: - First time user experience dependency injection
+    var ftueHandler: FTUEHandler = FTUEHandler()
     
     init() {
-        //self.coordinator = MainCoordinator()
-        self.activeRootCoordinator = onboardingCoordinator
+        self.dispatcher = .init(delegate: self)
+        self.activeRoot = .onboardingCoordinator
     }
     
+    /// Test function that switches between the root coordinators and transitions the user from scene to scene
     func switchRootCoordinator() {
-        if mainCoordinator !== activeRootCoordinator {
-            activeRootCoordinator = mainCoordinator
-        }
-        else {
-            activeRootCoordinator = onboardingCoordinator
-        }
+        activeRoot = activeRoot == .mainCoordinator ? .onboardingCoordinator : .mainCoordinator
     }
-    
 }
