@@ -95,7 +95,6 @@ struct HomeScreen: View {
                                                     model.loginButtonText))
                 Spacer()
             }
-            .transition(.scale)
             
             // Register Button
             HStack {
@@ -106,7 +105,6 @@ struct HomeScreen: View {
                                           size: CGSize(width: 370, height: 50),
                                           message: (nil,
                                                     model.registerButtonText))
-                .transition(.slide)
              Spacer()
             }
         }
@@ -133,20 +131,22 @@ struct HomeScreen: View {
                     if didAppear {
                         HStack {
                             title
-                                .transition(.slideBackwards.animation(.spring(response: 1)))
+                                
                             
                             Spacer()
                             
                             IanCharacterPortrait
-                                .transition(.scale.animation(.spring(response: 1)))
                         }
+                        .transition(.slideForwards.animation(.spring(response: 1)))
                         
                         Spacer()
                         
                         signUpLoginButtons
+                            .transition(.slideForwards.animation(.spring(response: 1.25)))
                               
                         
                         continueAsGuestButton
+                            .transition(.slideBackwards.animation(.spring(response: 1)))
                 }
                     }
                 .animation(.spring(response: 1.5), value: didAppear)
@@ -163,9 +163,7 @@ struct HomeScreen: View {
                 .ignoresSafeArea()
         )
         .onAppear {
-            withAnimation(.spring(response: 1.5)){
-                didAppear.toggle()
-            }
+            didAppear.toggle()
         }
     }
 }

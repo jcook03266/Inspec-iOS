@@ -113,7 +113,10 @@ enum ImageRepository: String, CaseIterable, Hashable {
 enum CharacterImageRepository: String, CaseIterable, Hashable {
     case Ian_Transparent_Background = "Ian.Transparent.Background",
          Ian_Portrait = "Ian.Portrait",
-         Ian_Dashed_Border_Portrait = "Ian.Dashed.Border.Portrait"
+         Ian_Dashed_Border_Portrait = "Ian.Dashed.Border.Portrait",
+         Ian_portrait_primary_1_512px = "Ian.portrait.primary.1.512px",
+         Ian_portrait_primary_1 = "Ian.portrait.primary.1",
+         Ian_Portrait_White_Border_512px = "Ian.Portrait.White.Border.512px"
 }
 
 enum CustomIconRepository: String, CaseIterable, Hashable {

@@ -20,3 +20,9 @@ extension String {
         return localizedString
     }
 }
+
+extension String {
+    func splitStringIntoComponents(using separator: String) -> [String] {
+        return self.components(separatedBy: separator)
+    }
+}

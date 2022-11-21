@@ -48,7 +48,7 @@ class VOCViewModel: NavigableGenericViewModel {
     // MARK: - Actions
     var goToHomeScreen: (() -> Void) {
         return {
-            self.coordinator.presentFullScreenCover(with: .home)
+            self.coordinator.pushView(with: .home)
         }
     }
     
