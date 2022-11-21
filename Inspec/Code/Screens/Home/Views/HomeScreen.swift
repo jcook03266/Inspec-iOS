@@ -10,13 +10,11 @@ import SwiftUI
 struct HomeScreen: View {
     // MARK: - Observed
     @StateObject var model: HomeScreenViewModel
+    @StateObject var textOscillator: TextOscillator
     
     // MARK: - Background
-    var backgroundImage: some View {
-        model.backgroundImage
-            .renderingMode(.original)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
+    var backgroundVideo: some View {
+        LoopingVideoPlayerUIViewRepresentable(lvpPlaybackCoordinator: model.videoPlaybackCoordinator)
     }
     
     var backgroundEffects: some View {
@@ -29,12 +27,25 @@ struct HomeScreen: View {
         Text(model.title)
             .withFont(model.titleFont)
             .multilineTextAlignment(.leading)
-            .frame(width: 270)
-            .padding([.bottom])
+            .lineLimit(2)
             .padding([.leading],
                      titleLeadingPadding)
+            .padding([.bottom], titleBottomPadding)
             .minimumScaleFactor(0.5)
             .applyGradient(gradient: model.titleGradient)
+    }
+    
+    var subtitle: some View {
+        Text(textOscillator.currentValueAsLocalizedStringKey)
+            .withFont(model.titleFont)
+            .multilineTextAlignment(.leading)
+            .lineLimit(1)
+            .padding([.leading],
+                     titleLeadingPadding)
+            .padding([.bottom], titleBottomPadding)
+            .minimumScaleFactor(0.5)
+            .applyGradient(gradient: model.titleGradient)
+            .id("subtitle" + textOscillator.currentValue)
     }
     
     var IanCharacterPortrait: some View {
@@ -58,13 +69,12 @@ struct HomeScreen: View {
     
     var continueAsGuestButton: some View {
         Button(action: {
-            HapticFeedbackDispatcher.interstitialCTAButtonPress()
-            
             model.continueAsAGuestAction()
         }) {
             HStack(alignment: .center) {
                 Text(model.continueAsGuestText)
                     .withFont(model.continueAsGuestFont)
+                    .fontWeight(.semibold)
                     .foregroundColor(model.continueAsGuestForegroundColor)
                     .lineLimit(1)
 
@@ -79,7 +89,7 @@ struct HomeScreen: View {
             .padding([.bottom],
                      continueAsGuestButtonBottomPadding)
         }
-        .buttonStyle(GenericSpringyShrink())
+        .buttonStyle(OffsettableShrinkButtonStyle(offset: CGSize(width: -10, height: 0)))
     }
     
     var signUpLoginButtons: some View {
@@ -93,6 +103,8 @@ struct HomeScreen: View {
                                           size: CGSize(width: 280, height: 50),
                                           message: (nil,
                                                     model.loginButtonText))
+                .buttonStyle(OffsettableShrinkButtonStyle())
+                
                 Spacer()
             }
             
@@ -105,6 +117,8 @@ struct HomeScreen: View {
                                           size: CGSize(width: 370, height: 50),
                                           message: (nil,
                                                     model.registerButtonText))
+                .buttonStyle(OffsettableShrinkButtonStyle(offset: CGSize(width: -30, height: 0)))
+                
              Spacer()
             }
         }
@@ -112,10 +126,11 @@ struct HomeScreen: View {
     
     // MARK: Padding + Dimensions
     var titleLeadingPadding: CGFloat = 15,
+        titleBottomPadding: CGFloat = 5,
         characterPortraitTrailingPadding: CGFloat = 15,
         continueAsGuestButtonLeadingPadding: CGFloat = 15,
         continueAsGuestButtonTopPadding: CGFloat = 10,
-        continueAsGuestButtonBottomPadding: CGFloat = 30,
+        continueAsGuestButtonBottomPadding: CGFloat = 60,
         loginSignUpButtonSpacing: CGFloat = 20
     
     // MARK: - States
@@ -130,8 +145,11 @@ struct HomeScreen: View {
                 VStack {
                     if didAppear {
                         HStack {
-                            title
-                                
+                            VStack(alignment: .leading) {
+                                title
+                                subtitle
+                                    .transition(.scale.animation(.spring()))
+                            }
                             
                             Spacer()
                             
@@ -149,14 +167,15 @@ struct HomeScreen: View {
                             .transition(.slideBackwards.animation(.spring(response: 1)))
                 }
                     }
-                .animation(.spring(response: 1.5), value: didAppear)
+                .animation(.spring(response: 0.8), value: textOscillator.currentValue)
+                .animation(.spring(response: 1), value: didAppear)
                     .frame(minHeight: geom.size.height)
                 }
             }
         }
         .background(
             ZStack {
-                backgroundImage
+                backgroundVideo
                 
                 backgroundEffects
             }
@@ -164,12 +183,27 @@ struct HomeScreen: View {
         )
         .onAppear {
             didAppear.toggle()
+            model.videoPlaybackCoordinator.start()
+            textOscillator.startOscillating()
         }
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
+    static func getModel() -> HomeScreenViewModel {
+        return .init(coordinator: .init())
+    }
+    
+    static func getTextOscillator() -> TextOscillator {
+        let model = getModel()
+        let oscillator = TextOscillator(initialValue: model.initialSubtitleString)
+        oscillator.stringsToCycleThrough = model.localizedStringArray
+        
+        return oscillator
+    }
+    
     static var previews: some View {
-        HomeScreen(model: .init(coordinator: .init()))
+        HomeScreen(model: .init(coordinator: .init()),
+                   textOscillator: getTextOscillator())
     }
 }

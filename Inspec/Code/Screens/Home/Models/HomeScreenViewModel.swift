@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 class HomeScreenViewModel: CoordinatedGenericViewModel {
     let id: UUID = UUID()
@@ -14,8 +15,11 @@ class HomeScreenViewModel: CoordinatedGenericViewModel {
     // MARK: - Observed
     @ObservedObject var coordinator: OnboardingCoordinator
     
+    // MARK: - Published
+    @Published var videoPlaybackCoordinator: LoopingVideoPlayerPlaybackCoordinator!
+    
     // MARK: - Assets
-    var backgroundImage = Images.getImage(named: .gamingSetup_1),
+    var backgroundVideo = Videos.getVideo(named: .Homescreen_B_Roll),
         characterPortraitImage = Images.getImage(named: .Ian_Dashed_Border_Portrait),
         continueAsGuestIcon = Icons.getIconImage(named: .ghost)
     
@@ -41,25 +45,44 @@ class HomeScreenViewModel: CoordinatedGenericViewModel {
     registerButtonText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_REGISTER_BUTTON),
     continueAsGuestText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON)
     
+    var localizedStringArray: [String] =
+    [LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_1),
+     LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_2),
+     LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_3),
+     LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_4),
+     LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_5),
+     LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_6)
+    ]
+    
+    var initialSubtitleString: String { return localizedStringArray[0] }
+    
     // MARK: - Actions
     var loginAction: (() -> Void) {
         return {
+            HapticFeedbackDispatcher.interstitialCTAButtonPress()
             self.coordinator.pushView(with: .login)
         }
     }
     var registerAction: (() -> Void) {
         return {
+            HapticFeedbackDispatcher.interstitialCTAButtonPress()
             self.coordinator.pushView(with: .signUp)
         }
     }
     var continueAsAGuestAction: (() -> Void) {
         return {
+            HapticFeedbackDispatcher.interstitialCTAButtonPress()
             self.coordinator.rootCoordinatorDelegate.switchRootCoordinator()
         }
     }
     
     init(coordinator: OnboardingCoordinator) {
         self.coordinator = coordinator
+        self.videoPlaybackCoordinator = .init(playerView: makeLoopingVideoPlayerUIView())
     }
     
+    // MARK: - Video player logic / builder
+    func makeLoopingVideoPlayerUIView() -> LoopingVideoPlayerUIView {
+        return .init(video: self.backgroundVideo)
+    }
 }

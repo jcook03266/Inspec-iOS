@@ -68,7 +68,7 @@ struct Video {
             return ("", "")
         }
         
-        let components = url.components(separatedBy: ".")
+        let components = url.splitStringIntoComponents(using: ".")
         let fileName = components[0]
         let fileExtension = components[1]
         

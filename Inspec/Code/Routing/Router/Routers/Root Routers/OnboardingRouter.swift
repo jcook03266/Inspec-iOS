@@ -42,8 +42,12 @@ class OnboardingRouter: Routable {
                                progressBarModel: self.onboardingViewModel.progressBar)
             )
         case .home:
+            let textOscillator: TextOscillator = .init(initialValue: self.homeScreenViewModel.initialSubtitleString)
+            textOscillator.stringsToCycleThrough = self.homeScreenViewModel.localizedStringArray
+            
             return AnyView(
-                HomeScreen(model: self.homeScreenViewModel)
+                HomeScreen(model: self.homeScreenViewModel,
+                           textOscillator: textOscillator)
             )
         case .login:
             return AnyView(EmptyView())

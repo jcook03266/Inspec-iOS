@@ -32,7 +32,14 @@
 "ONBOARDING_PAGE_4_CTA" = "Let's GO!";
 
 // MARK: - Home Screen
-"HOME_SCREEN_TITLE" = "Inspec Intelligent Design";
+"HOME_SCREEN_TITLE" = "Inspec Intelligent";
 "HOME_SCREEN_LOGIN_BUTTON" = "Login";
 "HOME_SCREEN_REGISTER_BUTTON" = "Register";
 "HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON" = "Continue as a guest";
+// String Array for homescreen text oscillator:
+"HOME_SCREEN_SUBTITLE_1" = "Design";
+"HOME_SCREEN_SUBTITLE_2" = "Collaboration";
+"HOME_SCREEN_SUBTITLE_3" = "Building";
+"HOME_SCREEN_SUBTITLE_4" = "Performance";
+"HOME_SCREEN_SUBTITLE_5" = "Community";
+"HOME_SCREEN_SUBTITLE_6" = "You";

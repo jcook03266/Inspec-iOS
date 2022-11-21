@@ -11,18 +11,18 @@ import XCTest
 final class StringTests: XCTestCase {
     
     /// Tuple format: String to parse, separator type, expected components parsed from initial string
-    func parseStringComponentsTest() throws {
+    func testParseStringComponents() throws {
         let testCases: [(String, String, Int)] = [("hello.world.how.are.you", ".", 5),
                                                   ("helloworld", ".", 1),
-                                                  ("endPeriod.", ".", 1),
-                                                  (".startPeriod", ".", 1),
+                                                  ("endPeriod.", ".", 2),
+                                                  (".startPeriod", ".", 2),
                                                   ("middle.period", ".", 2),
-                                                  ("..doubleStartPeriod", ".", 1),
-                                                  ("doubleEndPeriod..", ".", 1),
-                                                  ("doubleMiddle..Period", ".", 2),
-                                                  ("tripleMiddle...Period", ".", 2),
-                                                  ("tripleEndPeriod...", ".", 1),
-                                                  ("...tripleStartPeriod", ".", 1),
+                                                  ("..doubleStartPeriod", ".", 3),
+                                                  ("doubleEndPeriod..", ".", 3),
+                                                  ("doubleMiddle..Period", ".", 3),
+                                                  ("tripleMiddle...Period", ".", 4),
+                                                  ("tripleEndPeriod...", ".", 4),
+                                                  ("...tripleStartPeriod", ".", 4),
                                                   ("different,separator", ",", 2),
                                                   ("emoji😀Separator", "😀", 2),
                                                   ("glyph•Separator", "•", 2),
@@ -34,8 +34,11 @@ final class StringTests: XCTestCase {
             let separator = testCase.1
             let expectedSeparatedComponents = testCase.2
             
-            XCTAssertEqual(string.splitStringIntoComponents(using: separator).count,
-                           expectedSeparatedComponents)
+            let parsedComponents = string.splitStringIntoComponents(using: separator)
+            
+            XCTAssertEqual(parsedComponents.count,
+                           expectedSeparatedComponents,
+                           "Test String: \(string), Parsed Components: \(parsedComponents)")
         }
     }
 }

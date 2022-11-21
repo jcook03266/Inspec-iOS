@@ -28,7 +28,13 @@ enum LocalizedStrings: String, CaseIterable {
          HOME_SCREEN_TITLE,
          HOME_SCREEN_LOGIN_BUTTON,
          HOME_SCREEN_REGISTER_BUTTON,
-         HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON
+         HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON,
+         HOME_SCREEN_SUBTITLE_1,
+         HOME_SCREEN_SUBTITLE_2,
+         HOME_SCREEN_SUBTITLE_3,
+         HOME_SCREEN_SUBTITLE_4,
+         HOME_SCREEN_SUBTITLE_5,
+         HOME_SCREEN_SUBTITLE_6
 }
 
 extension LocalizedStrings {
