@@ -99,15 +99,25 @@ struct Icons {
 
 // MARK: - Image Enumerations
 enum ImageRepository: String, CaseIterable, Hashable {
-    case twitter = "twitter",
-         google = "google",
-         apple = "apple",
-         dotMatrix = "dotMatrix",
-         dashedCircle = "dashedCircle",
-         shapeCluster = "shapeCluster",
+    case twitter,
+         google,
+         apple,
+         dotMatrix,
+         dashedCircle,
+         shapeCluster,
          two_tone_dotMatrices = "two.tone.dotMatrices",
          golden_ratio_IanPorthole = "golden.ratio.IanPorthole",
-         gamingSetup_1 = "gamingPCSetup.1"
+         gamingSetup_1 = "gamingPCSetup.1",
+         ram,
+         ssd,
+         water_cooler = "water-cooler",
+         motherboard,
+         monitor,
+         keyboard,
+         gpu,
+         cpu,
+         cpu_cooler = "cpu-cooler",
+         gaming_pc = "gaming-pc"
 }
 
 enum CharacterImageRepository: String, CaseIterable, Hashable {

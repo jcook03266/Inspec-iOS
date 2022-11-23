@@ -9,15 +9,17 @@ import Foundation
 
 /// Manages the lifecycle and states of the launch screen
 class LaunchScreenManager {
+    
+    // MARK: - Life Cycle Properties
     // In seconds [s]
-    var displayDuration: CGFloat = 2.5
+    static var displayDuration: CGFloat = 5
     
     init() {}
     
     /// Closure to be run when the launch screen is done being displayed
     func onComplete(execute task: @escaping (() -> Void)) {
         DispatchQueue.main.asyncAfter(
-            deadline: .now() + displayDuration) {
+            deadline: .now() + LaunchScreenManager.displayDuration) {
             task()
         }
     }
