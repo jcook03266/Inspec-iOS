@@ -19,8 +19,7 @@ class BuildsCoordinator: Coordinator {
     var deferredDismissalActionStore: [BuildsRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [BuildsRoutes] = []
+    @Published var navigationPath: [BuildsRoutes] = []
     @Published var sheetItem: BuildsRoutes?
     @Published var fullCoverItem: BuildsRoutes?
     

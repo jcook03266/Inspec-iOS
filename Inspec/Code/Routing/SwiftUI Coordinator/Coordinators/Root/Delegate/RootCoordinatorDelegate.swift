@@ -17,16 +17,48 @@ class RootCoordinatorDelegate: ObservableObject {
         return dispatcher.getRootCoordinatorFor(root: activeRoot)
     }
     
+    // MARK: - Launch Screen Manager
+    private var launchScreenManager: LaunchScreenManager = .init()
+    
     // MARK: - First time user experience dependency injection
     var ftueHandler: FTUEHandler = FTUEHandler()
     
+    // MARK: - Reference values to be used whenever needed
+    static var rootSwitchAnimationBlendDuration: CGFloat = 0.75
+    
     init() {
         self.dispatcher = .init(delegate: self)
-        self.activeRoot = .onboardingCoordinator
+        
+        // On-load tasks
+        switchToLaunchScreenScene()
+        performLaunchScreenBridge()
     }
     
-    /// Test function that switches between the root coordinators and transitions the user from scene to scene
-    func switchRootCoordinator() {
-        activeRoot = activeRoot == .mainCoordinator ? .onboardingCoordinator : .mainCoordinator
+    func performLaunchScreenBridge() {
+        launchScreenManager.onComplete { [weak self] in
+            guard let self = self else { return }
+            
+            self.switchActiveRoot(to: .onboardingCoordinator)
+        }
+    }
+    
+    /// Transitions the user to the specified scene, with that scene handling any transition animations
+    func switchActiveRoot(to root: RootCoordinatorDispatcher.RootCoordinators) {
+        guard root != self.activeRoot else { return }
+        
+        self.activeRoot = root
+    }
+    
+    // MARK: - Convenience functions
+    func switchToLaunchScreenScene() {
+        switchActiveRoot(to: .launchScreenCoordinator)
+    }
+    
+    func switchToOnboardingScene() {
+        switchActiveRoot(to: .onboardingCoordinator)
+    }
+    
+    func switchToMainScene() {
+        switchActiveRoot(to: .mainCoordinator)
     }
 }

@@ -6,6 +6,9 @@
   
 */
 
+// MARK: - App Specific:
+"APP_NAME" = "Inspec";
+
 // MARK: - Tabbar:
 "TABBAR_BUTTON_BUILDS" = "Builds";
 "TABBAR_BUTTON_COMPONENTS" = "Components";

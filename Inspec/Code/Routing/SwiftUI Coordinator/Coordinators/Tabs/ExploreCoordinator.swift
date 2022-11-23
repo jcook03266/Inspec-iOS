@@ -19,8 +19,7 @@ class ExploreCoordinator: Coordinator {
     var deferredDismissalActionStore: [ExploreRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [ExploreRoutes] = []
+    @Published var navigationPath: [ExploreRoutes] = []
     @Published var sheetItem: ExploreRoutes?
     @Published var fullCoverItem: ExploreRoutes?
     

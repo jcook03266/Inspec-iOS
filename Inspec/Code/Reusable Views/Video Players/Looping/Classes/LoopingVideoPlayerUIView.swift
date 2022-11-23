@@ -13,7 +13,7 @@ import AVKit
 struct LoopingVideoPlayerUIViewRepresentable: UIViewRepresentable {
     typealias UIViewType = LoopingVideoPlayerUIView
     
-    @ObservedObject var lvpPlaybackCoordinator: LoopingVideoPlayerPlaybackCoordinator
+    @StateObject var lvpPlaybackCoordinator: LoopingVideoPlayerPlaybackCoordinator
     
     func makeUIView(context: Context) -> LoopingVideoPlayerUIView {
         return lvpPlaybackCoordinator.playerView
@@ -22,23 +22,6 @@ struct LoopingVideoPlayerUIViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: LoopingVideoPlayerUIView,
                       context: Context)
     {}
-}
-
-protocol GenericVideoPlaybackCoordinator: ObservableObject {
-    // MARK: - Managed View
-    var playerView: LoopingVideoPlayerUIView { get set }
-    
-    // MARK: - State Management
-    var isPlaying: Bool { get }
-    var isMuted: Bool { get }
-    
-    // MARK: - Controls
-    func start ()
-    func pause ()
-    
-    // MARK: - Audio
-    func muteAudio()
-    func unmuteAudio()
 }
 
 /// Object that acts as the middle-man between the UView and its View counterpart
@@ -60,16 +43,22 @@ class LoopingVideoPlayerPlaybackCoordinator: GenericVideoPlaybackCoordinator {
     func pause() {
         isPlaying =  false
         playerView.pausePlayback()
+        
+        allowSharedAudioStream()
     }
     
     func muteAudio() {
         isMuted = true
         playerView.muteAudio()
+        
+        allowSharedAudioStream()
     }
     
     func unmuteAudio() {
         isMuted = false
         playerView.unmuteAudio()
+        
+        disableSharedAudioStream()
     }
 }
 

@@ -43,11 +43,12 @@ class TextOscillator: ObservableObject {
     }
     
     /// Oscillates through the given string array indefinitely for the given interval
-    func startOscillating(resets: Bool = true) {
+    func startOscillating() {
         guard canIterate else { return }
         
-        if resets { reset() }
-            
+        reset()
+        flushTimerRunLoops()
+        
         timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [weak self] _ in
             guard let self = self
             else { return }
@@ -71,14 +72,15 @@ class TextOscillator: ObservableObject {
     
     // MARK: - Controls
     func pause() {
-        timer = nil
+        flushTimerRunLoops()
     }
     
     func resume() {
-        startOscillating(resets: false)
+        timer?.fire()
     }
     
     func stop() {
+        flushTimerRunLoops()
         timer = nil
         reset()
     }
@@ -87,5 +89,9 @@ class TextOscillator: ObservableObject {
     func reset() {
         currentIndex = minIndex
         currentValue = initialValue
+    }
+    
+    func flushTimerRunLoops() {
+        timer?.invalidate()
     }
 }

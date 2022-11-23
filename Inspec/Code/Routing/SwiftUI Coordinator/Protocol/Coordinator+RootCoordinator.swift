@@ -22,8 +22,7 @@ public protocol Coordinator: ObservableObject {
     
     // MARK: - Published instance variables
     var router: Router! { get set }
-    var path: NavigationPath { get set }
-    var pathRoutes: [Router.Route] { get set } // Keeps track of all current values in the nav path (active navigation paths)
+    var navigationPath: [Router.Route] { get set } // Keeps track of all current values in the nav path (active navigation paths)
     var sheetItem: Router.Route? { get set }
     var fullCoverItem: Router.Route? { get set }
     
@@ -42,9 +41,15 @@ protocol CoordinatedView: View {
     // MARK: - StateObject, implement independently inside the view itself, the view owns this coordinator and persists its state throughout view updates
     // var coordinator: Coordinator { get set }
     
-    // MARK: - States (Necessary for navigation, you can't update published values in view updates)
+    // MARK: - Navigation States (Necessary for navigation, you can't update published values in view updates)
     var sheetItemState: Router.Route? { get set }
     var fullCoverItemState: Router.Route? { get set }
+    
+    // MARK: - Animation States for blending root switches
+    var show: Bool { get set }
+    
+    var rootSwitchAnimationBlendDuration: CGFloat { get set }
+    var rootSwitchAnimation: Animation { get }
 }
 
 extension CoordinatedView {
@@ -184,23 +189,22 @@ extension Coordinator {
     
     /// Goes back to the root view in the navigation stack
     func popToRootView(onDismiss: (() -> Void)? = nil) {
-        path = .init()
-        pathRoutes.removeAll()
+        navigationPath.removeAll()
         completionHandler(onDismiss)
     }
     
     /// Pops to a specific view in the view hierarchy by dismissing all the views on top of it, cannot pop to the root view because the root is not a path in the navigation path
     func popToView(with route: Router.Route,
                    onDismiss: (() -> Void)? = nil) {
-        guard pathRoutes.count > 0 else { return }
+        guard navigationPath.count > 0 else { return }
         
-        for value in pathRoutes.reversed() {
+        for value in navigationPath.reversed() {
             if value != route {
                 popView(with: value)
             }
         }
         
-        assert(pathRoutes.count != 0)
+        assert(navigationPath.count != 0)
         completionHandler(onDismiss)
     }
     
@@ -239,7 +243,7 @@ extension Coordinator {
     /// Unwraps a stored dismissal action, executes it, and removes it from the dismissal action store
     private func deferredCompletionHandler(for item: Router.Route?) {
         guard let item = item,
-        let deferredDismissAction = deferredDismissalActionStore[item]
+              let deferredDismissAction = deferredDismissalActionStore[item]
         else { return }
         
         completionHandler(deferredDismissAction)
@@ -256,20 +260,23 @@ extension Coordinator {
     
     // MARK: - Navigation path management
     private func addPath(with route: Router.Route) {
-        pathRoutes.append(route)
-        path.append(route)
+        navigationPath.append(route)
     }
     
     private func removeLastPathValue() {
-        pathRoutes.removeLast()
-        path.removeLast()
+        navigationPath.removeLast()
     }
     
     /// Not to be used by itself, this doesn't align with the FIFO behavior associated with the navigation path object
     private func removePath(with route: Router.Route) {
-        pathRoutes.removeAll {
-            $0.hashValue == route.hashValue
+        navigationPath.removeAll { containedRoute in
+            containedRoute == route
         }
+    }
+    
+    /// Removes all paths from the navigation stack
+    private func removeAllPaths() {
+        navigationPath.removeAll()
     }
 }
 
@@ -279,6 +286,8 @@ protocol RootCoordinator: Coordinator {
     
     @ViewBuilder
     func coordinatorView() -> AnyView // A view that displays the coordinator's rootView, responsible for reflecting changes in the rootview hierarchy
+    
+    func coordinatedView() -> any CoordinatedView // View to be used to access the specific properties of each coordinator view
 }
 
 protocol TabbarCoordinator: RootCoordinator {

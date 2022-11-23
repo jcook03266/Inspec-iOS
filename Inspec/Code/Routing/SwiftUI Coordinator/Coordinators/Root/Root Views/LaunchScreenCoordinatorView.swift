@@ -1,25 +1,25 @@
 //
-//  OnboardingCoordinatorView.swift
+//  LaunchScreenCoordinatorView.swift
 //  Inspec
 //
-//  Created by Justin Cook on 11/15/22.
+//  Created by Justin Cook on 11/22/22.
 //
 
 import SwiftUI
 
-struct OnboardingCoordinatorView: CoordinatedView {
-    typealias Router = OnboardingRouter
-    typealias Coordinator = OnboardingCoordinator
+struct LaunchScreenCoordinatorView: CoordinatedView {
+    typealias Router = LaunchScreenRouter
+    typealias Coordinator = LaunchScreenCoordinator
     
     // MARK: - Observed
-    @StateObject var coordinator: OnboardingCoordinator
+    @StateObject var coordinator: LaunchScreenCoordinator
     
     // MARK: - Navigation States
-    @State var sheetItemState: OnboardingRoutes? = nil
-    @State var fullCoverItemState: OnboardingRoutes? = nil
+    @State var sheetItemState: LaunchScreenRoutes? = nil
+    @State var fullCoverItemState: LaunchScreenRoutes? = nil
     
     // MARK: - Animation States for blending root switches
-    @State var show: Bool = false
+    @State var show: Bool = true // This view has to be shown immediately, so no animation
     
     var rootSwitchAnimationBlendDuration: CGFloat = RootCoordinatorDelegate.rootSwitchAnimationBlendDuration
     var rootSwitchAnimation: Animation {

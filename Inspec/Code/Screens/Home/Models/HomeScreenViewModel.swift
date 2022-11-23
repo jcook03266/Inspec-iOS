@@ -41,9 +41,9 @@ class HomeScreenViewModel: CoordinatedGenericViewModel {
     
     // MARK: - Localized Text
     let title: LocalizedStringKey = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_TITLE),
-    loginButtonText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_LOGIN_BUTTON),
-    registerButtonText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_REGISTER_BUTTON),
-    continueAsGuestText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON)
+        loginButtonText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_LOGIN_BUTTON),
+        registerButtonText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_REGISTER_BUTTON),
+        continueAsGuestText = LocalizedStrings.getLocalizedStringKey(for: .HOME_SCREEN_CONTINUE_AS_A_GUEST_BUTTON)
     
     var localizedStringArray: [String] =
     [LocalizedStrings.getLocalizedString(for: .HOME_SCREEN_SUBTITLE_1),
@@ -72,17 +72,23 @@ class HomeScreenViewModel: CoordinatedGenericViewModel {
     var continueAsAGuestAction: (() -> Void) {
         return {
             HapticFeedbackDispatcher.interstitialCTAButtonPress()
-            self.coordinator.rootCoordinatorDelegate.switchRootCoordinator()
+            self.coordinator.rootCoordinatorDelegate.switchToMainScene()
         }
     }
     
     init(coordinator: OnboardingCoordinator) {
         self.coordinator = coordinator
         self.videoPlaybackCoordinator = .init(playerView: makeLoopingVideoPlayerUIView())
+        
+        setUpVideoPlayerCoordinator()
     }
     
     // MARK: - Video player logic / builder
     func makeLoopingVideoPlayerUIView() -> LoopingVideoPlayerUIView {
         return .init(video: self.backgroundVideo)
+    }
+    
+    func setUpVideoPlayerCoordinator() {
+        videoPlaybackCoordinator.muteAudio()
     }
 }

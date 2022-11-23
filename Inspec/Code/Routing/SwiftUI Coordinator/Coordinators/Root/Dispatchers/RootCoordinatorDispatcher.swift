@@ -11,6 +11,10 @@ import Foundation
 struct RootCoordinatorDispatcher {
     var delegate: RootCoordinatorDelegate
     
+    var launchScreenCoordinator: LaunchScreenCoordinator {
+        return LaunchScreenCoordinator(rootCoordinatorDelegate: delegate)
+    }
+    
     var onboardingCoordinator: OnboardingCoordinator {
         return OnboardingCoordinator(rootCoordinatorDelegate: delegate)
     }
@@ -25,6 +29,8 @@ struct RootCoordinatorDispatcher {
     
     func getRootCoordinatorFor(root: RootCoordinators) -> any RootCoordinator {
         switch root {
+        case .launchScreenCoordinator:
+            return self.launchScreenCoordinator
         case .onboardingCoordinator:
             return self.onboardingCoordinator
         case .mainCoordinator:
@@ -34,6 +40,7 @@ struct RootCoordinatorDispatcher {
     
     /// Keeps track of all root coordinators
     enum RootCoordinators: Hashable, CaseIterable {
+        case launchScreenCoordinator
         case onboardingCoordinator
         case mainCoordinator
     }

@@ -19,8 +19,7 @@ class InboxCoordinator: Coordinator {
     var deferredDismissalActionStore: [InboxRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [InboxRoutes] = []
+    @Published var navigationPath: [InboxRoutes] = []
     @Published var sheetItem: InboxRoutes?
     @Published var fullCoverItem: InboxRoutes?
     

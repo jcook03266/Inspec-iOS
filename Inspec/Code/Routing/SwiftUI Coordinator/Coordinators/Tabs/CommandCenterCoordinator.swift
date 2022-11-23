@@ -19,8 +19,7 @@ class CommandCenterCoordinator: Coordinator {
     var deferredDismissalActionStore: [CommandCenterRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [CommandCenterRoutes] = []
+    @Published var navigationPath: [CommandCenterRoutes] = []
     @Published var sheetItem: CommandCenterRoutes?
     @Published var fullCoverItem: CommandCenterRoutes?
     

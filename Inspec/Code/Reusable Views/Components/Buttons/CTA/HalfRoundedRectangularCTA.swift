@@ -15,7 +15,7 @@ struct HalfRoundedRectangularCTA: View {
         font: FontRepository = .body_S_Bold,
         size: CGSize = CGSize(width: 350, height: 60),
         padding: CGFloat = 0,
-        message: (String?, LocalizedStringKey?) = ("Let's Go!", nil),
+        message: (String?, LocalizedStringKey?) = ("I'm half rounded!", nil),
         anchor: anchoredEdge = .leading
     
     let cornerRadius: CGFloat = 40,

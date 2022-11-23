@@ -9,7 +9,17 @@ import Foundation
 
 /// Enums of all possible router routes (views) depending on the router
 /// Each router is responsible for a specific set of views that it expects to present somewhere in its view hierarchy, this centralizes the app's navigation pathways to one source of truth
-/// Note: Any new views must be added under their respective routes
+/// Note: Any new views must be added under their respective router
+
+// MARK: - Launch Screen Router
+enum LaunchScreenRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
+    var id: String {
+        String(describing: self)
+    }
+    
+    case main
+}
+
 // MARK: - Onboarding Router
 enum OnboardingRoutes: String, CaseIterable, Hashable, Identifiable, RoutesProtocol {
     var id: String {

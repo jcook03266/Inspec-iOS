@@ -10,7 +10,8 @@ import SwiftUI
 
 /// Note: If a new string is added to the localization file(s) please update these enums accordingly
 enum LocalizedStrings: String, CaseIterable {
-    case TABBAR_BUTTON_BUILDS,
+    case APP_NAME,
+         TABBAR_BUTTON_BUILDS,
          TABBAR_BUTTON_COMPONENTS,
          TABBAR_BUTTON_COMMAND_CENTER,
          TABBAR_BUTTON_EXPLORE,

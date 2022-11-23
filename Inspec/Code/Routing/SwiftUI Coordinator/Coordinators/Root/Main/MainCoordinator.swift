@@ -26,8 +26,7 @@ class MainCoordinator: TabbarCoordinator {
     @Published var currentTab = TabbarRoutes.builds //First tab presented when the user starts up the app
     
     /// These navigation pathways probably won't be used for the main view, another router for each tab will be used for tab specific navigation
-    @Published var path = NavigationPath()
-    @Published var pathRoutes: [TabbarRoutes] = []
+    @Published var navigationPath: [TabbarRoutes] = []
     @Published var sheetItem: TabbarRoutes?
     @Published var fullCoverItem: TabbarRoutes?
     @Published var rootView: AnyView!
@@ -53,6 +52,10 @@ class MainCoordinator: TabbarCoordinator {
     
     func coordinatorView() -> AnyView {
         return AnyView(MainCoordinatorView(coordinator: self))
+    }
+    
+    func coordinatedView() -> any CoordinatedView {
+        return MainCoordinatorView(coordinator: self)
     }
     
     /// Present the target first tab, this is the first tab the user will see when they enter the app, (mutable)

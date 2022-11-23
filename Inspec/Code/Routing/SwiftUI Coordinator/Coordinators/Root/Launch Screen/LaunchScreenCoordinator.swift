@@ -1,29 +1,29 @@
 //
-//  OnboardingCoordinator.swift
+//  LaunchScreenCoordinator.swift
 //  Inspec
 //
-//  Created by Justin Cook on 11/13/22.
+//  Created by Justin Cook on 11/22/22.
 //
 
 import SwiftUI
 import UIKit
 
-class OnboardingCoordinator: RootCoordinator {
-    typealias Router = OnboardingRouter
+class LaunchScreenCoordinator: RootCoordinator {
+    typealias Router = LaunchScreenRouter
     typealias Body = AnyView
     
     unowned var parent: any Coordinator {
         return self
     }
     var children: [any Coordinator] = []
-    var rootRoute: OnboardingRoutes = .onboarding
-    var deferredDismissalActionStore: [OnboardingRoutes : (() -> Void)?] = [:]
+    var rootRoute: LaunchScreenRoutes = .main
+    var deferredDismissalActionStore: [LaunchScreenRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var router: OnboardingRouter!
-    @Published var navigationPath: [OnboardingRoutes] = []
-    @Published var sheetItem: OnboardingRoutes?
-    @Published var fullCoverItem: OnboardingRoutes?
+    @Published var router: LaunchScreenRouter!
+    @Published var navigationPath: [LaunchScreenRoutes] = []
+    @Published var sheetItem: LaunchScreenRoutes?
+    @Published var fullCoverItem: LaunchScreenRoutes?
     @Published var rootView: AnyView!
     
     // MARK: - Observed
@@ -34,17 +34,17 @@ class OnboardingCoordinator: RootCoordinator {
     
     init (rootCoordinatorDelegate: RootCoordinatorDelegate = .init()) {
         self.rootCoordinatorDelegate = rootCoordinatorDelegate
-        self.router = OnboardingRouter(coordinator: self)
+        self.router = LaunchScreenRouter(coordinator: self)
         self.rootView = router.view(for: rootRoute)
         
         UINavigationBar.changeAppearance(clear: true)
     }
     
     func coordinatorView() -> AnyView {
-        return AnyView(OnboardingCoordinatorView(coordinator: self))
+        return AnyView(LaunchScreenCoordinatorView(coordinator: self))
     }
     
     func coordinatedView() -> any CoordinatedView {
-        return OnboardingCoordinatorView(coordinator: self)
+        return LaunchScreenCoordinatorView(coordinator: self)
     }
 }

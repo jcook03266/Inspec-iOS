@@ -38,12 +38,20 @@
 		49630FB12916522400D4BD50 /* PartitionedProgressBarViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB02916522400D4BD50 /* PartitionedProgressBarViewModels.swift */; };
 		49630FB52916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB42916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift */; };
 		49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */; };
+		49824A65292D9854000A8DE8 /* LaunchScreenCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A64292D9854000A8DE8 /* LaunchScreenCoordinator.swift */; };
+		49824A68292D9891000A8DE8 /* LaunchScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A67292D9891000A8DE8 /* LaunchScreenRouter.swift */; };
+		49824A6A292D9999000A8DE8 /* LaunchScreenCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A69292D9999000A8DE8 /* LaunchScreenCoordinatorView.swift */; };
+		49824A6C292D9B2C000A8DE8 /* LaunchScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49824A6B292D9B2C000A8DE8 /* LaunchScreenManager.swift */; };
 		4983E2A6292B662E00FA326C /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E2A5292B662E00FA326C /* Videos.swift */; };
 		4983E2A8292B6E5900FA326C /* StringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4983E2A7292B6E5900FA326C /* StringTests.swift */; };
 		498CB4CF292B83F300354907 /* LoopingVideoPlayerUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4CE292B83F300354907 /* LoopingVideoPlayerUIView.swift */; };
 		498CB4D3292B851200354907 /* LoopingVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4D2292B851200354907 /* LoopingVideoPlayerView.swift */; };
 		498CB4D5292B9AFC00354907 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4D4292B9AFC00354907 /* CornerRadius.swift */; };
 		498CB4D7292BB13300354907 /* TextOscillator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4D6292BB13300354907 /* TextOscillator.swift */; };
+		498CB4D9292BB82600354907 /* UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4D8292BB82600354907 /* UINavigationBar.swift */; };
+		498CB4DB292D766800354907 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4DA292D766800354907 /* OnboardingService.swift */; };
+		498CB4DD292D767200354907 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4DC292D767200354907 /* LoginService.swift */; };
+		498CB4DF292D768500354907 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498CB4DE292D768500354907 /* SignUpService.swift */; };
 		49918A4229237D9600A5639C /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4129237D9600A5639C /* Router.swift */; };
 		49918A4B2923B28400A5639C /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4A2923B28400A5639C /* MainRouter.swift */; };
 		49918A4D2923B2AC00A5639C /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */; };
@@ -98,6 +106,9 @@
 		49B221E0290D0A9400BF7B26 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221DF290D0A9400BF7B26 /* StringExtensions.swift */; };
 		49B221E5290D1BFA00BF7B26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49B221E4290D1BFA00BF7B26 /* Localizable.strings */; };
 		49B221EF290DD01C00BF7B26 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B221EE290DD01C00BF7B26 /* ViewExtensions.swift */; };
+		49B6E95B292D88DF008E1932 /* GenericVideoPlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6E95A292D88DF008E1932 /* GenericVideoPlaybackCoordinator.swift */; };
+		49B6E95D292D8E16008E1932 /* LaunchScreenBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6E95C292D8E16008E1932 /* LaunchScreenBridge.swift */; };
+		49B6E961292D8E7C008E1932 /* LaunchScreenBridgeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6E960292D8E7C008E1932 /* LaunchScreenBridgeViewModel.swift */; };
 		49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C262A22900B79E00532DF7 /* InspecApp.swift */; };
 		49C262A52900B79E00532DF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C262A42900B79E00532DF7 /* ContentView.swift */; };
 		49C262A72900B7A100532DF7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49C262A62900B7A100532DF7 /* Images.xcassets */; };
@@ -160,12 +171,20 @@
 		49630FB02916522400D4BD50 /* PartitionedProgressBarViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartitionedProgressBarViewModels.swift; sourceTree = "<group>"; };
 		49630FB42916D88400D4BD50 /* VerticalOnboardingCarouselViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOnboardingCarouselViewModels.swift; sourceTree = "<group>"; };
 		49630FB82916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalOnboardingCarouselView.swift; sourceTree = "<group>"; };
+		49824A64292D9854000A8DE8 /* LaunchScreenCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenCoordinator.swift; sourceTree = "<group>"; };
+		49824A67292D9891000A8DE8 /* LaunchScreenRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenRouter.swift; sourceTree = "<group>"; };
+		49824A69292D9999000A8DE8 /* LaunchScreenCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenCoordinatorView.swift; sourceTree = "<group>"; };
+		49824A6B292D9B2C000A8DE8 /* LaunchScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenManager.swift; sourceTree = "<group>"; };
 		4983E2A5292B662E00FA326C /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		4983E2A7292B6E5900FA326C /* StringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringTests.swift; sourceTree = "<group>"; };
 		498CB4CE292B83F300354907 /* LoopingVideoPlayerUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayerUIView.swift; sourceTree = "<group>"; };
 		498CB4D2292B851200354907 /* LoopingVideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopingVideoPlayerView.swift; sourceTree = "<group>"; };
 		498CB4D4292B9AFC00354907 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		498CB4D6292BB13300354907 /* TextOscillator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextOscillator.swift; sourceTree = "<group>"; };
+		498CB4D8292BB82600354907 /* UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.swift; sourceTree = "<group>"; };
+		498CB4DA292D766800354907 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		498CB4DC292D767200354907 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		498CB4DE292D768500354907 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		49918A4129237D9600A5639C /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		49918A4A2923B28400A5639C /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
 		49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
@@ -220,6 +239,9 @@
 		49B221DF290D0A9400BF7B26 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		49B221E4290D1BFA00BF7B26 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		49B221EE290DD01C00BF7B26 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		49B6E95A292D88DF008E1932 /* GenericVideoPlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericVideoPlaybackCoordinator.swift; sourceTree = "<group>"; };
+		49B6E95C292D8E16008E1932 /* LaunchScreenBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenBridge.swift; sourceTree = "<group>"; };
+		49B6E960292D8E7C008E1932 /* LaunchScreenBridgeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenBridgeViewModel.swift; sourceTree = "<group>"; };
 		49C2629F2900B79E00532DF7 /* Inspec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inspec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49C262A22900B79E00532DF7 /* InspecApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspecApp.swift; sourceTree = "<group>"; };
 		49C262A42900B79E00532DF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -263,6 +285,7 @@
 		4906119A291189E4007E5945 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				498CB4E0292D768800354907 /* User State Management */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -343,6 +366,7 @@
 		490611AC2911AE09007E5945 /* Root */ = {
 			isa = PBXGroup;
 			children = (
+				49B6E962292D97B5008E1932 /* Launch Screen */,
 				49953BBF292743EA00EA6AD5 /* Dispatchers */,
 				49918A512923B3C200A5639C /* Main */,
 				499A93192921C444002A70D9 /* Onboarding */,
@@ -671,6 +695,7 @@
 		498CB4D0292B84D300354907 /* Looping */ = {
 			isa = PBXGroup;
 			children = (
+				49B6E959292D88C2008E1932 /* Protocols */,
 				491D4277292B807E00B6E74B /* Classes */,
 				498CB4D2292B851200354907 /* LoopingVideoPlayerView.swift */,
 			);
@@ -683,6 +708,16 @@
 				491D426F292B769F00B6E74B /* VideoPlayer.swift */,
 			);
 			path = Continuous;
+			sourceTree = "<group>";
+		};
+		498CB4E0292D768800354907 /* User State Management */ = {
+			isa = PBXGroup;
+			children = (
+				498CB4DE292D768500354907 /* SignUpService.swift */,
+				498CB4DC292D767200354907 /* LoginService.swift */,
+				498CB4DA292D766800354907 /* OnboardingService.swift */,
+			);
+			path = "User State Management";
 			sourceTree = "<group>";
 		};
 		49918A4029237D7A00A5639C /* Router */ = {
@@ -707,6 +742,7 @@
 			children = (
 				490611AD2911AE1A007E5945 /* MainCoordinatorView.swift */,
 				49918A54292451A900A5639C /* OnboardingCoordinatorView.swift */,
+				49824A69292D9999000A8DE8 /* LaunchScreenCoordinatorView.swift */,
 			);
 			path = "Root Views";
 			sourceTree = "<group>";
@@ -764,6 +800,7 @@
 		49953BC429276B7500EA6AD5 /* Root Routers */ = {
 			isa = PBXGroup;
 			children = (
+				49824A67292D9891000A8DE8 /* LaunchScreenRouter.swift */,
 				49918A4C2923B2AC00A5639C /* OnboardingRouter.swift */,
 				49918A4A2923B28400A5639C /* MainRouter.swift */,
 			);
@@ -832,6 +869,8 @@
 		49953BE02928367B00EA6AD5 /* Launch Screen */ = {
 			isa = PBXGroup;
 			children = (
+				49B6E95F292D8E5F008E1932 /* Views */,
+				49B6E95E292D8E59008E1932 /* Models */,
 			);
 			path = "Launch Screen";
 			sourceTree = "<group>";
@@ -847,6 +886,7 @@
 		49953BE2292836A700EA6AD5 /* Launch Screen */ = {
 			isa = PBXGroup;
 			children = (
+				49824A6B292D9B2C000A8DE8 /* LaunchScreenManager.swift */,
 			);
 			path = "Launch Screen";
 			sourceTree = "<group>";
@@ -1043,6 +1083,7 @@
 				499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */,
 				499A9309291F4C19002A70D9 /* NumberDataTypeExtensions.swift */,
 				499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */,
+				498CB4D8292BB82600354907 /* UINavigationBar.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1093,6 +1134,38 @@
 				490611D92911B6F0007E5945 /* Detail Views */,
 			);
 			path = Inbox;
+			sourceTree = "<group>";
+		};
+		49B6E959292D88C2008E1932 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				49B6E95A292D88DF008E1932 /* GenericVideoPlaybackCoordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		49B6E95E292D8E59008E1932 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				49B6E960292D8E7C008E1932 /* LaunchScreenBridgeViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		49B6E95F292D8E5F008E1932 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49B6E95C292D8E16008E1932 /* LaunchScreenBridge.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		49B6E962292D97B5008E1932 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				49824A64292D9854000A8DE8 /* LaunchScreenCoordinator.swift */,
+			);
+			path = "Launch Screen";
 			sourceTree = "<group>";
 		};
 		49C262962900B79E00532DF7 = {
@@ -1462,9 +1535,11 @@
 				49630FAF2916422B00D4BD50 /* PartitionedProgressView.swift in Sources */,
 				499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */,
 				499A92FA291A454D002A70D9 /* OnboardingPage_3_BackgroundGraphicsView.swift in Sources */,
+				49824A65292D9854000A8DE8 /* LaunchScreenCoordinator.swift in Sources */,
 				499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */,
 				490611CD2911B622007E5945 /* ExploreView.swift in Sources */,
 				499A931129201436002A70D9 /* GenericNavigationProtocol.swift in Sources */,
+				49824A6A292D9999000A8DE8 /* LaunchScreenCoordinatorView.swift in Sources */,
 				498CB4D3292B851200354907 /* LoopingVideoPlayerView.swift in Sources */,
 				4924AA362916319700108D44 /* BorderedTextSection.swift in Sources */,
 				49C262AC2900B7A100532DF7 /* Persistence.swift in Sources */,
@@ -1488,6 +1563,7 @@
 				49B221DC290D097D00BF7B26 /* LocalizedStrings.swift in Sources */,
 				49B221BE290B982300BF7B26 /* Colors.swift in Sources */,
 				49953BCD29276BD900EA6AD5 /* ExploreRouter.swift in Sources */,
+				49824A68292D9891000A8DE8 /* LaunchScreenRouter.swift in Sources */,
 				49953BD82927818E00EA6AD5 /* HomeScreen.swift in Sources */,
 				499A930D29200F49002A70D9 /* ProgressBarNavigationCoordinator.swift in Sources */,
 				4924AA2F2915804600108D44 /* TabbarSelector.swift in Sources */,
@@ -1496,17 +1572,21 @@
 				49630FB12916522400D4BD50 /* PartitionedProgressBarViewModels.swift in Sources */,
 				4906119829104B59007E5945 /* Images.swift in Sources */,
 				4983E2A6292B662E00FA326C /* Videos.swift in Sources */,
+				49B6E961292D8E7C008E1932 /* LaunchScreenBridgeViewModel.swift in Sources */,
 				49918A4B2923B28400A5639C /* MainRouter.swift in Sources */,
 				490611AE2911AE1A007E5945 /* MainCoordinatorView.swift in Sources */,
 				49A73408291843C600AAB553 /* VOCPageView.swift in Sources */,
 				49953BDA2927821700EA6AD5 /* HomeScreenViewModel.swift in Sources */,
+				498CB4DF292D768500354907 /* SignUpService.swift in Sources */,
 				490611C32911B459007E5945 /* CommandCenterViewModel.swift in Sources */,
+				49824A6C292D9B2C000A8DE8 /* LaunchScreenManager.swift in Sources */,
 				490611D42911B685007E5945 /* ComponentsView.swift in Sources */,
 				49B221EF290DD01C00BF7B26 /* ViewExtensions.swift in Sources */,
 				490611B22911B029007E5945 /* ComponentsCoordinator.swift in Sources */,
 				490611D22911B672007E5945 /* ComponentsViewModel.swift in Sources */,
 				49953BC729276BA700EA6AD5 /* BuildsRouter.swift in Sources */,
 				49A7340B2918525700AAB553 /* ScrollViewModifier.swift in Sources */,
+				498CB4DD292D767200354907 /* LoginService.swift in Sources */,
 				49918A4D2923B2AC00A5639C /* OnboardingRouter.swift in Sources */,
 				49A2A43B2916F2AE00B915C2 /* OnboardingPageModels.swift in Sources */,
 				490611AB2911ADE2007E5945 /* RootCoordinatorDelegate.swift in Sources */,
@@ -1517,6 +1597,7 @@
 				499A931F2921D211002A70D9 /* PopoverModifier.swift in Sources */,
 				49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */,
 				499A93182921C299002A70D9 /* FTUEHandler.swift in Sources */,
+				498CB4D9292BB82600354907 /* UINavigationBar.swift in Sources */,
 				490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */,
 				49B221D6290D076900BF7B26 /* Tabs.swift in Sources */,
 				49918A4F2923B2F100A5639C /* Routes.swift in Sources */,
@@ -1528,11 +1609,14 @@
 				49C262A52900B79E00532DF7 /* ContentView.swift in Sources */,
 				49F3B99E2918E95C00BEDA1E /* Animations.swift in Sources */,
 				490611C52911B5C5007E5945 /* InboxViewModel.swift in Sources */,
+				49B6E95B292D88DF008E1932 /* GenericVideoPlaybackCoordinator.swift in Sources */,
 				499A92F8291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift in Sources */,
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,
+				498CB4DB292D766800354907 /* OnboardingService.swift in Sources */,
 				498CB4D7292BB13300354907 /* TextOscillator.swift in Sources */,
+				49B6E95D292D8E16008E1932 /* LaunchScreenBridge.swift in Sources */,
 				498CB4CF292B83F300354907 /* LoopingVideoPlayerUIView.swift in Sources */,
 				49953BC32927441C00EA6AD5 /* CoordinatorDispatcher.swift in Sources */,
 				49918A532923B3DF00A5639C /* MainCoordinator.swift in Sources */,
@@ -1763,6 +1847,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2JMR3SJGS4;

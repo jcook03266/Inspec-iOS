@@ -19,8 +19,7 @@ class ComponentsCoordinator: Coordinator {
     var deferredDismissalActionStore: [ComponentsRoutes : (() -> Void)?] = [:]
     
     // MARK: - Published
-    @Published var path: NavigationPath = NavigationPath()
-    @Published var pathRoutes: [ComponentsRoutes] = []
+    @Published var navigationPath: [ComponentsRoutes] = []
     @Published var sheetItem: ComponentsRoutes?
     @Published var fullCoverItem: ComponentsRoutes?
     

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    // MARK: - Environment
+    // Listen for scene changes, i.e when the app leaves the foreground
+    @Environment(\.scenePhase) var scenePhase
+    
     // MARK: - Observed
     @StateObject var model: HomeScreenViewModel
     @StateObject var textOscillator: TextOscillator
@@ -148,7 +152,7 @@ struct HomeScreen: View {
                             VStack(alignment: .leading) {
                                 title
                                 subtitle
-                                    .transition(.scale.animation(.spring()))
+                                    .transition(.slideBackwards.animation(.spring()))
                             }
                             
                             Spacer()
@@ -182,9 +186,15 @@ struct HomeScreen: View {
                 .ignoresSafeArea()
         )
         .onAppear {
-            didAppear.toggle()
+            didAppear = true
             model.videoPlaybackCoordinator.start()
             textOscillator.startOscillating()
+        }
+        .onChange(of: scenePhase) { scene in
+            if scene == .active {
+                // Resume playback if the app re-enters the foreground
+                model.videoPlaybackCoordinator.start()
+            }
         }
     }
 }
