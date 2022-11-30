@@ -27,6 +27,18 @@ struct HapticFeedbackDispatcher {
         Impacts.generateImpact(with: .light, intensity: 0.5)
     }
     
+    static func textFieldPressed() {
+        Impacts.generateImpact(with: .light, intensity: 0.35)
+    }
+    
+    static func textFieldInFieldButtonPressed() {
+        Impacts.generateImpact(with: .light, intensity: 0.3)
+    }
+    
+    static func genericButtonPress() {
+        Impacts.generateImpact(with: .light, intensity: 0.6)
+    }
+    
     struct Impacts{}
 }
 

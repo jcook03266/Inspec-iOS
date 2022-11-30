@@ -21,6 +21,12 @@ struct GenericSpringyShrink: ButtonStyle {
     }
 }
 
+extension ButtonStyle where Self == GenericSpringyShrink {
+    static var genericSpringyShrink: Self {
+        return .init()
+    }
+}
+
 /// Offsets the button depending on the specified CGSize
 struct OffsettableButtonStyle: ButtonStyle {
     var springResponse: CGFloat = 1.2
@@ -31,6 +37,12 @@ struct OffsettableButtonStyle: ButtonStyle {
             .opacity(configuration.isPressed ? 0.75 : 1)
             .offset(configuration.isPressed ? offset : .zero)
             .animation(.spring(response: 1.2), value: configuration.isPressed)
+    }
+}
+
+extension ButtonStyle where Self == OffsettableButtonStyle {
+    static var offsettableButtonStyle: Self {
+        return .init()
     }
 }
 
@@ -46,5 +58,11 @@ struct OffsettableShrinkButtonStyle: ButtonStyle {
             .offset(configuration.isPressed ? offset : .zero)
             .scaleEffect(configuration.isPressed ? scaleAmount : 1)
             .animation(.spring(response: 1.2), value: configuration.isPressed)
+    }
+}
+
+extension ButtonStyle where Self == OffsettableShrinkButtonStyle {
+    static var offsettableShrinkButtonStyle: Self {
+        return .init()
     }
 }

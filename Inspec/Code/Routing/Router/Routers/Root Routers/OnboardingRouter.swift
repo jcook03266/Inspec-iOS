@@ -14,6 +14,7 @@ class OnboardingRouter: Routable {
     // MARK: -  View Models
     @Published var onboardingViewModel: VOCViewModel!
     @Published var homeScreenViewModel: HomeScreenViewModel!
+    @Published var loginScreenViewModel: LoginScreenViewModel!
     
     // MARK: - Observed
     @ObservedObject var coordinator: OnboardingCoordinator
@@ -27,32 +28,48 @@ class OnboardingRouter: Routable {
     func initViewModels() {
         self.onboardingViewModel = VOCViewModel(coordinator: self.coordinator)
         self.homeScreenViewModel = HomeScreenViewModel(coordinator: self.coordinator)
+        self.loginScreenViewModel = LoginScreenViewModel(coordinator: self.coordinator)
     }
     
     func view(for route: OnboardingRoutes) -> AnyView {
+        var view: any View
+        var statusBarHidden: Bool = false
+         
         switch route {
         case .onboarding:
             let progressBarCoordinator: ProgressBarNavigationCoordinator<VOCViewModel> = .init(viewModel: onboardingViewModel, progressBar: onboardingViewModel.progressBar)
             
             progressBarCoordinator.injectProgressViewOnTapActions()
             
-            return AnyView(
-                VOC(model: self.onboardingViewModel,
+             view = VOC(model: self.onboardingViewModel,
                                PBNCoordinator: progressBarCoordinator,
                                progressBarModel: self.onboardingViewModel.progressBar)
-            )
+            
+            statusBarHidden = true
         case .home:
             let textOscillator: TextOscillator = .init(initialValue: self.homeScreenViewModel.initialSubtitleString)
             textOscillator.stringsToCycleThrough = self.homeScreenViewModel.localizedStringArray
             
-            return AnyView(
-                HomeScreen(model: self.homeScreenViewModel,
+            view = HomeScreen(model: self.homeScreenViewModel,
                            textOscillator: textOscillator)
-            )
+            
+            
+            statusBarHidden = true
         case .login:
-            return AnyView(EmptyView())
+            view = LoginScreen(model: self.loginScreenViewModel)
+                    .navigationBarBackButtonHidden(true)
+
+            statusBarHidden = false
         case .signUp:
-            return AnyView(EmptyView())
+            view = EmptyView()
+            
+            statusBarHidden = false
         }
+        
+        return AnyView(view
+            .routerStatusBarVisibilityModifier(visible: statusBarHidden,
+                                               coordinator: self.coordinator)
+        )
     }
 }
+

@@ -30,9 +30,7 @@ class MainCoordinator: TabbarCoordinator {
     @Published var sheetItem: TabbarRoutes?
     @Published var fullCoverItem: TabbarRoutes?
     @Published var rootView: AnyView!
-    
-    // MARK: - States
-    @State var statusBarHidden: Bool = false
+    @Published var statusBarHidden: Bool = false
     
     var tabbarDispatcher: TabbarTabDispatcher {
         return TabbarTabDispatcher(coordinator: self)

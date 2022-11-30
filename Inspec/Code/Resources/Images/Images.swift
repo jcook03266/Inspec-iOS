@@ -80,7 +80,8 @@ struct Icons {
     
     static func getIconImage(named systemName: SystemIconRepository,
                              renderingMode: Image.TemplateRenderingMode = .template) -> Image {
-        return Image(uiImage: getIconUIImage(named: systemName))
+
+        return Image(systemName: systemName.rawValue)
             .renderingMode(renderingMode)
     }
     
@@ -136,7 +137,16 @@ enum CustomIconRepository: String, CaseIterable, Hashable {
 }
 
 enum SystemIconRepository: String, CaseIterable, Hashable {
-    case chevron_left = "chevron.left",
+    case eye,
+    eye_circle = "eye.circle",
+    eye_circle_fill = "eye.circle.fill",
+    eye_fill = "eye.fill",
+    eye_trianglebadge_exclamationmark_fill = "eye.trianglebadge.exclamationmark.fill",
+    eye_slash = "eye.slash",
+    eye_slash_fill = "eye.slash.fill",
+    eye_slash_circle = "eye.slash.circle",
+    eye_slash_circle_fill = "eye.slash.circle.fill",
+    chevron_left = "chevron.left",
          chevron_right = "chevron.right",
          chevron_up = "chevron.up",
          chevron_down = "chevron.down",
@@ -171,13 +181,15 @@ enum SystemIconRepository: String, CaseIterable, Hashable {
          clock = "clock",
          questionmark_circle = "questionmark.circle",
          exclamationmark_triangle = "exclamationmark.triangle",
-         lock = "lock",
-         key = "key",
-         link = "link",
-         creditcard = "creditcard",
+         lock,
+         lock_fill = "lock.fill",
+         key,
+         link,
+         creditcard,
          wifi_slash = "wifi.slash",
+         person_fill = "person.fill",
          person_crop_circle_badge_plus = "person.crop.circle.badge.plus",
-         heart = "heart",
+         heart,
          heart_fill = "heart.fill",
          hand_thumbsup = "hand.thumbsup",
          hand_thumbsup_fill = "hand.thumbsup.fill",

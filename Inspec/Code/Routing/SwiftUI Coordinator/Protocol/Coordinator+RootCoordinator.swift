@@ -25,8 +25,6 @@ public protocol Coordinator: ObservableObject {
     var navigationPath: [Router.Route] { get set } // Keeps track of all current values in the nav path (active navigation paths)
     var sheetItem: Router.Route? { get set }
     var fullCoverItem: Router.Route? { get set }
-    
-    // MARK: - States
     var statusBarHidden: Bool { get set }
     
     @ViewBuilder
@@ -181,6 +179,12 @@ extension Coordinator {
     }
     
     /// Pops the topmost view off of the navigation stack
+    func popView(onDismiss: (() -> Void)? = nil) {
+        removeLastPathValue()
+        completionHandler(onDismiss)
+    }
+    
+    /// Pops the specified view off of the navigation stack
     func popView(with route: Router.Route,
                  onDismiss: (() -> Void)? = nil) {
         removePath(with: route)
@@ -263,7 +267,15 @@ extension Coordinator {
         navigationPath.append(route)
     }
     
+    /// Removes the first path in the navigation path
+    private func removeFirstPathValue() {
+        navigationPath.removeFirst()
+    }
+    
+    /// Removes the last path in the navigation path
     private func removeLastPathValue() {
+        guard !navigationPath.isEmpty else { return }
+        
         navigationPath.removeLast()
     }
     

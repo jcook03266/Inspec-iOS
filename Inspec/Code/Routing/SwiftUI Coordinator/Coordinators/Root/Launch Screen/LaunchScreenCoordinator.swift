@@ -25,12 +25,10 @@ class LaunchScreenCoordinator: RootCoordinator {
     @Published var sheetItem: LaunchScreenRoutes?
     @Published var fullCoverItem: LaunchScreenRoutes?
     @Published var rootView: AnyView!
+    @Published var statusBarHidden: Bool = true
     
     // MARK: - Observed
     @ObservedObject var rootCoordinatorDelegate: RootCoordinatorDelegate
-    
-    // MARK: - States
-    @State var statusBarHidden: Bool = true
     
     init (rootCoordinatorDelegate: RootCoordinatorDelegate = .init()) {
         self.rootCoordinatorDelegate = rootCoordinatorDelegate

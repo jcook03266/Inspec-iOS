@@ -23,14 +23,24 @@ struct InspecApp: App {
         return rootCoordinatorDelegate.activeRootCoordinator
     }
     
+    // MARK: - Debug Environment Properties
+    var isDebug: Bool = false
+    
     var body: some Scene {
         WindowGroup {
             Group {
-                activeRootCoordinator.coordinatorView()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                if isDebug {
+                    OnboardingCoordinator(rootCoordinatorDelegate: .init()).view(for: .login)
+                }
+                else {
+                    activeRootCoordinator.coordinatorView()
+                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                }
             }
             .onOpenURL { url in
                 deepLinkTarget = deepLinkManager.manage(url: url)
+            }
+            .onAppear {
             }
         }
     }

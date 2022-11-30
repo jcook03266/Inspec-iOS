@@ -15,38 +15,31 @@ struct OBP_1_BackgroundGraphicsView: View {
     /// Dot matrix
     let graphicsScaler_2 = OBGraphicsScaler(idealImageSize: CGSize(width: 160, height: 160),
                                           idealImageOffset: CGPoint(x: 7, y: -40))
-    
-    var dashedCircle: Image {
-        return Images.getImage(named: .dashedCircle)
+    var dashedCircle: some View {
+        Circle()
+            .stroke(style: .init(lineWidth: 5,
+                                 lineCap: .round,
+                                 lineJoin: .bevel,
+                                 dash: [10],
+                                 dashPhase: dashedCirclePhase))
     }
     var dotMatrixImage: Image {
         return Images.getImage(named: .dotMatrix)
     }
     
     // MARK: - States for animations
-    @State private var rotation: CGFloat = 0
+    @State private var dashedCirclePhase: CGFloat = 0 // Animatable
     
     var body: some View {
         VStack {
             HStack {
                 // Animation: Rotates indefinitely
                 dashedCircle
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .rotationEffect(.degrees(rotation),
-                                    anchor: .center)
                     .frame(width: graphicsScaler_1.realImageSize.width,
                            height: graphicsScaler_1.realImageSize.height)
                     .offset(x: graphicsScaler_1.realImageOffset.x,
                             y: graphicsScaler_1.realImageOffset.y)
-                    .animation(
-                        .linear(duration: 1)
-                        .repeatForever(autoreverses: true)
-                        .speed(0.1),
-                        value: rotation)
-                    .onAppear {
-                        rotation = 360
-                    }
+                    .foregroundColor(Colors.primary_1.0)
     
                 Spacer()
             }
@@ -66,6 +59,16 @@ struct OBP_1_BackgroundGraphicsView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            startAntMarchAnimation()
+        }
+    }
+    
+    func startAntMarchAnimation() {
+        withAnimation(.linear
+            .repeatForever(autoreverses: false)) {
+                dashedCirclePhase -= 20
+            }
     }
 }
 

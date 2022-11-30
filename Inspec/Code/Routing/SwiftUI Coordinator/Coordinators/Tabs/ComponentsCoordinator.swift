@@ -25,9 +25,7 @@ class ComponentsCoordinator: Coordinator {
     
     // MARK: - Published
     @Published var router: ComponentsRouter!
-    
-    // MARK: - States
-    @State var statusBarHidden: Bool = false
+    @Published var statusBarHidden: Bool = false
     
     init (parent: any Coordinator) {
         self.parent = parent
