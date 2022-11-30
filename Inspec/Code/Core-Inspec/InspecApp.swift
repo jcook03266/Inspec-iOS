@@ -24,7 +24,7 @@ struct InspecApp: App {
     }
     
     // MARK: - Debug Environment Properties
-    var isDebug: Bool = false
+    var isDebug: Bool = true
     
     var body: some Scene {
         WindowGroup {

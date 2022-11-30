@@ -28,7 +28,7 @@ struct LoginScreen: View {
         passwordResetButtonTopPadding: CGFloat = 15,
         signInButtonTopPadding: CGFloat = 20,
         signUpButtonTopPadding: CGFloat = 5,
-        accountCreationPromptLeadingPadding: CGFloat = 10,
+        accountCreationPromptLeadingPadding: CGFloat = 5,
         accountCreationPromptTopPadding: CGFloat = 40,
         thirdPartySignInDividerTopPadding: CGFloat = 25,
         thirdPartyButtonSpacing: CGFloat = 80,
@@ -299,6 +299,7 @@ struct LoginScreen: View {
                         .position(x: geom.size.width - dashedCircleSize.width / 10,
                                   y: -dashedCircleSize.height/5)
                 )
+                .frame(width: geom.size.width)
 
                 VStack(alignment: .center) {
                         signUpPrompt
@@ -309,6 +310,7 @@ struct LoginScreen: View {
                         
                         thirdPartySignInButtons
                     }
+                .frame(width: geom.size.width)
             }
             .frame(width: geom.size.width)
         }
