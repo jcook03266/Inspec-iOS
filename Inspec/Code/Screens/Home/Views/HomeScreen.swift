@@ -112,7 +112,7 @@ struct HomeScreen: View {
                 Spacer()
             }
             
-            // Register Button
+            // Sign Up Button
             HStack {
                 HalfRoundedRectangularCTA(action: model.loginAction,
                                           backgroundColor: model.registerButtonBackgroundColor,
@@ -152,7 +152,7 @@ struct HomeScreen: View {
                             VStack(alignment: .leading) {
                                 title
                                 subtitle
-                                    .transition(.slideBackwards.animation(.spring()))
+                                    .transition(.asymmetric(insertion: .slideForwards, removal: .opacity).animation(.easeOut))
                             }
                             
                             Spacer()

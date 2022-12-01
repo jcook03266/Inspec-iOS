@@ -14,10 +14,8 @@ struct LoginScreen: View {
     // MARK: - States
     @State private var dashedCirclePhase: CGFloat = 0 /// Animatable
     
-    // MARK: - Dimensions
-    // Corner Radius
+    // MARK: - Padding + Corner Radius + Dimensions
     var formSectionCornerRadius: CGFloat = 60,
-        // Padding
         textFieldSpacing: CGFloat = 20,
         textFieldSidePadding: CGFloat = 15,
         textFieldTopPadding: CGFloat = 25,

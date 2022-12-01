@@ -77,6 +77,10 @@
 		49953BDF2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49953BDE2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift */; };
 		49953BE5292876DE00EA6AD5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49953BE4292876DE00EA6AD5 /* Launch Screen.storyboard */; };
 		4995E22F293741EE00296BF0 /* StraightSolidDividingLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995E22E293741EE00296BF0 /* StraightSolidDividingLine.swift */; };
+		4995E2312938297100296BF0 /* AppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995E2302938297100296BF0 /* AppService.swift */; };
+		4995E2352938AD0700296BF0 /* AppInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995E2342938AD0700296BF0 /* AppInformation.swift */; };
+		4995E2372938AF6000296BF0 /* Bundle+AppExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995E2362938AF6000296BF0 /* Bundle+AppExtensions.swift */; };
+		4995E2392938BF9400296BF0 /* AssociatedEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4995E2382938BF9400296BF0 /* AssociatedEnum.swift */; };
 		499A92F2291A3755002A70D9 /* DeviceConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F1291A3755002A70D9 /* DeviceConstants.swift */; };
 		499A92F4291A3E67002A70D9 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */; };
 		499A92F6291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */; };
@@ -220,6 +224,10 @@
 		49953BDE2927A6C800EA6AD5 /* HalfRoundedRectangularCTA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfRoundedRectangularCTA.swift; sourceTree = "<group>"; };
 		49953BE4292876DE00EA6AD5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		4995E22E293741EE00296BF0 /* StraightSolidDividingLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StraightSolidDividingLine.swift; sourceTree = "<group>"; };
+		4995E2302938297100296BF0 /* AppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppService.swift; sourceTree = "<group>"; };
+		4995E2342938AD0700296BF0 /* AppInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInformation.swift; sourceTree = "<group>"; };
+		4995E2362938AF6000296BF0 /* Bundle+AppExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppExtensions.swift"; sourceTree = "<group>"; };
+		4995E2382938BF9400296BF0 /* AssociatedEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociatedEnum.swift; sourceTree = "<group>"; };
 		499A92F1291A3755002A70D9 /* DeviceConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConstants.swift; sourceTree = "<group>"; };
 		499A92F3291A3E67002A70D9 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		499A92F5291A4532002A70D9 /* OnboardingPage_1_BackgroundGraphicsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPage_1_BackgroundGraphicsView.swift; sourceTree = "<group>"; };
@@ -1004,6 +1012,24 @@
 			path = "Dividing Lines";
 			sourceTree = "<group>";
 		};
+		4995E2322938ACA200296BF0 /* App Interface */ = {
+			isa = PBXGroup;
+			children = (
+				49C262A22900B79E00532DF7 /* InspecApp.swift */,
+				4995E2332938ACBB00296BF0 /* Centralized Information */,
+			);
+			path = "App Interface";
+			sourceTree = "<group>";
+		};
+		4995E2332938ACBB00296BF0 /* Centralized Information */ = {
+			isa = PBXGroup;
+			children = (
+				4995E2302938297100296BF0 /* AppService.swift */,
+				4995E2342938AD0700296BF0 /* AppInformation.swift */,
+			);
+			path = "Centralized Information";
+			sourceTree = "<group>";
+		};
 		499A92F0291A3741002A70D9 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -1035,6 +1061,7 @@
 				499A9307291C0C80002A70D9 /* ComponentsProtocol.swift */,
 				499A930E292011CE002A70D9 /* GenericViewModelProtocol.swift */,
 				499A931029201436002A70D9 /* GenericNavigationProtocol.swift */,
+				4995E2382938BF9400296BF0 /* AssociatedEnum.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1270,6 +1297,7 @@
 				499A93142921BDD8002A70D9 /* SwiftUIAnimationTransitions.swift */,
 				498CB4D8292BB82600354907 /* UINavigationBar.swift */,
 				49824A6D292DBC77000A8DE8 /* CommonMath.swift */,
+				4995E2362938AF6000296BF0 /* Bundle+AppExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1421,9 +1449,9 @@
 		49C262D42900B7DB00532DF7 /* Core-Inspec */ = {
 			isa = PBXGroup;
 			children = (
+				4995E2322938ACA200296BF0 /* App Interface */,
 				499C35B2293304E500C8F82F /* Data Access */,
 				499C35B1293304D900C8F82F /* Business Logic */,
-				49C262A22900B79E00532DF7 /* InspecApp.swift */,
 			);
 			path = "Core-Inspec";
 			sourceTree = "<group>";
@@ -1773,6 +1801,7 @@
 				49A73408291843C600AAB553 /* VOCPageView.swift in Sources */,
 				49953BDA2927821700EA6AD5 /* HomeScreenViewModel.swift in Sources */,
 				498CB4DF292D768500354907 /* SignUpService.swift in Sources */,
+				4995E2372938AF6000296BF0 /* Bundle+AppExtensions.swift in Sources */,
 				490611C32911B459007E5945 /* CommandCenterViewModel.swift in Sources */,
 				4995E22F293741EE00296BF0 /* StraightSolidDividingLine.swift in Sources */,
 				49824A6C292D9B2C000A8DE8 /* LaunchScreenManager.swift in Sources */,
@@ -1796,6 +1825,7 @@
 				49630FB92916D8E500D4BD50 /* VerticalOnboardingCarouselView.swift in Sources */,
 				499A93182921C299002A70D9 /* FTUEHandler.swift in Sources */,
 				498CB4D9292BB82600354907 /* UINavigationBar.swift in Sources */,
+				4995E2392938BF9400296BF0 /* AssociatedEnum.swift in Sources */,
 				490611E32911BD8A007E5945 /* RoundedRectangularCTA.swift in Sources */,
 				49B221D6290D076900BF7B26 /* Tabs.swift in Sources */,
 				49918A4F2923B2F100A5639C /* Routes.swift in Sources */,
@@ -1813,7 +1843,9 @@
 				499A92F8291A4540002A70D9 /* OnboardingPage_2_BackgroundGraphicsView.swift in Sources */,
 				49F3B9A12918EBD300BEDA1E /* LottieView.swift in Sources */,
 				49C262A32900B79E00532DF7 /* InspecApp.swift in Sources */,
+				4995E2352938AD0700296BF0 /* AppInformation.swift in Sources */,
 				490611A729119ACB007E5945 /* BuildsViewModel.swift in Sources */,
+				4995E2312938297100296BF0 /* AppService.swift in Sources */,
 				498CB4DB292D766800354907 /* OnboardingService.swift in Sources */,
 				498CB4D7292BB13300354907 /* TextOscillator.swift in Sources */,
 				49B6E95D292D8E16008E1932 /* LaunchScreenBridgeView.swift in Sources */,
