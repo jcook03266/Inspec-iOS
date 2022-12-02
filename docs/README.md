@@ -8,7 +8,7 @@
  
 </div>
  
-<p align="left">
+<p align="center">
 <img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400" align ="center">
 </p>
 
