@@ -8,9 +8,13 @@
  
 </div>
  
-<p align="center">
-<img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400" align ="center">
-</p>
+<div style="display: grid; grid-gap: 20px; grid-template-columns: 1fr 1fr"> 
+ 
+<div align="center">
+ 
+<img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400">
+ 
+</div>
 
 <div align="right">
 
@@ -23,6 +27,8 @@
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
  
+</div>
+
 </div>
 
 <div align="center">
