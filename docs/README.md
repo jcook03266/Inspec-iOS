@@ -20,6 +20,7 @@
  <summary> Quick Navigation </summary> 
  
 [Inspec in a nutshell ▶︎](#Inspec-in-a-nutshell)
+[Demo ▶︎](#Application-Onboarding-Demo)
 
 </details>
 </div>
@@ -33,7 +34,7 @@ Inspec is a powerful productivity centered mobile application that greatly simpl
 
 <div align="center">
  
-## Application Demo
+## Application Onboarding Demo
  
 https://user-images.githubusercontent.com/63657230/205211554-9f53a9bb-a93e-467e-be6e-ddbb7d23ddf8.mp4
  
