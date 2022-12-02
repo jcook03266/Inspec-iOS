@@ -12,6 +12,8 @@
 <img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400" align ="center">
 </p>
 
+<div align="center">
+
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
@@ -20,6 +22,8 @@
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 - [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+ 
+</div>
 
 <div align="center">
  
