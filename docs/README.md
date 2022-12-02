@@ -24,7 +24,7 @@
 </details>
 </div>
 
-<div align="center">
+<div align="left">
  
 ## Inspec in a nutshell:
 Inspec is a powerful productivity centered mobile application that greatly simplifies the process of building a personal computer. Collaborate with your friends, and share your computer with the world all in the same place. With Inspec under your belt, your PC will always be in spec!
