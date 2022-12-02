@@ -8,7 +8,7 @@
  
 </div>
  
-<div style="display: grid; grid-template-columns: 1fr 1fr"> 
+<div style="display: flex;"> 
  
 <div>
  
