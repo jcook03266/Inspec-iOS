@@ -17,9 +17,9 @@
 <div align="center">
 
 <details>
- <summary> Navigation </summary> 
+ <summary> Quick Navigation </summary> 
  
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+[Inspec in a nutshell:](#Inspec-in-a-nutshell)
 
 </details>
 </div>
