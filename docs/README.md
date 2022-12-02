@@ -14,6 +14,19 @@
 
 <div align="center">
  
+<details>
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+</details>
+ 
+## Inspec in a nutshell:
+Inspec is a powerful productivity centered mobile application that greatly simplifies the process of building a personal computer. Collaborate with your friends, and share your computer with the world all in the same place. With Inspec under your belt, your PC will always be in spec!
+ 
+</div>
+
+<div align="center">
+ 
+## Application Demo
+ 
 https://user-images.githubusercontent.com/63657230/205211554-9f53a9bb-a93e-467e-be6e-ddbb7d23ddf8.mp4
  
  </div>
