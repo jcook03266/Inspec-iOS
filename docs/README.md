@@ -8,27 +8,20 @@
  
 </div>
  
-<div style="display: flex;"> 
- 
-<div style="flex: 1">
+<div align="center">
  
 <img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400">
  
 </div>
 
-<div style="flex: 1">
+<div align="center">
 
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+<details>
+ <summary> Navigation </summary> 
  
-</div>
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 
+</details>
 </div>
 
 <div align="center">
