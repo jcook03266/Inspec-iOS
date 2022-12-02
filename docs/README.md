@@ -7,12 +7,19 @@
 [![GitHub version](https://badge.fury.io/gh/jcook03266%2FBasin.svg)](https://badge.fury.io/gh/jcook03266%2FBasin)
  
 </div>
-
-- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
  
-<p align="center">
+<p align="left">
 <img src="https://github.com/jcook03266/Inspec-iOS/blob/Master/Resources/Repo-Hero.jpg" width = "400" align ="center">
 </p>
+
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
+- [Inspec in a nutshell:](#Inspec-in-a-nutshell)
 
 <div align="center">
  
