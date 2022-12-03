@@ -1,0 +1,7 @@
+# CODEOWNERS for this repository
+# Lines that start with `#` are ignored.
+
+# app/ @commented-rule
+
+# Specify a default Code Owner by using a wildcard:
+* @jcook03266
