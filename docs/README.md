@@ -19,8 +19,8 @@
 <details>
  <summary> Quick Navigation </summary> 
  
-[Inspec in a nutshell ▶︎](#Inspec-in-a-nutshell)
-[Demo ▶︎](#Application-Onboarding-Demo)
+*[Inspec in a nutshell ▶︎](#Inspec-in-a-nutshell)
+*[Demo ▶︎](#Application-Onboarding-Demo)
 
 </details>
 </div>
